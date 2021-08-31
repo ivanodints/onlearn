@@ -628,6 +628,10 @@ pre code {
     margin-left: -15px
 }
 
+.rowss{
+    align-items: center;
+}
+
 .no-gutters {
     margin-right: 0;
     margin-left: 0

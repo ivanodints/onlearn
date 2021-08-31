@@ -1967,14 +1967,14 @@ body.mobile-nav-active #mobile-nav-toggle {
 .courses-list a {
   display: inline-block;
   color: #777777;
-  padding: 17px 30px;
+  padding: 17px 15px;
   font-size: 16px;
   font-weight: 500; }
   @media (max-width: 1024px) and (min-width: 992px) {
     .courses-list a {
       padding: 17px 20px; } }
 .courses-list i {
-  margin-right: 20px; }
+  margin-right: 5px; }
 
 .feature-area {
   padding: 150px 0 120px; }

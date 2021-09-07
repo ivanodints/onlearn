@@ -21,6 +21,10 @@ public class SphereOfActivities implements Serializable {
     cascade = CascadeType.ALL)
     private List<Faculty> faculties;
 
+    @ManyToMany(mappedBy = "sphere_fac")
+    @JoinColumn(name = "sphere_id")
+    private List<Faculty> sphereFaculty;
+
     public SphereOfActivities() {
     }
 
@@ -51,6 +55,10 @@ public class SphereOfActivities implements Serializable {
     public void setFaculties(List<Faculty> faculties) {
         this.faculties = faculties;
     }
+
+    public List<Faculty> getSphereFaculty() { return sphereFaculty; }
+
+    public void setSphereFaculty(List<Faculty> sphereFaculty) { this.sphereFaculty = sphereFaculty; }
 
     @Override
     public boolean equals(Object o){

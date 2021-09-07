@@ -26,6 +26,14 @@ public class Faculty implements Serializable {
     @ManyToMany(mappedBy = "faculty")
     private List<Discipline> disciplines;
 
+    @ManyToMany(mappedBy = "fac_student")
+    @JoinColumn(name = "fac_id")
+    private List<Student> students;
+
+    @ManyToMany(mappedBy = "sphere_fac")
+    @JoinColumn(name = "fac_id")
+    private List<SphereOfActivities> sphereOfActivitiesFaculty;
+
     public Faculty() {
     }
 
@@ -74,4 +82,15 @@ public class Faculty implements Serializable {
         this.disciplines = disciplines;
     }
 
+    public List<Student> getStudents() { return students; }
+
+    public void setStudents(List<Student> students) { this.students = students; }
+
+    public List<SphereOfActivities> getSphereOfActivitiesFaculty() {
+        return sphereOfActivitiesFaculty;
+    }
+
+    public void setSphereOfActivitiesFaculty(List<SphereOfActivities> sphereOfActivitiesFaculty) {
+        this.sphereOfActivitiesFaculty = sphereOfActivitiesFaculty;
+    }
 }

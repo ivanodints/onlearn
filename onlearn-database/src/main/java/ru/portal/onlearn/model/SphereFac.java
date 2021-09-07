@@ -23,6 +23,12 @@ public class SphereFac implements Serializable {
     @Column(name = "fac_id", nullable =  false)
     private Long facId;
 
+    @ManyToOne(targetEntity = SphereOfActivities.class)
+    private SphereOfActivities sphereOfActivities;
+
+    @ManyToOne(targetEntity = Faculty.class)
+    private Faculty faculty;
+
     public SphereFac() {
     }
 

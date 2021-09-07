@@ -30,6 +30,12 @@ public class DeptEmployee implements Serializable {
     @Column(name = "to_date")
     private LocalDate toDate;
 
+    @ManyToOne(targetEntity = Departments.class)
+    private Departments departments;
+
+    @ManyToOne(targetEntity = Employee.class)
+    private Employee employee;
+
     public DeptEmployee() {
     }
 
@@ -80,4 +86,11 @@ public class DeptEmployee implements Serializable {
         this.toDate = toDate;
     }
 
+    public Departments getDepartments() { return departments; }
+
+    public void setDepartments(Departments departments) { this.departments = departments; }
+
+    public Employee getEmployee() { return employee; }
+
+    public void setEmployee(Employee employee) { this.employee = employee; }
 }

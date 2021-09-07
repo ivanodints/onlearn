@@ -16,12 +16,16 @@ public class Departments implements Serializable {
     @Column(name = "dept_title", nullable = false)
     private String title;
 
+    @OneToMany(mappedBy = "departments",
+            cascade = CascadeType.ALL)
+    private List<Employee> employees;
+
+    @ManyToMany(mappedBy = "dept_employee")
+    @JoinColumn(name = "dept_id")
+    private List<Employee> depEmployee;
+
     public Departments() {
     }
-
-    @OneToMany(mappedBy = "departments",
-    cascade = CascadeType.ALL)
-    private List<Employee> employees;
 
     public Departments(String title) {
         this.title = title;
@@ -43,4 +47,11 @@ public class Departments implements Serializable {
         this.title = title;
     }
 
+    public List<Employee> getDepartments() { return depEmployee; }
+
+    public void setDepartments(List<Departments> departments) { this.depEmployee = depEmployee; }
+
+    public List<Employee> getEmployees() { return employees; }
+
+    public void setEmployees(List<Employee> employees) { this.employees = employees; }
 }

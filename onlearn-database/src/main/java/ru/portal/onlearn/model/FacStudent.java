@@ -30,6 +30,12 @@ public class FacStudent implements Serializable {
     @Column(name = "to_date")
     private LocalDate toDate;
 
+    @ManyToOne(targetEntity = Faculty.class)
+    private Faculty faculty;
+
+    @ManyToOne(targetEntity = Student.class)
+    private Student student;
+
     public FacStudent() {
     }
 
@@ -79,4 +85,12 @@ public class FacStudent implements Serializable {
     public void setToDate(LocalDate toDate) {
         this.toDate = toDate;
     }
+
+    public Faculty getFaculty() { return faculty; }
+
+    public void setFaculty(Faculty faculty) { this.faculty = faculty; }
+
+    public Student getStudent() { return student; }
+
+    public void setStudent(Student student) { this.student = student; }
 }

@@ -3,6 +3,7 @@ package ru.portal.onlearn.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "employee")
@@ -36,6 +37,13 @@ public class Employee implements Serializable {
 
     @ManyToOne(optional = false)
     private Role roles;
+
+    @ManyToOne(optional = true)
+    private Departments departments;
+
+    @ManyToMany(mappedBy = "fac_student")
+    @JoinColumn(name = "fac_id")
+    private List<Departments> emplDepartments;
 
     public Employee() {
     }
@@ -123,4 +131,12 @@ public class Employee implements Serializable {
     public void setRoles(Role roles) {
         this.roles = roles;
     }
+
+    public Departments getDepartments() { return departments; }
+
+    public void setDepartments(Departments departments) { this.departments = departments; }
+
+    public List<Departments> getEmplDepartments() { return emplDepartments; }
+
+    public void setEmplDepartments(List<Departments> emplDepartments) { this.emplDepartments = emplDepartments; }
 }

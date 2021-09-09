@@ -28,18 +28,27 @@ public class SphereOfActivitiesDTO implements Serializable {
 
     private String title;
 
+    private String description;
+
     private Long facultyId;
 
     private List<Long> facultyIds;
-
 
     public SphereOfActivitiesDTO(Long id, String title) {
         this.id = id;
         this.title = title;
     }
 
+    public SphereOfActivitiesDTO(Long id, String title, String description) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+    }
+
     public SphereOfActivitiesDTO(SphereOfActivities sphereOfActivities) {
         this.id = sphereOfActivities.getId();
         this.title = sphereOfActivities.getTitle();
+        this.description = sphereOfActivities.getTitle();
     }
+
 }

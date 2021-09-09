@@ -27,16 +27,26 @@ public class Discipline implements Serializable {
     @Column(name = "disc_time", nullable = false)
     private LocalTime disc_time;
 
+    @Column(name = "description")
+    private  String description;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "fac_disc",
-    joinColumns = @JoinColumn(name = "fac_id"),
-    inverseJoinColumns = @JoinColumn(name = "disc_id"))
+    joinColumns = @JoinColumn(name = "disc_id"),
+    inverseJoinColumns = @JoinColumn(name = "fac_id"))
     private Set<Faculty> faculty;
 
+    // Добавить связь с преподавателями связь many to many
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "employee_disc",
+            joinColumns = @JoinColumn(name = "disc_id"),
+            inverseJoinColumns = @JoinColumn(name = "employee_id"))
+    private Set<Employee> employees;
 
-    public Discipline(String title, LocalTime disc_time) {
+    public Discipline(String title, LocalTime disc_time, String description) {
         this.title = title;
         this.disc_time = disc_time;
+        this.description = description;
     }
 
 }

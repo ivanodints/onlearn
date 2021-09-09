@@ -45,8 +45,9 @@ public interface SphereOfActivitiesService {
         return new SphereOfActivitiesDTO(
                 sp.getId(),
                 sp.getTitle(),
+                sp.getDescription(),
                 sp.getFaculties().size() > 0 ? sp.getFaculties().get(0).getId() : null,
-                sp.getFaculties().stream().map(Faculty :: getId).collect(Collectors.toList()));
+                sp.getFaculties().stream().map(Faculty::getId).collect(Collectors.toList()));
     }
 
 //    public static SphereOfActivitiesDTO mapToDTO(SphereOfActivities sp) {

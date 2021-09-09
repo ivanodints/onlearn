@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zxx" class="no-js" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<!-- Mobile Specific Meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Favicon-->
+	<link rel="shortcut icon" href="img/fav.png">
+	<!-- Author Meta -->
+	<meta name="author" content="codepixer">
+	<!-- Meta Description -->
+	<meta name="description" content="">
+	<!-- Meta Keyword -->
+	<meta name="keywords" content="">
+	<!-- meta character set -->
+	<meta charset="UTF-8">
+	<!-- Site Title -->
+	<title>About</title>
+
+	<!--
+			Google Font
+			============================================= -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,500,600" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500i" rel="stylesheet">
+
+	<!--
+			CSS
+			============================================= -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/themify-icons/0.1.2/css/themify-icons.css">
+	<link rel="stylesheet" href="css/linearicons.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/magnific-popup.css">
+	<link rel="stylesheet" href="css/nice-select.css">
+	<link rel="stylesheet" href="css/animate.min.css">
+	<link rel="stylesheet" href="css/owl.carousel.css">
+	<link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+
+	<!-- Start Header Area -->
+	<header id="header">
+		<div class="container">
+			<div class="row align-items-center justify-content-between d-flex">
+				<div id="logo">
+					<a href="index.html"><img src="img/logo.png" alt="" title="" /></a>
+				</div>
+				<nav id="nav-menu-container">
+					<ul class="nav-menu">
+						<li class="menu-active"><a href="index.html">Главная</a></li>
+						<li><a href="about.html">О нас</a></li>
+						<li class="menu-has-children"><a href="">Кафедры</a>
+							<ul>
+								<li><a href="elements.html">Программирование</a></li>
+								<li><a href="elements.html">Маркетинг</a></li>
+								<li><a href="elements.html">Аналитика</a></li>
+								<li><a href="elements.html">Бизнес</a></li>
+								<li><a href="elements.html">Дизайн</a></li>
+								<li><a href="elements.html">Геймдев</a></li>
+								<li><a href="elements.html">Управление</a></li>
+							</ul>
+						</li>
+						<li><a href="contact.html">Контакты</a></li>
+						<li><a href="contact.html">Войти</a>
+							<ul>
+								<li><a href="elements.html">Зарегистрироваться</a></li>
+							</ul>
+						</li>
+					</ul>
+				</nav><!-- #nav-menu-container -->
+			</div>
+		</div>
+	</header>
+	<!-- End Header Area -->
+
+
+	<!-- Start Banner Area -->
+	<section class="banner-area relative">
+		<div class="container">
+			<div class="row d-flex align-items-center justify-content-center">
+				<div class="about-content col-lg-12">
+					<h1 class="text-white">
+						О нас
+					</h1>
+					<div class="link-nav">
+						<span class="box">
+							<a href="index.html">Главная </a>
+							<i class="lnr lnr-arrow-right"></i>
+							<a href="about.html">О нас</a>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="rocket-img">
+			<img src="img/rocket.png" alt="">
+		</div>
+	</section>
+	<!-- End Banner Area -->
+
+
+	<!-- Start About Area -->
+
+	<!-- End About Area -->
+
+
+
+	<!--Start Feature Area -->
+	<section class="feature-area">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-8">
+					<div class="section-title text-center">
+						<h1>Учебные вектора</h1>
+						<p>
+							Напоминаем, что на каждом векторе вы сможите найти интересующие вас факультеты
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="feature-inner row" th:each="sphere : ${allSpheres}">
+				<div class="col-lg-4 col-md-6">
+					<div class="feature-item">
+						<i class="ti-crown"></i>
+						<h4 td th:text="${sphere.getTitle()}">Долгосрочный доступ</h4>
+						<div class="wow fadeIn" data-wow-duration="1s" data-wow-delay=".1s">
+							<p td th:text="${sphere.getDescription()}">
+								Даже после завершения курсов вам остаются доступны все учебные материалы.
+							</p>
+						</div>
+					</div>
+				</div>
+
+
+				<!--				<div class="col-lg-4 col-md-6">-->
+				<!--					<div class="feature-item">-->
+				<!--						<i class="ti-briefcase"></i>-->
+				<!--						<h4>Лучший саппорт</h4>-->
+				<!--						<div class="wow fadeIn" data-wow-duration="1s" data-wow-delay=".3s">-->
+				<!--							<p>-->
+				<!--								На любой ваш вопрос наша служба поддержки ответит в течении получаса. 24 часа и 7 дней в-->
+				<!--								неделю.-->
+				<!--							</p>-->
+				<!--						</div>-->
+				<!--					</div>-->
+				<!--				</div>-->
+				<!--				<div class="col-lg-4 col-md-6">-->
+				<!--					<div class="feature-item">-->
+				<!--						<i class="ti-medall-alt"></i>-->
+				<!--						<h4>Удобный формат обучения</h4>-->
+				<!--						<div class="wow fadeIn" data-wow-duration="1s" data-wow-delay=".5s">-->
+				<!--							<p>-->
+				<!--								Все лекции проходят в вебинарном формате. Но если вы не успели, то всегда можите-->
+				<!--								пересмотреть лекцию в записи и задать волнующие вас вопросы.-->
+				<!--							</p>-->
+				<!--						</div>-->
+				<!--					</div>-->
+				<!--				</div>-->
+				<!--				<div class="col-lg-4 col-md-6">-->
+				<!--					<div class="feature-item">-->
+				<!--						<i class="ti-key"></i>-->
+				<!--						<h4>Демократичные цены</h4>-->
+				<!--						<div class="wow fadeIn" data-wow-duration="1s" data-wow-delay=".1s">-->
+				<!--							<p>-->
+				<!--								Цены вас приятно удивят. Так же есть система рассрочки.-->
+				<!--							</p>-->
+				<!--						</div>-->
+				<!--					</div>-->
+				<!--				</div>-->
+				<!--				<div class="col-lg-4 col-md-6">-->
+				<!--					<div class="feature-item">-->
+				<!--						<i class="ti-files"></i>-->
+				<!--						<h4>Лучшее комьюнити</h4>-->
+				<!--						<div class="wow fadeIn" data-wow-duration="1s" data-wow-delay=".3s">-->
+				<!--							<p>-->
+				<!--								Вы будите обучатся с такими же студентами как вы. Поэтому всегда сможите обсудить темы-->
+				<!--								обучения. Помоч друг другу.-->
+				<!--							</p>-->
+				<!--						</div>-->
+				<!--					</div>-->
+				<!--				</div>-->
+				<!--				<div class="col-lg-4 col-md-6">-->
+				<!--					<div class="feature-item">-->
+				<!--						<i class="ti-headphone-alt"></i>-->
+				<!--						<h4>Огромное количество практических заданий</h4>-->
+				<!--						<div class="wow fadeIn" data-wow-duration="1s" data-wow-delay=".5s">-->
+				<!--							<p>-->
+				<!--								Обучение не может быть успешным без практики. Мне подготовили для вас множество-->
+				<!--								интересных и разнообразных практических заданий.-->
+				<!--							</p>-->
+				<!--						</div>-->
+				<!--					</div>-->
+				<!--				</div>-->
+			</div>
+		</div>
+	</section>
+	<!-- End Feature Area -->
+
+
+
+
+	<!-- Start Faculty Area -->
+
+	<!-- End Faculty Area -->
+
+
+	<!-- Start Testimonials Area -->
+
+
+	<!-- End Testimonials Area -->
+
+
+	<!-- Start Footer Area -->
+	<footer class="footer-area section-gap">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-2 col-md-6 single-footer-widget">
+					<h4>OnLearn</h4>
+					<ul>
+						<li><a href="#">onlearn@support.com</a></li>
+						<li><a href="#">+7(909)999-06-69</a></li>
+						<li>Мы в соц. сетях</li>
+						<li>
+							<a href="#" class="fa fa-facebook"></a>
+							<a href="#" class="fa fa-twitter"></a>
+						</li>
+					</ul>
+				</div>
+				<div class="col-lg-2 col-md-6 single-footer-widget">
+					<h4>Информация</h4>
+					<ul>
+						<li><a href="#">О нас</a></li>
+						<li><a href="#">Наши контакты</a></li>
+						<li><a href="#">Пользовательское соглашение</a></li>
+						<li>Лицензия на образовательную деятельность №012854901 от 01 сентября 2020 года</a></li>
+					</ul>
+				</div>
+				<div class="col-lg-2 col-md-6 single-footer-widget">
+					<h4></h4>
+					<ul>
+						<li></li>
+					</ul>
+				</div>
+				<div class="col-lg-2 col-md-6 single-footer-widget">
+					<h4></h4>
+					<ul>
+						<li></li>
+					</ul>
+				</div>
+				<div class="col-lg-4 col-md-6 single-footer-widget">
+					<h4>Подписаться</h4>
+					<p>Вы можете подписаться на нас и получать уведомления</p>
+					<div class="form-wrap" id="mc_embed_signup">
+						<form target="_blank"
+							action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+							method="get" class="form-inline">
+							<input class="form-control" name="EMAIL" placeholder="Введите e-mail"
+								onfocus="this.placeholder = ''" onblur="this.placeholder = 'Введите e-mail'" required=""
+								type="email">
+							<button class="click-btn btn btn-default"><span class="lnr lnr-arrow-right"></span></button>
+							<div style="position: absolute; left: -5000px;">
+								<input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
+							</div>
+
+							<div class="info"></div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="footer-bottom row align-items-center">
+				<p class="footer-text m-0 col-lg-8 col-md-12">
+					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+					Copyright &copy;
+					<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is
+					made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com"
+						target="_blank">Colorlib</a>
+					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+				</p>
+				<div class="col-lg-4 col-md-12 footer-social">
+					<a href="#"><i class="fa fa-facebook"></i></a>
+					<a href="#"><i class="fa fa-twitter"></i></a>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- End Footer Area -->
+
+	<!-- ####################### Start Scroll to Top Area ####################### -->
+	<div id="back-top">
+		<a title="Go to Top" href="#"></a>
+	</div>
+	<!-- ####################### End Scroll to Top Area ####################### -->
+
+	<script src="js/vendor/jquery-2.2.4.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+	<script src="js/vendor/bootstrap.min.js"></script>
+	<script type="text/javascript"
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+	<script src="js/easing.min.js"></script>
+	<script src="js/hoverIntent.js"></script>
+	<script src="js/superfish.min.js"></script>
+	<script src="js/jquery.ajaxchimp.min.js"></script>
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/owl-carousel-thumb.min.js"></script>
+	<script src="js/jquery.sticky.js"></script>
+	<script src="js/jquery.nice-select.min.js"></script>
+	<script src="js/parallax.min.js"></script>
+	<script src="js/waypoints.min.js"></script>
+	<script src="js/wow.min.js"></script>
+	<script src="js/jquery.counterup.min.js"></script>
+	<script src="js/mail-script.js"></script>
+	<script src="js/main.js"></script>
+</body>
+
+</html>

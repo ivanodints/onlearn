@@ -26,18 +26,32 @@
                     <thead>
                         <tr>
                             <th scope="col">Id</th>
-                            <th scope="col">Направление</th>
-                            <th scope="col">Факультеты</th>
-                            <th scope="col">Описание</th>
+                            <th scope="col">Фамилия</th>
+                            <th scope="col">Имя</th>
+                            <th scope="col">Отчество</th>
+                            <th scope="col">Пол</th>
+                            <th scope="col">Дата рождения</th>
+                            <th scope="col">Телефон</th>
+                            <th scope="col">Почта</th>
+                            <th scope="col">Департамент</th>
+                            <th scope="col">Роль</th>
+
                             <!--                    <th scope="col">Действия</th>-->
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="sphere : ${allSpheres}">
-                            <th th:text="${sphere.getId()}" scope="row">1</th>
-                            <td th:text="${sphere.getTitle()}">Программирование</td>
-                            <td th:text="${sphere.getFacultiesTitles()}">Cписок факультетов</td>
-                            <td th:text="${sphere.getDescription()}">Описание направления</td>
+                        <tr th:each="employee : ${allEmployee}">
+                            <th th:text="${employee.getId()}" scope="row">1</th>
+                            <td th:text="${employee.getSurname()}">Программирование</td>
+                            <td th:text="${employee.getName()}">Cписок факультетов</td>
+                            <td th:text="${employee.getMiddleName()}">Описание направления</td>
+                            <td th:text="${employee.getSex()}">Описание направления</td>
+                            <td th:text="${employee.getDateOfBirth()}">Описание направления</td>
+                            <td th:text="${employee.getPhoneNumber()}">Описание направления</td>
+                            <td th:text="${employee.getEmail()}">Описание направления</td>
+                            <td th:text="${employee.getDepartments().title}">Департамент</td>
+                            <td th:text="${employee.getRole().title}">Роль</td>
+
 
 
                             <!--                    <td>-->

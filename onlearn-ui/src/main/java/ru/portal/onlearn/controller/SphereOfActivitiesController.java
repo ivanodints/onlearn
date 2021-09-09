@@ -33,7 +33,8 @@ public class SphereOfActivitiesController {
 
 
 
-    @GetMapping("/sphere")
+//    @GetMapping("/sphere")
+    @GetMapping("/chair")
     public String sphereOfActivitiesPage(@RequestParam(value = "sphereId", required = false) Long sphereId,
                                          @RequestParam(value = "facultyId", required = false) Long facultyId,
                                          @RequestParam(value = "pageNumber", required = false, defaultValue = "1") Integer pageNumber,
@@ -44,7 +45,8 @@ public class SphereOfActivitiesController {
         model.addAttribute("allSpheres", sphereOfActivitiesRepository.findAll());
 //        model.addAttribute("allFaculty", facultyRepository.findAll());
 
-        return "test-sphere-page";
+//        return "test-sphere-page";
+        return "chair";
 
     }
 }

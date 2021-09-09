@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "faculty")
@@ -27,16 +28,21 @@ public class Faculty implements Serializable {
     @Column(name = "price", nullable = false)
     private BigDecimal price;
 
+    @Column(name = "description")
+    private String description;
+
     @ManyToOne(optional = false)
     private SphereOfActivities sphereOfActivities;
 
     @ManyToMany(mappedBy = "faculty")
-    private List<Discipline> disciplines;
-//
-//    @ManyToMany(mappedBy = "fac_student")
-//    @JoinColumn(name = "fac_id")
-//    private List<Student> students;
-//
+    private Set<Discipline> disciplines;
+
+    //Связь студентов с факультетами
+    @ManyToMany(mappedBy = "faculty")
+    private Set<Student> students;
+
+
+    // ЗАЧЕМ?
 //    @ManyToMany(mappedBy = "sphere_fac")
 //    @JoinColumn(name = "fac_id")
 //    private List<SphereOfActivities> sphereOfActivitiesFaculty;

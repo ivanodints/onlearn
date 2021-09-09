@@ -19,16 +19,18 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class FacultyDTO {
 
-
     private Long id;
 
     private String title;
 
     private BigDecimal price;
 
+    private  String description;
+
     public FacultyDTO(Faculty faculty) {
         this.id = faculty.getId();
         this.title = faculty.getTitle();
         this.price = faculty.getPrice();
+        this.description = faculty.getDescription();
     }
 }

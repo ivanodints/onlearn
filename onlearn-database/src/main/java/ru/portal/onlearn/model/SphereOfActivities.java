@@ -1,5 +1,6 @@
 package ru.portal.onlearn.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 @Table(name = "sphere_of_activities" )
 @Getter
 @Setter
+@AllArgsConstructor
 @NoArgsConstructor
 public class SphereOfActivities implements Serializable {
 
@@ -26,10 +28,14 @@ public class SphereOfActivities implements Serializable {
     @Column(name = "sphereTitle", nullable = false)
     private String title;
 
+    @Column(name = "description")
+    private  String description;
+
     @OneToMany(mappedBy = "sphereOfActivities",
     cascade = CascadeType.ALL)
     private List<Faculty> faculties;
 
+    //Нужно ли переносить в сервисы?
     public List<String> getFacultiesTitles(){
         return faculties.stream().map(p -> p.getTitle()).collect(Collectors.toList());
     }
@@ -41,9 +47,10 @@ public class SphereOfActivities implements Serializable {
 //    private List<Faculty> sphereFaculty;
 
 
-    public SphereOfActivities(Long id, String title) {
+    public SphereOfActivities(Long id, String title, String description) {
         this.id = id;
         this.title = title;
+        this.description = description;
     }
 
 }

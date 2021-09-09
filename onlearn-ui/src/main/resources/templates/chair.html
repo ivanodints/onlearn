@@ -119,11 +119,12 @@
 					</div>
 				</div>
 			</div>
-			<div class="feature-inner row" th:each="sphere : ${allSpheres}">
-				<div class="col-lg-4 col-md-6">
-					<div class="feature-item">
-						<i class="ti-crown"></i>
-						<h4 td th:text="${sphere.getTitle()}">Долгосрочный доступ</h4>
+			<div class="feature-inner row" >
+
+				<div class="col-lg-4 col-md-6" th:each="sphere : ${allSpheres}">
+					<div class="feature-item" >
+						<i class="ti-crown" ></i>
+						<h4 td th:text="${sphere.getTitle()}" >Долгосрочный доступ</h4>
 						<div class="wow fadeIn" data-wow-duration="1s" data-wow-delay=".1s">
 							<p td th:text="${sphere.getDescription()}">
 								Даже после завершения курсов вам остаются доступны все учебные материалы.
@@ -133,30 +134,32 @@
 				</div>
 
 
-				<!--				<div class="col-lg-4 col-md-6">-->
-				<!--					<div class="feature-item">-->
-				<!--						<i class="ti-briefcase"></i>-->
-				<!--						<h4>Лучший саппорт</h4>-->
-				<!--						<div class="wow fadeIn" data-wow-duration="1s" data-wow-delay=".3s">-->
-				<!--							<p>-->
-				<!--								На любой ваш вопрос наша служба поддержки ответит в течении получаса. 24 часа и 7 дней в-->
-				<!--								неделю.-->
-				<!--							</p>-->
-				<!--						</div>-->
-				<!--					</div>-->
-				<!--				</div>-->
-				<!--				<div class="col-lg-4 col-md-6">-->
-				<!--					<div class="feature-item">-->
-				<!--						<i class="ti-medall-alt"></i>-->
-				<!--						<h4>Удобный формат обучения</h4>-->
-				<!--						<div class="wow fadeIn" data-wow-duration="1s" data-wow-delay=".5s">-->
-				<!--							<p>-->
-				<!--								Все лекции проходят в вебинарном формате. Но если вы не успели, то всегда можите-->
-				<!--								пересмотреть лекцию в записи и задать волнующие вас вопросы.-->
-				<!--							</p>-->
-				<!--						</div>-->
-				<!--					</div>-->
-				<!--				</div>-->
+<!--								<div class="col-lg-4 col-md-6">-->
+<!--									<div class="feature-item">-->
+<!--										<i class="ti-briefcase"></i>-->
+<!--										<h4>Лучший саппорт</h4>-->
+<!--										<div class="wow fadeIn" data-wow-duration="1s" data-wow-delay=".3s">-->
+<!--											<p>-->
+<!--												На любой ваш вопрос наша служба поддержки ответит в течении получаса. 24 часа и 7 дней в-->
+<!--												неделю.-->
+<!--											</p>-->
+<!--										</div>-->
+<!--									</div>-->
+<!--								</div>-->
+
+<!--								<div class="col-lg-4 col-md-6">-->
+<!--									<div class="feature-item">-->
+<!--										<i class="ti-medall-alt"></i>-->
+<!--										<h4>Удобный формат обучения</h4>-->
+<!--										<div class="wow fadeIn" data-wow-duration="1s" data-wow-delay=".5s">-->
+<!--											<p>-->
+<!--												Все лекции проходят в вебинарном формате. Но если вы не успели, то всегда можите-->
+<!--												пересмотреть лекцию в записи и задать волнующие вас вопросы.-->
+<!--											</p>-->
+<!--										</div>-->
+<!--									</div>-->
+<!--								</div>-->
+
 				<!--				<div class="col-lg-4 col-md-6">-->
 				<!--					<div class="feature-item">-->
 				<!--						<i class="ti-key"></i>-->

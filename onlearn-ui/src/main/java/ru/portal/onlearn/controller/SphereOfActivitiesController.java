@@ -14,7 +14,7 @@ import java.util.Optional;
 @RequestMapping
 public class SphereOfActivitiesController {
 
-//    private final SphereOfActivitiesService sphereOfActivitiesService;
+
     private final SphereOfActivitiesRepository sphereOfActivitiesRepository;
     private final FacultyRepository facultyRepository;
 
@@ -23,17 +23,7 @@ public class SphereOfActivitiesController {
         this.facultyRepository = facultyRepository;
     }
 
-//    public SphereOfActivitiesController(SphereOfActivitiesService sphereOfActivitiesService,
-//                                        SphereOfActivitiesRepository sphereOfActivitiesRepository,
-//                                        FacultyRepository facultyRepository) {
-//        this.sphereOfActivitiesService = sphereOfActivitiesService;
-//        this.sphereOfActivitiesRepository = sphereOfActivitiesRepository;
-//        this.facultyRepository = facultyRepository;
-//    }
 
-
-
-//    @GetMapping("/sphere")
     @GetMapping("/chair")
     public String sphereOfActivitiesPage(@RequestParam(value = "sphereId", required = false) Long sphereId,
                                          @RequestParam(value = "facultyId", required = false) Long facultyId,

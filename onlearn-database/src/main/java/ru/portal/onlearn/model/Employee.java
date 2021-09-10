@@ -52,8 +52,6 @@ public class Employee implements Serializable {
     private Role role;
 
     @ManyToOne(optional = true)
-    //ДОБАВИЛ КОЛОНКУ СВЯЗИ (ИВАН)
-//    @JoinColumn(name = "departments_id")
     private Departments departments;
 
 //    @ManyToMany(mappedBy = "fac_student")

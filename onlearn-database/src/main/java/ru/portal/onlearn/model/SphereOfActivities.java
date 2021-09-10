@@ -41,12 +41,6 @@ public class SphereOfActivities implements Serializable {
     }
 
 
-    // Возможно не нужна
-//    @ManyToMany(mappedBy = "sphere_fac")
-//    @JoinColumn(name = "sphere_id")
-//    private List<Faculty> sphereFaculty;
-
-
     public SphereOfActivities(Long id, String title, String description) {
         this.id = id;
         this.title = title;

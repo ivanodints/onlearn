@@ -42,6 +42,8 @@ public class SphereOfActivitiesController {
                                          @RequestParam(value = "sort", required = false) Optional<String> sort,
                                          Model model){
 
+
+        // sphereOfActivitiesRepository.findAll() нужно заменять на обращение "название сервиса".findAll().
         model.addAttribute("allSpheres", sphereOfActivitiesRepository.findAll());
 //        model.addAttribute("allFaculty", facultyRepository.findAll());
 

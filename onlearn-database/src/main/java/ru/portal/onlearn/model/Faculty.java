@@ -37,15 +37,8 @@ public class Faculty implements Serializable {
     @ManyToMany(mappedBy = "faculty")
     private Set<Discipline> disciplines;
 
-    //Связь студентов с факультетами
     @ManyToMany(mappedBy = "faculty")
     private Set<Student> students;
-
-
-    // ЗАЧЕМ?
-//    @ManyToMany(mappedBy = "sphere_fac")
-//    @JoinColumn(name = "fac_id")
-//    private List<SphereOfActivities> sphereOfActivitiesFaculty;
 
 
 }

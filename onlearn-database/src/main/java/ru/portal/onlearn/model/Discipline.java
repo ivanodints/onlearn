@@ -36,7 +36,6 @@ public class Discipline implements Serializable {
     inverseJoinColumns = @JoinColumn(name = "fac_id"))
     private Set<Faculty> faculty;
 
-    // Добавить связь с преподавателями связь many to many
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "employee_disc",
             joinColumns = @JoinColumn(name = "disc_id"),

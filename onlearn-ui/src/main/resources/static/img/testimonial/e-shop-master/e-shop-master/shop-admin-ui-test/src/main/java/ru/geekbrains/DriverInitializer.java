@@ -15,7 +15,7 @@ public class DriverInitializer {
         try {
             properties = new Properties();
             properties.load(DriverInitializer.class.getClassLoader()
-                    .getResourceAsStream("application.properties"));
+                    .getResourceAsStream("s.properties"));
         } catch (Exception e) {
             e.printStackTrace();
         }

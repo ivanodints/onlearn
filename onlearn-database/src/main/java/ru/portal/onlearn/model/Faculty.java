@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
-@Table(name = "faculty")
+@Table(name = "faculties")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -27,8 +27,8 @@ public class Faculty implements Serializable {
     @Column(name = "price", nullable = false)
     private BigDecimal price;
 
-    @ManyToOne(optional = false)
-    private SphereOfActivities sphereOfActivities;
+//    @ManyToOne(optional = false)
+//    private Direction direction;
 
     @ManyToMany(mappedBy = "faculty")
     private List<Discipline> disciplines;
@@ -37,9 +37,20 @@ public class Faculty implements Serializable {
 //    @JoinColumn(name = "fac_id")
 //    private List<Student> students;
 //
-//    @ManyToMany(mappedBy = "sphere_fac")
+//    @ManyToOne(mappedBy = "direction_fac")
 //    @JoinColumn(name = "fac_id")
-//    private List<SphereOfActivities> sphereOfActivitiesFaculty;
+//    private List<Direction> directionFaculty;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinTable(name = "direction_fac",
+            joinColumns = @JoinColumn(name = "direction_id"),
+            inverseJoinColumns = @JoinColumn(name = "fac_id"))
+    private Direction direction;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "fac_students",
+            joinColumns = @JoinColumn(name = "fac_id"),
+            inverseJoinColumns = @JoinColumn(name = "student_id"))
+    private List<Student> students;
 
 }

@@ -5,14 +5,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 //import ru.portal.onlearn.model.Faculty;
-import ru.portal.onlearn.model.SphereOfActivities;
+import ru.portal.onlearn.model.Direction;
 
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.List;
-import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 
 // аннотации геттеры, сеттеры, конструкторы это всё lombok. Он автогенерить будет для уменьшения написания кода
 // если что пишите поясню
@@ -21,8 +18,7 @@ import javax.validation.constraints.NotEmpty;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SphereOfActivitiesDTO implements Serializable {
-
+public class DirectionDTO implements Serializable {
 
     private Long id;
 
@@ -32,14 +28,16 @@ public class SphereOfActivitiesDTO implements Serializable {
 
     private List<Long> facultyIds;
 
-
-    public SphereOfActivitiesDTO(Long id, String title) {
+    public DirectionDTO(Long id, String title) {
         this.id = id;
         this.title = title;
     }
 
-    public SphereOfActivitiesDTO(SphereOfActivities sphereOfActivities) {
-        this.id = sphereOfActivities.getId();
-        this.title = sphereOfActivities.getTitle();
+    public DirectionDTO(Direction direction) {
     }
+
+//    public DirectionDTO(Direction direction) {
+//        this.id = direction.getId();
+//        this.title = direction.getTitle();
+//    }
 }

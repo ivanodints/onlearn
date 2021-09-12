@@ -10,7 +10,7 @@ import java.time.LocalTime;
 import java.util.Set;
 
 @Entity
-@Table(name = "discipline")
+@Table(name = "disciplines")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -32,7 +32,6 @@ public class Discipline implements Serializable {
     joinColumns = @JoinColumn(name = "fac_id"),
     inverseJoinColumns = @JoinColumn(name = "disc_id"))
     private Set<Faculty> faculty;
-
 
     public Discipline(String title, LocalTime disc_time) {
         this.title = title;

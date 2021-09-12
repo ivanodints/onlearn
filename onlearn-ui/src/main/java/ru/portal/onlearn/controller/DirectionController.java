@@ -6,20 +6,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.portal.onlearn.repo.FacultyRepository;
-import ru.portal.onlearn.repo.SphereOfActivitiesRepository;
+import ru.portal.onlearn.repo.DirectionRepository;
 
 import java.util.Optional;
 
 @Controller
 @RequestMapping
-public class SphereOfActivitiesController {
+public class DirectionController {
 
 //    private final SphereOfActivitiesService sphereOfActivitiesService;
-    private final SphereOfActivitiesRepository sphereOfActivitiesRepository;
+    private final DirectionRepository directionRepository;
     private final FacultyRepository facultyRepository;
 
-    public SphereOfActivitiesController(SphereOfActivitiesRepository sphereOfActivitiesRepository, FacultyRepository facultyRepository) {
-        this.sphereOfActivitiesRepository = sphereOfActivitiesRepository;
+    public DirectionController(DirectionRepository directionRepository, FacultyRepository facultyRepository) {
+        this.directionRepository = directionRepository;
         this.facultyRepository = facultyRepository;
     }
 
@@ -41,7 +41,7 @@ public class SphereOfActivitiesController {
                                          @RequestParam(value = "sort", required = false) Optional<String> sort,
                                          Model model){
 
-        model.addAttribute("allSpheres", sphereOfActivitiesRepository.findAll());
+        model.addAttribute("allSpheres", directionRepository.findAll());
 //        model.addAttribute("allFaculty", facultyRepository.findAll());
 
         return "test-sphere-page";

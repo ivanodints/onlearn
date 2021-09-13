@@ -52,7 +52,7 @@ public class Employee implements Serializable {
     private Role role;
 
     @ManyToOne(optional = true)
-    private Departments departments;
+    private Department department;
 
 //    @ManyToMany(mappedBy = "fac_student")
 //    @JoinColumn(name = "fac_id")

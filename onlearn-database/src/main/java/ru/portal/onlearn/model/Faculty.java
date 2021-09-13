@@ -7,7 +7,6 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -32,7 +31,7 @@ public class Faculty implements Serializable {
     private String description;
 
     @ManyToOne(optional = false)
-    private SphereOfActivities sphereOfActivities;
+    private Direction direction;
 
     @ManyToMany(mappedBy = "faculty")
     private Set<Discipline> disciplines;

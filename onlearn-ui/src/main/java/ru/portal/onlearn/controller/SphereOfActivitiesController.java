@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.portal.onlearn.repo.FacultyRepository;
-import ru.portal.onlearn.repo.SphereOfActivitiesRepository;
+import ru.portal.onlearn.repo.DirectionRepository;
 
 import java.util.Optional;
 
@@ -15,11 +15,11 @@ import java.util.Optional;
 public class SphereOfActivitiesController {
 
 
-    private final SphereOfActivitiesRepository sphereOfActivitiesRepository;
+    private final DirectionRepository directionRepository;
     private final FacultyRepository facultyRepository;
 
-    public SphereOfActivitiesController(SphereOfActivitiesRepository sphereOfActivitiesRepository, FacultyRepository facultyRepository) {
-        this.sphereOfActivitiesRepository = sphereOfActivitiesRepository;
+    public SphereOfActivitiesController(DirectionRepository directionRepository, FacultyRepository facultyRepository) {
+        this.directionRepository = directionRepository;
         this.facultyRepository = facultyRepository;
     }
 
@@ -34,7 +34,7 @@ public class SphereOfActivitiesController {
 
 
         // sphereOfActivitiesRepository.findAll() нужно заменять на обращение "название сервиса".findAll().
-        model.addAttribute("allSpheres", sphereOfActivitiesRepository.findAll());
+        model.addAttribute("allSpheres", directionRepository.findAll());
 //        model.addAttribute("allFaculty", facultyRepository.findAll());
 
 //        return "test-sphere-page";

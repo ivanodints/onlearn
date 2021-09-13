@@ -37,7 +37,7 @@
                 <tbody>
                 <tr th:each="faculty : ${allFaculties}" >
                     <th th:text="${faculty.getId()}" scope="row">1</th>
-                    <td th:text="${faculty.getSphereOfActivities().title}"></td>
+                    <td th:text="${faculty.getDirection().title}"></td>
                     <td th:text="${faculty.getTitle()}"></td>
                     <td th:text="${faculty.getPrice()}"></td>
                     <td th:text="${faculty.getDescription()}"></td>

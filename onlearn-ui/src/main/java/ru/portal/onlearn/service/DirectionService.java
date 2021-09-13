@@ -4,14 +4,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import ru.portal.onlearn.controller.DTO.SphereOfActivitiesDTO;
 import ru.portal.onlearn.model.Faculty;
-import ru.portal.onlearn.model.SphereOfActivities;
+import ru.portal.onlearn.model.Direction;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public interface SphereOfActivitiesService {
+public interface DirectionService {
 
 
     List<SphereOfActivitiesDTO> showAllSphereOfActivities();
@@ -41,7 +41,7 @@ public interface SphereOfActivitiesService {
     List<SphereOfActivitiesDTO> findBySphereOfActivitiesId(Long sphereOfActivitiesId);
 
 
-    public static SphereOfActivitiesDTO mapToDTO(SphereOfActivities sp) {
+    public static SphereOfActivitiesDTO mapToDTO(Direction sp) {
         return new SphereOfActivitiesDTO(
                 sp.getId(),
                 sp.getTitle(),

@@ -1,14 +1,12 @@
 package ru.portal.onlearn.service;
 
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import ru.portal.onlearn.controller.DTO.SphereOfActivitiesDTO;
-import ru.portal.onlearn.model.SphereOfActivities;
+import ru.portal.onlearn.model.Direction;
 import ru.portal.onlearn.repo.FacultyRepository;
-import ru.portal.onlearn.repo.SphereOfActivitiesRepository;
+import ru.portal.onlearn.repo.DirectionRepository;
 import ru.portal.onlearn.repo.specification.SphereOfActivitiesSpecification;
 
 import java.util.List;
@@ -16,26 +14,26 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class SphereOfActivitiesServiceImpl implements SphereOfActivitiesService {
+public class DirectionServiceImpl implements DirectionService {
 
-    private final SphereOfActivitiesRepository sphereOfActivitiesRepository;
+    private final DirectionRepository directionRepository;
     private final FacultyRepository facultyRepository;
 
-    public SphereOfActivitiesServiceImpl(SphereOfActivitiesRepository sphereOfActivitiesRepository,
-                                         FacultyRepository facultyRepository) {
-        this.sphereOfActivitiesRepository = sphereOfActivitiesRepository;
+    public DirectionServiceImpl(DirectionRepository directionRepository,
+                                FacultyRepository facultyRepository) {
+        this.directionRepository = directionRepository;
         this.facultyRepository = facultyRepository;
     }
 
     @Override
     public Optional<SphereOfActivitiesDTO> findById(Long id) {
 
-        return sphereOfActivitiesRepository.findById(id).map(p -> SphereOfActivitiesService.mapToDTO(p));
+        return directionRepository.findById(id).map(p -> DirectionService.mapToDTO(p));
     }
 
     @Override
     public List<SphereOfActivitiesDTO> showAllSphereOfActivities() {
-        return sphereOfActivitiesRepository.findAll().stream().map(SphereOfActivitiesDTO::new).collect(Collectors.toList());
+        return directionRepository.findAll().stream().map(SphereOfActivitiesDTO::new).collect(Collectors.toList());
     }
 
 
@@ -45,7 +43,7 @@ public class SphereOfActivitiesServiceImpl implements SphereOfActivitiesService 
                                                       Integer pageNumber,
                                                       Integer tableSize) {
 
-        Specification <SphereOfActivities> spec = Specification.where(null);
+        Specification <Direction> spec = Specification.where(null);
 
         if(sphereOfActivitiesId != null){
             spec = spec.and(SphereOfActivitiesSpecification.equalBySphereOfActivities(sphereOfActivitiesId));
@@ -68,7 +66,7 @@ public class SphereOfActivitiesServiceImpl implements SphereOfActivitiesService 
                                                                              Integer pageNumber,
                                                                              Integer tableSize) {
 
-        Specification <SphereOfActivities> spec = Specification.where(null);
+        Specification <Direction> spec = Specification.where(null);
 
         return null;
     }

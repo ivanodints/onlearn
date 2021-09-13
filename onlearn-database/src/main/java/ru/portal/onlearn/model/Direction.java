@@ -12,12 +12,12 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Entity
-@Table(name = "sphere_of_activities" )
+@Table(name = "direction" )
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class SphereOfActivities implements Serializable {
+public class Direction implements Serializable {
 
 
     @Id
@@ -25,13 +25,13 @@ public class SphereOfActivities implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "sphereTitle", nullable = false)
+    @Column(name = "directionTitle", nullable = false)
     private String title;
 
     @Column(name = "description")
     private  String description;
 
-    @OneToMany(mappedBy = "sphereOfActivities",
+    @OneToMany(mappedBy = "direction",
     cascade = CascadeType.ALL)
     private List<Faculty> faculties;
 
@@ -41,7 +41,7 @@ public class SphereOfActivities implements Serializable {
     }
 
 
-    public SphereOfActivities(Long id, String title, String description) {
+    public Direction(Long id, String title, String description) {
         this.id = id;
         this.title = title;
         this.description = description;

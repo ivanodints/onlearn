@@ -9,11 +9,11 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name = "departments")
+@Table(name = "department")
 @Getter
 @Setter
 @NoArgsConstructor
-public class Departments implements Serializable {
+public class Department implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +23,7 @@ public class Departments implements Serializable {
     @Column(name = "dept_title", nullable = false)
     private String title;
 
-    @OneToMany(mappedBy = "departments",
+    @OneToMany(mappedBy = "department",
             cascade = CascadeType.ALL)
     private List<Employee> employees;
 

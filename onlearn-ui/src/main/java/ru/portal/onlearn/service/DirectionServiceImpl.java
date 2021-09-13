@@ -3,7 +3,7 @@ package ru.portal.onlearn.service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-import ru.portal.onlearn.controller.DTO.SphereOfActivitiesDTO;
+import ru.portal.onlearn.controller.DTO.DirectionDTO;
 import ru.portal.onlearn.model.Direction;
 import ru.portal.onlearn.repo.FacultyRepository;
 import ru.portal.onlearn.repo.DirectionRepository;
@@ -26,22 +26,22 @@ public class DirectionServiceImpl implements DirectionService {
     }
 
     @Override
-    public Optional<SphereOfActivitiesDTO> findById(Long id) {
+    public Optional<DirectionDTO> findById(Long id) {
 
         return directionRepository.findById(id).map(p -> DirectionService.mapToDTO(p));
     }
 
     @Override
-    public List<SphereOfActivitiesDTO> showAllSphereOfActivities() {
-        return directionRepository.findAll().stream().map(SphereOfActivitiesDTO::new).collect(Collectors.toList());
+    public List<DirectionDTO> showAllDirection() {
+        return directionRepository.findAll().stream().map(DirectionDTO::new).collect(Collectors.toList());
     }
 
 
     @Override
-    public Page<SphereOfActivitiesDTO> findWithFilter(Long sphereOfActivitiesId,
-                                                      Long facultyId,
-                                                      Integer pageNumber,
-                                                      Integer tableSize) {
+    public Page<DirectionDTO> findWithFilter(Long sphereOfActivitiesId,
+                                             Long facultyId,
+                                             Integer pageNumber,
+                                             Integer tableSize) {
 
         Specification <Direction> spec = Specification.where(null);
 
@@ -61,10 +61,10 @@ public class DirectionServiceImpl implements DirectionService {
 
 
     @Override
-    public Page<SphereOfActivitiesDTO> findWithSphereOfActivitiesTitleFilter(String sphereOfActivitiesTitleFilter,
-                                                                             String sort,
-                                                                             Integer pageNumber,
-                                                                             Integer tableSize) {
+    public Page<DirectionDTO> findWithDirectionTitleFilter(String sphereOfActivitiesTitleFilter,
+                                                           String sort,
+                                                           Integer pageNumber,
+                                                           Integer tableSize) {
 
         Specification <Direction> spec = Specification.where(null);
 
@@ -72,26 +72,26 @@ public class DirectionServiceImpl implements DirectionService {
     }
 
     @Override
-    public List<SphereOfActivitiesDTO> findByFacultyId(Long facultyId) {
+    public List<DirectionDTO> findByFacultyId(Long facultyId) {
 
         return null;
     }
 
     @Override
-    public Page<SphereOfActivitiesDTO> findWithFacultyTitleFilter(String facultyTitleFilter,
-                                                                  String sort,
-                                                                  Integer pageNumber,
-                                                                  Integer tableSize) {
+    public Page<DirectionDTO> findWithFacultyTitleFilter(String facultyTitleFilter,
+                                                         String sort,
+                                                         Integer pageNumber,
+                                                         Integer tableSize) {
         return null;
     }
 
     @Override
-    public List<SphereOfActivitiesDTO> getFacultyTitles() {
+    public List<DirectionDTO> getFacultyTitles() {
         return null;
     }
 
     @Override
-    public List<SphereOfActivitiesDTO> findBySphereOfActivitiesId(Long sphereOfActivitiesId) {
+    public List<DirectionDTO> findDirectionId(Long sphereOfActivitiesId) {
         return null;
     }
 

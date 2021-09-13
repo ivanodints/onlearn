@@ -18,7 +18,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SphereOfActivitiesDTO implements Serializable {
+public class DirectionDTO implements Serializable {
 
 
     private Long id;
@@ -31,18 +31,18 @@ public class SphereOfActivitiesDTO implements Serializable {
 
     private List<Long> facultyIds;
 
-    public SphereOfActivitiesDTO(Long id, String title) {
+    public DirectionDTO(Long id, String title) {
         this.id = id;
         this.title = title;
     }
 
-    public SphereOfActivitiesDTO(Long id, String title, String description) {
+    public DirectionDTO(Long id, String title, String description) {
         this.id = id;
         this.title = title;
         this.description = description;
     }
 
-    public SphereOfActivitiesDTO(Direction direction) {
+    public DirectionDTO(Direction direction) {
         this.id = direction.getId();
         this.title = direction.getTitle();
         this.description = direction.getTitle();

@@ -2,7 +2,7 @@ package ru.portal.onlearn.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
-import ru.portal.onlearn.controller.DTO.SphereOfActivitiesDTO;
+import ru.portal.onlearn.controller.DTO.DirectionDTO;
 import ru.portal.onlearn.model.Faculty;
 import ru.portal.onlearn.model.Direction;
 
@@ -14,35 +14,35 @@ import java.util.stream.Collectors;
 public interface DirectionService {
 
 
-    List<SphereOfActivitiesDTO> showAllSphereOfActivities();
+    List<DirectionDTO> showAllDirection();
 
-    List<SphereOfActivitiesDTO> getFacultyTitles();
+    List<DirectionDTO> getFacultyTitles();
 
-    Optional<SphereOfActivitiesDTO> findById(Long id);
-
-
-    Page<SphereOfActivitiesDTO> findWithFilter(Long sphereOfActivitiesId,
-                                               Long sphereOfActivitiesTitle,
-                                               Integer pageNumber,
-                                               Integer tableSize);
-
-    Page<SphereOfActivitiesDTO> findWithFacultyTitleFilter(String facultyTitleFilter,
-                                                           String sort,
-                                                           Integer pageNumber,
-                                                           Integer tableSize);
-
-    Page<SphereOfActivitiesDTO> findWithSphereOfActivitiesTitleFilter(String sphereOfActivitiesTitleFilter,
-                                                                      String sort,
-                                                                      Integer pageNumber,
-                                                                      Integer tableSize);
-
-    List<SphereOfActivitiesDTO> findByFacultyId(Long facultyId);
-
-    List<SphereOfActivitiesDTO> findBySphereOfActivitiesId(Long sphereOfActivitiesId);
+    Optional<DirectionDTO> findById(Long id);
 
 
-    public static SphereOfActivitiesDTO mapToDTO(Direction sp) {
-        return new SphereOfActivitiesDTO(
+    Page<DirectionDTO> findWithFilter(Long sphereOfActivitiesId,
+                                      Long sphereOfActivitiesTitle,
+                                      Integer pageNumber,
+                                      Integer tableSize);
+
+    Page<DirectionDTO> findWithFacultyTitleFilter(String facultyTitleFilter,
+                                                  String sort,
+                                                  Integer pageNumber,
+                                                  Integer tableSize);
+
+    Page<DirectionDTO> findWithDirectionTitleFilter(String sphereOfActivitiesTitleFilter,
+                                                    String sort,
+                                                    Integer pageNumber,
+                                                    Integer tableSize);
+
+    List<DirectionDTO> findByFacultyId(Long facultyId);
+
+    List<DirectionDTO> findDirectionId(Long sphereOfActivitiesId);
+
+
+    public static DirectionDTO mapToDTO(Direction sp) {
+        return new DirectionDTO(
                 sp.getId(),
                 sp.getTitle(),
                 sp.getDescription(),

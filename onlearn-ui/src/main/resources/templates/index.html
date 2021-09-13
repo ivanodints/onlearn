@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zxx" class="no-js">
+<html lang="zxx" class="no-js" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<!-- Mobile Specific Meta -->
@@ -50,15 +50,11 @@
 					<ul class="nav-menu">
 						<li class="menu-active"><a href="/onlearn">Главная</a></li>
 						<li><a href="about.html">О нас</a></li>
-						<li class="menu-has-children"><a href="/onlearn/chair">Вектор</a>
+						<li class="menu-has-children"><a href="/onlearn/direction">Направления</a>
 							<ul>
-								<li><a href="elements.html">Программирование</a></li>
-								<li><a href="elements.html">Маркетинг</a></li>
-								<li><a href="elements.html">Аналитика</a></li>
-								<li><a href="elements.html">Бизнес</a></li>
-								<li><a href="elements.html">Дизайн</a></li>
-								<li><a href="elements.html">Геймдев</a></li>
-								<li><a href="elements.html">Управление</a></li>
+								<li th:each="direction : ${allDirection}" >
+									<a th:href="@{/{id}/direction (id = ${direction.getId()})}"
+									   th:text="${direction.getTitle()}">Программирование</a></li>
 							</ul>
 						</li>
 						<li><a href="/contacts">Контакты</a></li>

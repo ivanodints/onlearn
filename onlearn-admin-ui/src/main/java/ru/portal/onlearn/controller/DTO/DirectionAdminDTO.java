@@ -4,9 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-//import ru.portal.onlearn.model.Faculty;
 import ru.portal.onlearn.model.Direction;
-
 
 import java.io.Serializable;
 import java.util.List;
@@ -15,8 +13,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class DirectionDTO implements Serializable {
-
+public class DirectionAdminDTO implements Serializable {
 
     private Long id;
 
@@ -28,18 +25,18 @@ public class DirectionDTO implements Serializable {
 
     private List<Long> facultyIds;
 
-    public DirectionDTO(Long id, String title) {
+    public DirectionAdminDTO(Long id, String title) {
         this.id = id;
         this.title = title;
     }
 
-    public DirectionDTO(Long id, String title, String description) {
+    public DirectionAdminDTO(Long id, String title, String description) {
         this.id = id;
         this.title = title;
         this.description = description;
     }
 
-    public DirectionDTO(Direction direction) {
+    public DirectionAdminDTO(Direction direction) {
         this.id = direction.getId();
         this.title = direction.getTitle();
         this.description = direction.getTitle();

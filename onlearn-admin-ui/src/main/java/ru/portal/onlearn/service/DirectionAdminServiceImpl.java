@@ -2,43 +2,47 @@ package ru.portal.onlearn.service;
 
 
 import org.springframework.stereotype.Service;
-import ru.portal.onlearn.controller.DTO.DirectionDTO;
+import ru.portal.onlearn.controller.DTO.DirectionAdminDTO;
 import ru.portal.onlearn.model.Direction;
 import ru.portal.onlearn.repo.DirectionRepository;
-
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class DirectionServiceImpl implements DirectionService {
+public class DirectionAdminServiceImpl implements DirectionAdminService {
 
     private final DirectionRepository directionRepository;
 
-    public DirectionServiceImpl(DirectionRepository directionRepository) {
+    public DirectionAdminServiceImpl(DirectionRepository directionRepository) {
         this.directionRepository = directionRepository;
     }
 
     @Override
-    public List<DirectionDTO> findAllDirection() {
+    public List<DirectionAdminDTO> findAllDirection() {
 
         return directionRepository.findAll()
                 .stream()
-                .map(direction -> new DirectionDTO(direction))
+                .map(direction -> new DirectionAdminDTO(direction))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public Optional<DirectionDTO> findDirectionById(Long id) {
+    public Optional<DirectionAdminDTO> findDirectionById(Long id) {
         return directionRepository.findById(id)
-                .map(direction -> DirectionService.mapToDTO(direction));
+                .map(direction -> DirectionAdminService.mapToDTO(direction));
     }
 
     @Override
     public Direction findByTitle(String title) {
 
         return directionRepository.findByTitle(title);
+    }
+
+    @Override
+    public void deleteProductById(Long id) {
+        directionRepository.deleteById(id);
     }
 
 

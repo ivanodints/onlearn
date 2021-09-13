@@ -44,23 +44,12 @@
 		<div class="container">
 			<div class="row align-items-center justify-content-between d-flex">
 				<div id="logo">
-					<a href="index.html"><img src="img/logo.png" alt="" title="" /></a>
+					<a href="/onlearn"><img src="img/logo.png" alt="" title="" /></a>
 				</div>
 				<nav id="nav-menu-container">
 					<ul class="nav-menu">
-						<li class="menu-active"><a href="index.html">Главная</a></li>
+						<li class="menu-active"><a href="/onlearn">Главная</a></li>
 						<li><a href="about.html">О нас</a></li>
-						<li class="menu-has-children"><a href="">Кафедры</a>
-							<ul>
-								<li><a href="elements.html">Программирование</a></li>
-								<li><a href="elements.html">Маркетинг</a></li>
-								<li><a href="elements.html">Аналитика</a></li>
-								<li><a href="elements.html">Бизнес</a></li>
-								<li><a href="elements.html">Дизайн</a></li>
-								<li><a href="elements.html">Геймдев</a></li>
-								<li><a href="elements.html">Управление</a></li>
-							</ul>
-						</li>
 						<li><a href="contact.html">Контакты</a></li>
 						<li><a href="contact.html">Войти</a>
 							<ul>
@@ -81,15 +70,9 @@
 			<div class="row d-flex align-items-center justify-content-center">
 				<div class="about-content col-lg-12">
 					<h1 class="text-white">
-						О нас
+						Направления
 					</h1>
-					<div class="link-nav">
-						<span class="box">
-							<a href="index.html">Главная </a>
-							<i class="lnr lnr-arrow-right"></i>
-							<a href="about.html">О нас</a>
-						</span>
-					</div>
+
 				</div>
 			</div>
 		</div>
@@ -112,89 +95,27 @@
 			<div class="row justify-content-center">
 				<div class="col-lg-8">
 					<div class="section-title text-center">
-						<h1>Учебные вектора</h1>
 						<p>
-							Напоминаем, что на каждом векторе вы сможите найти интересующие вас факультеты
+							Напоминаем, что на каждом направлении вы сможите найти интересующие вас факультеты
 						</p>
 					</div>
 				</div>
 			</div>
 			<div class="feature-inner row" >
 
-				<div class="col-lg-4 col-md-6" th:each="sphere : ${allSpheres}">
+				<div class="col-lg-4 col-md-6" th:each="direction : ${allDirection}">
 					<div class="feature-item" >
 						<i class="ti-crown" ></i>
-						<h4 td th:text="${sphere.getTitle()}" >Долгосрочный доступ</h4>
+						<h4 ><a th:href="@{/{id}/direction (id = ${direction.id})}"
+								th:text="${direction.getTitle()}" >Долгосрочный доступ</a></h4>
 						<div class="wow fadeIn" data-wow-duration="1s" data-wow-delay=".1s">
-							<p td th:text="${sphere.getDescription()}">
+							<p th:text="${direction.getDescription()}">
 								Даже после завершения курсов вам остаются доступны все учебные материалы.
 							</p>
 						</div>
 					</div>
 				</div>
 
-
-<!--								<div class="col-lg-4 col-md-6">-->
-<!--									<div class="feature-item">-->
-<!--										<i class="ti-briefcase"></i>-->
-<!--										<h4>Лучший саппорт</h4>-->
-<!--										<div class="wow fadeIn" data-wow-duration="1s" data-wow-delay=".3s">-->
-<!--											<p>-->
-<!--												На любой ваш вопрос наша служба поддержки ответит в течении получаса. 24 часа и 7 дней в-->
-<!--												неделю.-->
-<!--											</p>-->
-<!--										</div>-->
-<!--									</div>-->
-<!--								</div>-->
-
-<!--								<div class="col-lg-4 col-md-6">-->
-<!--									<div class="feature-item">-->
-<!--										<i class="ti-medall-alt"></i>-->
-<!--										<h4>Удобный формат обучения</h4>-->
-<!--										<div class="wow fadeIn" data-wow-duration="1s" data-wow-delay=".5s">-->
-<!--											<p>-->
-<!--												Все лекции проходят в вебинарном формате. Но если вы не успели, то всегда можите-->
-<!--												пересмотреть лекцию в записи и задать волнующие вас вопросы.-->
-<!--											</p>-->
-<!--										</div>-->
-<!--									</div>-->
-<!--								</div>-->
-
-				<!--				<div class="col-lg-4 col-md-6">-->
-				<!--					<div class="feature-item">-->
-				<!--						<i class="ti-key"></i>-->
-				<!--						<h4>Демократичные цены</h4>-->
-				<!--						<div class="wow fadeIn" data-wow-duration="1s" data-wow-delay=".1s">-->
-				<!--							<p>-->
-				<!--								Цены вас приятно удивят. Так же есть система рассрочки.-->
-				<!--							</p>-->
-				<!--						</div>-->
-				<!--					</div>-->
-				<!--				</div>-->
-				<!--				<div class="col-lg-4 col-md-6">-->
-				<!--					<div class="feature-item">-->
-				<!--						<i class="ti-files"></i>-->
-				<!--						<h4>Лучшее комьюнити</h4>-->
-				<!--						<div class="wow fadeIn" data-wow-duration="1s" data-wow-delay=".3s">-->
-				<!--							<p>-->
-				<!--								Вы будите обучатся с такими же студентами как вы. Поэтому всегда сможите обсудить темы-->
-				<!--								обучения. Помоч друг другу.-->
-				<!--							</p>-->
-				<!--						</div>-->
-				<!--					</div>-->
-				<!--				</div>-->
-				<!--				<div class="col-lg-4 col-md-6">-->
-				<!--					<div class="feature-item">-->
-				<!--						<i class="ti-headphone-alt"></i>-->
-				<!--						<h4>Огромное количество практических заданий</h4>-->
-				<!--						<div class="wow fadeIn" data-wow-duration="1s" data-wow-delay=".5s">-->
-				<!--							<p>-->
-				<!--								Обучение не может быть успешным без практики. Мне подготовили для вас множество-->
-				<!--								интересных и разнообразных практических заданий.-->
-				<!--							</p>-->
-				<!--						</div>-->
-				<!--					</div>-->
-				<!--				</div>-->
 			</div>
 		</div>
 	</section>

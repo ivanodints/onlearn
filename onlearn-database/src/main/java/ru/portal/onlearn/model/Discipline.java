@@ -25,7 +25,7 @@ public class Discipline implements Serializable {
     private String title;
 
     @Column(name = "disc_time", nullable = false)
-    private LocalTime disc_time;
+    private LocalTime discTime;
 
     @Column(name = "description")
     private  String description;
@@ -42,9 +42,9 @@ public class Discipline implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "employee_id"))
     private Set<Employee> employees;
 
-    public Discipline(String title, LocalTime disc_time, String description) {
+    public Discipline(String title, LocalTime discTime, String description) {
         this.title = title;
-        this.disc_time = disc_time;
+        this.discTime = discTime;
         this.description = description;
     }
 

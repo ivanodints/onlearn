@@ -7,10 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import ru.portal.onlearn.model.Discipline;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import java.time.LocalTime;
 
 @Getter
@@ -23,14 +19,14 @@ public class DisciplineDTO {
 
     private String title;
 
-    private LocalTime disc_time;
+    private LocalTime discTime;
 
     private  String description;
 
     public DisciplineDTO(Discipline discipline) {
         this.id = discipline.getId();
         this.title = discipline.getTitle();
-        this.disc_time = discipline.getDisc_time();
+        this.discTime = discipline.getDiscTime();
         this.description = discipline.getDescription();
     }
 }

@@ -1,18 +1,18 @@
 package ru.portal.onlearn.controller.DTO;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import ru.portal.onlearn.model.Employee;
+import ru.portal.onlearn.model.Department;
+import ru.portal.onlearn.model.Role;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
-public class EmployeeDTO {
+public class EmployeeDTO implements Serializable {
 
     private Long id;
 
@@ -30,17 +30,22 @@ public class EmployeeDTO {
 
     private String phoneNumber;
 
-    private String bio;
+    private Role role;
 
-    public EmployeeDTO(Employee employee) {
-        this.id = employee.getId();
-        this.name = employee.getName();
-        this.surname = employee.getSurname();
-        this.middleName = employee.getMiddleName();
-        this.dateOfBirth = employee.getDateOfBirth();
-        this.sex = employee.getSex();
-        this.email = employee.getEmail();
-        this.phoneNumber = employee.getPhoneNumber();
-        this.bio = employee.getBio();
+    private Department department;
+
+    public EmployeeDTO(Long id, String name, String surname, String middleName, LocalDate dateOfBirth,
+                       String sex, String email, String phoneNumber, Department department) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.middleName = middleName;
+        this.dateOfBirth = dateOfBirth;
+        this.sex = sex;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.department = department;
     }
+
+
 }

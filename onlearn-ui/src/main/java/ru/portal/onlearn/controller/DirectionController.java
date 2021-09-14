@@ -37,7 +37,7 @@ public class DirectionController {
         return "direction";
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}/direction")
     public String directionIdPage(@PathVariable Long id, Model model) throws Exception {
 
         model.addAttribute("directionAll", directionService.findAllDirection());

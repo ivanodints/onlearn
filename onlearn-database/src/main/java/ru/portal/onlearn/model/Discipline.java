@@ -1,5 +1,6 @@
 package ru.portal.onlearn.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -7,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -14,6 +16,7 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class Discipline implements Serializable {
 
     @Id
@@ -42,10 +45,25 @@ public class Discipline implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "employee_id"))
     private Set<Employee> employees;
 
+
+    public Discipline(Long id, String title, LocalTime discTime, String description) {
+        this.id = id;
+        this.title = title;
+        this.discTime = discTime;
+        this.description = description;
+    }
+
     public Discipline(String title, LocalTime discTime, String description) {
         this.title = title;
         this.discTime = discTime;
         this.description = description;
     }
 
+    public Discipline(String title, LocalTime discTime, String description, Set<Faculty> faculty, Set<Employee> employees) {
+        this.title = title;
+        this.discTime = discTime;
+        this.description = description;
+        this.faculty = faculty;
+        this.employees = employees;
+    }
 }

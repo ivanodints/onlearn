@@ -9,4 +9,5 @@ public interface DirectionRepository extends JpaRepository<Direction, Long> {
 
     @Query("select d from Direction d where (d.title like :title or :title is null)")
     Direction findByTitle (@Param("title") String title);
+
 }

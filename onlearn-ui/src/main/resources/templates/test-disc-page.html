@@ -36,18 +36,9 @@
                         <tr th:each="discipline : ${allDisciplines}">
                             <th th:text="${discipline.getId()}" scope="row">1</th>
                             <td th:text="${discipline.getTitle()}">Программирование</td>
-                            <td th:text="${discipline.getDisc_time()}">Программирование</td>
+                            <td th:text="${discipline.getDiscTime()}">Программирование</td>
                             <td th:text="${discipline.getDescription()}">Программирование</td>
 
-                            <!--                    <td th:text="${sphere.getFaculties().get(0).getTitle()}">Язык Java</td>-->
-
-
-                            <!--                    <td>-->
-                            <!--                        <a class="btn btn-success" th:href="@{/artshop/{id}(id = ${product.id})}"><i class="fas fa-edit"></i></a>-->
-                            <!--                        <form class="d-inline" th:method="delete" th:action="@{/artshop/{id}(id = ${product.id})}">-->
-                            <!--                            <button type="submit" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>-->
-                            <!--                        </form>-->
-                            <!--                    </td>-->
                         </tr>
                     </tbody>
                 </table>

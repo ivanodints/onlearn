@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.portal.onlearn.error.NotFoundException;
-import ru.portal.onlearn.service.DisciplineServiceImpl;
+import ru.portal.onlearn.repo.DisciplineRepository;
+import ru.portal.onlearn.service.DisciplineService;
 
 import java.util.Optional;
 
@@ -15,10 +16,12 @@ import java.util.Optional;
 @RequestMapping
 public class DisciplineController {
 
-    private final DisciplineServiceImpl disciplineServiceImpl;
+    private final DisciplineService disciplineService;
+    private final DisciplineRepository disciplineRepository;
 
-    public DisciplineController(DisciplineServiceImpl disciplineServiceImpl) {
-        this.disciplineServiceImpl = disciplineServiceImpl;
+    public DisciplineController(DisciplineService disciplineService, DisciplineRepository disciplineRepository) {
+        this.disciplineService = disciplineService;
+        this.disciplineRepository = disciplineRepository;
     }
 
     @GetMapping("/discipline")
@@ -29,15 +32,16 @@ public class DisciplineController {
             @RequestParam(value = "sort", required = false) Optional<String> sort,
             Model model){
 
-        model.addAttribute("allDisciplines", disciplineServiceImpl.findAll());
+        model.addAttribute("allDisciplines", disciplineService.findAll());
 
-        return "discipline-bar";
+//        return "discipline-bar";
+        return "test-disc-page";
 
     }
 
     @GetMapping("/discipline/{id}")
     public String disciplinePage(@PathVariable("id") Long id, Model model){
-        model.addAttribute("discipline", disciplineServiceImpl.findById(id).orElseThrow(NotFoundException::new));
+        model.addAttribute("discipline", disciplineService.findById(id).orElseThrow(NotFoundException::new));
 
         return "discipline-details";
     }

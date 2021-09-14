@@ -42,7 +42,7 @@ public class DirectionDTO implements Serializable {
     public DirectionDTO(Direction direction) {
         this.id = direction.getId();
         this.title = direction.getTitle();
-        this.description = direction.getTitle();
+        this.description = direction.getDescription();
     }
 
 }

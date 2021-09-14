@@ -5,19 +5,22 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ru.portal.onlearn.model.Direction;
+import ru.portal.onlearn.model.Discipline;
 import ru.portal.onlearn.model.Faculty;
+import ru.portal.onlearn.model.Student;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class FacultyDTO {
+public class FacultyDTO implements Serializable {
 
     private Long id;
 
@@ -25,12 +28,16 @@ public class FacultyDTO {
 
     private BigDecimal price;
 
-    private  String description;
+    private String description;
+
+    private Direction direction;
 
     public FacultyDTO(Faculty faculty) {
         this.id = faculty.getId();
         this.title = faculty.getTitle();
         this.price = faculty.getPrice();
         this.description = faculty.getDescription();
+        this.direction = faculty.getDirection();
     }
+
 }

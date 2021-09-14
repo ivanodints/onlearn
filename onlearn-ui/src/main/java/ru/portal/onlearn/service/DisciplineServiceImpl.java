@@ -5,6 +5,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import ru.portal.onlearn.controller.DTO.DirectionDTO;
 import ru.portal.onlearn.controller.DTO.DisciplineDTO;
 import ru.portal.onlearn.model.Discipline;
 import ru.portal.onlearn.repo.DisciplineRepository;
@@ -30,8 +31,11 @@ public class DisciplineServiceImpl implements DisciplineService {
     }
 
     @Override
-    public Page<Discipline> findAll(){
-        return new PageImpl<>(disciplineRepository.findAll());
+    public List<DisciplineDTO> findAll(){
+        return disciplineRepository.findAll()
+                .stream()
+                .map(discipline -> new DisciplineDTO(discipline))
+                .collect(Collectors.toList());
     }
 
     @Override

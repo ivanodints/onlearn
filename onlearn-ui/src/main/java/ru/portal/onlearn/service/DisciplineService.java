@@ -17,19 +17,21 @@ import java.util.stream.Collectors;
 public interface DisciplineService {
 
 
-
-
     Optional<DisciplineDTO> findById(Long id);
 
-    Page<Discipline> findAll();
+    List<DisciplineDTO> findAll();
 
     Page<DisciplineDTO> findByTitle(String title, Integer page, Integer size);
 
 
-
     public static DisciplineDTO mapToDTO(Discipline discipline) {
         return new DisciplineDTO(
-                discipline.getId(), discipline.getTitle(),
-                discipline.getDiscTime(), discipline.getDescription());
+                discipline.getId(),
+                discipline.getTitle(),
+                discipline.getDiscTime(),
+                discipline.getDescription(),
+                discipline.getFaculty(),
+                discipline.getEmployees()
+                );
     }
 }

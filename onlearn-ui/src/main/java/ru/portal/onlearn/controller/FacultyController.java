@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.portal.onlearn.repo.FacultyRepository;
+import ru.portal.onlearn.service.FacultyService;
 
 import java.util.Optional;
 
@@ -18,9 +19,11 @@ public class FacultyController {
     private static final Logger logger = LoggerFactory.getLogger(FacultyController.class);
 
     private final FacultyRepository facultyRepository;
+    private final FacultyService facultyService;
 
-    public FacultyController(FacultyRepository facultyRepository) {
+    public FacultyController(FacultyRepository facultyRepository, FacultyService facultyService) {
         this.facultyRepository = facultyRepository;
+        this.facultyService = facultyService;
     }
 
     @GetMapping("/faculty")
@@ -32,9 +35,7 @@ public class FacultyController {
 
         logger.info("Faculty list page");
 
-//        System.out.println(facultyRepository.findAll());
-
-        model.addAttribute("allFaculties", facultyRepository.findAll());
+        model.addAttribute("allFaculties", facultyService.findAll());
 
         return "test-fac-page";
 

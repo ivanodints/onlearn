@@ -1,5 +1,6 @@
 package ru.portal.onlearn.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -7,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -14,6 +16,7 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class Employee implements Serializable {
 
     @Id
@@ -46,7 +49,7 @@ public class Employee implements Serializable {
     private String bio;
 
     @ManyToMany(mappedBy = "employees")
-    private Set<Discipline> disciplines;
+    private List<Discipline> disciplines;
 
     @ManyToOne(optional = false)
     private Role role;
@@ -57,7 +60,6 @@ public class Employee implements Serializable {
 //    @ManyToMany(mappedBy = "fac_student")
 //    @JoinColumn(name = "fac_id")
 //    private List<Departments> emplDepartments;
-
 
 
     public Employee(Long id, String name, String surname,

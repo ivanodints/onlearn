@@ -30,8 +30,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Page<Employee> findAll(){
-        return new PageImpl<>(employeeRepository.findAll());
+    public List<EmployeeDTO> findAll(){
+        return employeeRepository.findAll()
+                .stream()
+                .map(employee -> new EmployeeDTO(employee))
+                .collect(Collectors.toList());
     }
 
     @Override

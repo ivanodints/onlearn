@@ -38,9 +38,9 @@ public class DirectionController {
     }
 
     //С таким маппингом CSS офорлмение работает, но маппинг не корректен
-    @GetMapping("/{id}")
+//    @GetMapping("/{id}")
     //Данный маппинг корректен, но он почему то оформление CSS ломает
-//    @GetMapping("/{id}/direction")
+    @GetMapping("/{id}/direction")
     public String directionIdPage(@PathVariable Long id, Model model) throws Exception {
 
         model.addAttribute("directionAll", directionService.findAllDirection());

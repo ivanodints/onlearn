@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<body class="bg-light">
+
+    <div th:fragment="sidebar" class="sidebar sidebar-dark bg-dark">
+        <ul class="list-unstyled">
+            <li id="user_list" th:classappend="${activePage == 'Направления'} ? active">
+                <a th:href="@{/admin/users}">
+                    <i class="fa fa-fw fa-link"></i> Users</a></li>
+            <li id="role_list" th:classappend="${activePage == 'Факультеты'} ? active">
+                <a th:href="@{/admin/roles}">
+                    <i class="fa fa-fw fa-link"></i> Roles</a></li>
+            <li id="category_list" th:classappend="${activePage == 'Дисциплины'} ? active">
+                <a th:href="@{/admin/categories}">
+                    <i class="fa fa-fw fa-link"></i> Categories</a></li>
+            <li id="manufacture_list" th:classappend="${activePage == 'Сотрудники'} ? active">
+                <a th:href="@{/admin/manufacturers}">
+                    <i class="fa fa-fw fa-link"></i> Manufacturers</a></li>
+            <li id="product_list"  th:classappend="${activePage == 'Студенты'} ? active">
+                <a th:href="@{/admin/products}">
+            <li id="product_list"  th:classappend="${activePage == 'Роли'} ? active">
+                <a th:href="@{/admin/zzxcas}">
+                    <i class="fa fa-fw fa-link"></i> Products</a></li>
+        </ul>
+    </div>
+
+</body>
+
+</html>

@@ -37,7 +37,7 @@ public class FacultyController {
 
         model.addAttribute("allFaculties", facultyService.findAll());
 
-        return "test-fac-page";
+        return "faculty";
 
     }
 

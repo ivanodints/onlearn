@@ -17,7 +17,6 @@ import java.util.List;
 @AllArgsConstructor
 public class DirectionDTO implements Serializable {
 
-
     private Long id;
 
     private String title;

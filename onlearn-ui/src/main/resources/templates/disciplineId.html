@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zxx" class="no-js" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="../static/img/fav.png">
+    <!-- Author Meta -->
+    <meta name="author" content="codepixer">
+    <!-- Meta Description -->
+    <meta name="description" content="">
+    <!-- Meta Keyword -->
+    <meta name="keywords" content="">
+    <!-- meta character set -->
+    <meta charset="UTF-8">
+    <!-- Site Title -->
+    <title>Discipline</title>
+
+    <!--
+            Google Font
+            ============================================= -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,500,600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500i" rel="stylesheet">
+
+    <!--
+            CSS
+            ============================================= -->
+    <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/themify-icons/0.1.2/css/themify-icons.css}">
+    <link rel="stylesheet" th:href="@{/css/linearicons.css}">
+    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/magnific-popup.css}">
+    <link rel="stylesheet" th:href="@{/css/nice-select.css}">
+    <link rel="stylesheet" th:href="@{/css/animate.min.css}">
+    <link rel="stylesheet" th:href="@{/css/owl.carousel.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+
+<body>
+
+    <!-- Start Header Area -->
+    <header id="header">
+        <div class="container">
+            <div class="row align-items-center justify-content-between d-flex">
+                <div id="logo">
+                    <a href="/onlearn"><img th:src="@{/img/logo.png}" alt="" title="" /></a>
+                </div>
+                <nav id="nav-menu-container">
+                    <ul class="nav-menu">
+                        <li class="menu-active"><a href="/onlearn">Главная</a></li>
+                        <li><a href="about.html">О нас</a></li>
+                        <li class="menu-has-children"><a href="/onlearn/direction">Направления</a>
+                            <ul>
+                                <li th:each="direction : ${allDirection}" >
+                                     <a th:href="@{/{id}/direction (id = ${direction.getId()})}"
+                                        th:text="${direction.getTitle()}">Программирование</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-has-children"><a href="/onlearn/faculty">Факультеты</a>
+<!--                            <ul>-->
+<!--                                <li><a th:href="@{/faculty/{id} (id = ${faculty.getId()})}">Программирование</a></li>-->
+<!--                            </ul>-->
+                        </li>
+                        <li class="menu-has-children"><a href="/onlearn/discipline">Дисциплины</a>
+                            <ul>
+                                <li th:each="discipline : ${disciplineAll}" >
+                                    <a th:href="@{/discipline/{id} (id = ${discipline.getId()})}"
+                                       th:text="${discipline.getTitle()}">Дисциплина</a>
+                                </li>
+                            </ul>
+                        <li><a href="/contacts">Контакты</a></li>
+                        <li><a href="/login">Войти</a>
+                            <ul>
+                                <li><a href="elements.html">Зарегистрироваться</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav><!-- #nav-menu-container -->
+            </div>
+        </div>
+    </header>
+    <!-- End Header Area -->
+
+
+    <!-- Start Banner Area -->
+    <section class="banner-area relative">
+        <div class="container">
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="about-content col-lg-12">
+                    <h1 class="text-white" th:text="${disciplineId.getTitle()}">
+                        название дисциплины
+                    </h1>
+                    <p class="text--white" th:text="${disciplineId.getDescription()}">Описание</p>
+                </div>
+            </div>
+        </div>
+        <div class="rocket-img">
+            <img th:src="@{/img/rocket.png}" alt="">
+        </div>
+    </section>
+    <!-- End Banner Area -->
+
+
+    <!--Start Feature Area -->
+    <section class="feature-area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="section-title text-center">
+                        <h3>Неграмотными людьми 21 века будут не те, кто не умеет читать и писать,
+                            а те, кто не умеет учиться и переучиваться. Алвин Тоффлер</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="feature-inner row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-item">
+                        <i class="ti-crown"></i>
+                        <h4>Долгосрочный доступ</h4>
+                        <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay=".1s">
+                            <p>
+                                Даже после завершения курсов вам остаются доступны все учебные материалы.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-item">
+                        <i class="ti-briefcase"></i>
+                        <h4>Лучший саппорт</h4>
+                        <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay=".3s">
+                            <p>
+                                На любой ваш вопрос наша служба поддержки ответит в течении получаса. 24 часа и 7 дней в
+                                неделю.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-item">
+                        <i class="ti-medall-alt"></i>
+                        <h4>Удобный формат обучения</h4>
+                        <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay=".5s">
+                            <p>
+                                Все лекции проходят в вебинарном формате. Но если вы не успели, то всегда можите
+                                пересмотреть лекцию в записи и задать волнующие вас вопросы.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-item">
+                        <i class="ti-key"></i>
+                        <h4>Демократичные цены</h4>
+                        <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay=".1s">
+                            <p>
+                                Цены вас приятно удивят. Так же есть система рассрочки.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-item">
+                        <i class="ti-files"></i>
+                        <h4>Лучшее комьюнити</h4>
+                        <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay=".3s">
+                            <p>
+                                Вы будите обучатся с такими же студентами как вы. Поэтому всегда сможите обсудить темы
+                                обучения. Помочь друг другу.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-item">
+                        <i class="ti-headphone-alt"></i>
+                        <h4>Огромное количество практических заданий</h4>
+                        <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay=".5s">
+                            <p>
+                                Обучение не может быть успешным без практики. Мы подготовили для вас множество
+                                интересных и разнообразных практических заданий.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Feature Area -->
+
+
+    <!-- Start Faculty Area -->
+        <footer th:replace="fragments/teachers.html :: teachers"></footer>
+    <!-- End Faculty Area -->
+
+
+    <!-- Start Testimonials Area -->
+        <footer th:replace="fragments/review.html :: review"></footer>
+    <!-- End Testimonials Area -->
+
+
+    <!-- Start Footer Area -->
+        <footer th:replace="fragments/footer.html :: footer"></footer>
+    <!-- End Footer Area -->
+
+    <!-- ####################### Start Scroll to Top Area ####################### -->
+        <div id="back-top">
+            <a title="Go to Top" href="#"></a>
+        </div>
+    <!-- ####################### End Scroll to Top Area ####################### -->
+
+    <!-- ####################### Start Scripts ####################### -->
+        <script th:replace="fragments/scripts.html :: scripts" ></script>
+    <!-- ####################### End Scripts ####################### -->
+</body>
+
+</html>

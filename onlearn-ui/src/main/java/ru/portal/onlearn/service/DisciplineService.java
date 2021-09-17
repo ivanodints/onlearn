@@ -7,6 +7,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import ru.portal.onlearn.controller.DTO.DisciplineDTO;
 import ru.portal.onlearn.model.Discipline;
+import ru.portal.onlearn.model.Faculty;
 import ru.portal.onlearn.repo.DisciplineRepository;
 
 import java.util.List;
@@ -17,9 +18,9 @@ import java.util.stream.Collectors;
 public interface DisciplineService {
 
 
-    Optional<DisciplineDTO> findById(Long id);
+    Optional<DisciplineDTO> findDisciplineById(Long id);
 
-    List<DisciplineDTO> findAll();
+    List<DisciplineDTO> findAllDiscipline();
 
     Page<DisciplineDTO> findByTitle(String title, Integer page, Integer size);
 

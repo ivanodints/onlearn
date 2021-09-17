@@ -13,10 +13,7 @@ import java.util.Optional;
 @RequestMapping
 public class DirectionController {
 
-
-
     private final DirectionService directionService;
-
 
     public DirectionController(DirectionService directionService) {
         this.directionService = directionService;

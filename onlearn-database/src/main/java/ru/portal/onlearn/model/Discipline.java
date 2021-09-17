@@ -53,17 +53,4 @@ public class Discipline implements Serializable {
         this.description = description;
     }
 
-    public Discipline(String title, LocalTime discTime, String description) {
-        this.title = title;
-        this.discTime = discTime;
-        this.description = description;
-    }
-
-    public Discipline(String title, LocalTime discTime, String description, Set<Faculty> faculty, Set<Employee> employees) {
-        this.title = title;
-        this.discTime = discTime;
-        this.description = description;
-        this.faculty = faculty;
-        this.employees = employees;
-    }
 }

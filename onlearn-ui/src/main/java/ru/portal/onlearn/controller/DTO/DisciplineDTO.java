@@ -9,14 +9,12 @@ import ru.portal.onlearn.model.Discipline;
 import ru.portal.onlearn.model.Employee;
 import ru.portal.onlearn.model.Faculty;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalTime;
-import java.util.List;
 import java.util.Set;
 
-@Getter
 @Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class DisciplineDTO implements Serializable {
@@ -33,6 +31,17 @@ public class DisciplineDTO implements Serializable {
 
     private Set<Employee> employees;
 
+    public DisciplineDTO(Long id, String title) {
+        this.id = id;
+        this.title = title;
+    }
+
+    public DisciplineDTO(Long id, String title, LocalTime discTime, String description) {
+        this.id = id;
+        this.title = title;
+        this.discTime = discTime;
+        this.description = description;
+    }
 
     public DisciplineDTO(Discipline discipline) {
         this.id = discipline.getId();
@@ -42,4 +51,5 @@ public class DisciplineDTO implements Serializable {
         this.faculty = discipline.getFaculty();
         this.employees = discipline.getEmployees();
     }
+
 }

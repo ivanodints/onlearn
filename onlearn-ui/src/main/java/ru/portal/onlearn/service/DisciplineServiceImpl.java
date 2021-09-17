@@ -5,12 +5,10 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-import ru.portal.onlearn.controller.DTO.DirectionDTO;
 import ru.portal.onlearn.controller.DTO.DisciplineDTO;
 import ru.portal.onlearn.model.Discipline;
 import ru.portal.onlearn.repo.DisciplineRepository;
 import ru.portal.onlearn.repo.specification.DisciplineSpecification;
-import ru.portal.onlearn.repo.specification.EmployeeSpecification;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,17 +24,19 @@ public class DisciplineServiceImpl implements DisciplineService {
     }
 
     @Override
-    public Optional<DisciplineDTO> findById(Long id){
-        return disciplineRepository.findById(id).map(discipline -> DisciplineService.mapToDTO(discipline));
-    }
-
-    @Override
-    public List<DisciplineDTO> findAll(){
+    public List<DisciplineDTO> findAllDiscipline(){
         return disciplineRepository.findAll()
                 .stream()
                 .map(discipline -> new DisciplineDTO(discipline))
                 .collect(Collectors.toList());
     }
+
+
+    @Override
+    public Optional<DisciplineDTO> findDisciplineById(Long id){
+        return disciplineRepository.findById(id).map(discipline -> DisciplineService.mapToDTO(discipline));
+    }
+
 
     @Override
     public Page<DisciplineDTO> findByTitle(String title, Integer page, Integer size){

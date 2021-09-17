@@ -24,12 +24,12 @@ public class DisciplineAdminServiceImpl implements DisciplineAdminService{
     }
 
     @Override
-    public Optional<DisciplineAdminDTO> findById(Long id){
-        return disciplineRepository.findById(id).map(discipline -> DisciplineService.mapToDTO(discipline));
+    public Optional<DisciplineAdminDTO> findDisciplineById(Long id){
+        return disciplineRepository.findById(id).map(discipline -> DisciplineAdminService.mapToAdminDisciplineDTO(discipline));
     }
 
     @Override
-    public List<DisciplineAdminDTO> findAll(){
+    public List<DisciplineAdminDTO> findAllDiscipline(){
         return disciplineRepository.findAll()
                 .stream()
                 .map(discipline -> new DisciplineAdminDTO(discipline))
@@ -37,7 +37,7 @@ public class DisciplineAdminServiceImpl implements DisciplineAdminService{
     }
 
     @Override
-    public Page<DisciplineAdminDTO> findByTitle(String title, Integer page, Integer size){
+    public Page<DisciplineAdminDTO> findDisciplineTitle(String title, Integer page, Integer size){
         Specification<Discipline> spec = Specification.where(null);
 
         if (title != null){
@@ -48,8 +48,13 @@ public class DisciplineAdminServiceImpl implements DisciplineAdminService{
                 .map(Discipline::getId);
 
         List<DisciplineAdminDTO> allByIds = disciplineRepository.findAll().stream()
-                .map(DisciplineService::mapToDTO)
+                .map(discipline -> DisciplineAdminService.mapToAdminDisciplineDTO(discipline))
                 .collect(Collectors.toList());
         return new PageImpl<>(allByIds, PageRequest.of(page -1, size), ids.getTotalElements());
+    }
+
+    @Override
+    public void deleteDisciplineById(Long id) {
+        disciplineRepository.deleteById(id);
     }
 }

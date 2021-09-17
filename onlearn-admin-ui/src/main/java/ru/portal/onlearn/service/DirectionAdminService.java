@@ -19,10 +19,7 @@ public interface DirectionAdminService {
 
     Direction findByTitle (String title);
 
-
-
-
-    public static DirectionAdminDTO mapToDTO(Direction direction) {
+    public static DirectionAdminDTO mapToAdminDirectionDTO(Direction direction) {
         return new DirectionAdminDTO(
                 direction.getId(),
                 direction.getTitle(),
@@ -31,6 +28,6 @@ public interface DirectionAdminService {
                 direction.getFaculties().stream().map(Faculty::getId).collect(Collectors.toList()));
     }
 
-    void deleteProductById (Long id);
+    void deleteDirectionById(Long id);
 
 }

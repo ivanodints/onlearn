@@ -18,7 +18,8 @@ public interface DirectionService {
 
     Optional<DirectionDTO> findDirectionById(Long id);
 
-    Direction findByTitle (String title);
+//    Direction findByTitle (String title);
+    DirectionDTO findByTitle (String title);
 
 
     public static DirectionDTO mapToDTO(Direction direction) {

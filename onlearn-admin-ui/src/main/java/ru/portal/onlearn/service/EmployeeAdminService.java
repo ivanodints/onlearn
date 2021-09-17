@@ -12,13 +12,15 @@ import java.util.Optional;
 @Service
 public interface EmployeeAdminService {
 
-    Optional<EmployeeAdminDTO> findById(Long id);
+    Optional<EmployeeAdminDTO> findEmployeeById(Long id);
 
-    List<EmployeeAdminDTO> findAll();
+    List<EmployeeAdminDTO> findAllEmployee();
+
+    void deleteEmployeeById(Long id);
 
     Page<EmployeeAdminDTO> findByFilter(String surname, Integer page, Integer size);
 
-    public static EmployeeAdminDTO mapToDTO(Employee employee) {
+    public static EmployeeAdminDTO mapToAdminEmployeeDTO(Employee employee) {
         return new EmployeeAdminDTO(
                 employee.getId(),
                 employee.getName(),
@@ -28,6 +30,7 @@ public interface EmployeeAdminService {
                 employee.getSex(),
                 employee.getEmail(),
                 employee.getPhoneNumber(),
-                employee.getDepartment());
+                employee.getDepartment(),
+                employee.getBio());
     }
 }

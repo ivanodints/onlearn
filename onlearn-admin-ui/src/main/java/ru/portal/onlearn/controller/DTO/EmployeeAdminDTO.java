@@ -37,8 +37,10 @@ public class EmployeeAdminDTO implements Serializable {
 
     private Department department;
 
+    private String bio;
+
     public EmployeeAdminDTO(Long id, String name, String surname, String middleName, LocalDate dateOfBirth,
-                       String sex, String email, String phoneNumber, Department department) {
+                       String sex, String email, String phoneNumber, Department department, String bio) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -48,6 +50,7 @@ public class EmployeeAdminDTO implements Serializable {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.department = department;
+        this.bio = bio;
     }
 
     public EmployeeAdminDTO(Employee employee) {
@@ -59,6 +62,8 @@ public class EmployeeAdminDTO implements Serializable {
         this.sex = employee.getSex();
         this.email = employee.getEmail();
         this.phoneNumber = employee.getPhoneNumber();
+        this.role = employee.getRole();
         this.department = employee.getDepartment();
+        this.bio = employee.getBio();
     }
 }

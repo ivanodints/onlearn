@@ -11,14 +11,15 @@ import java.util.Optional;
 @Service
 public interface DisciplineAdminService {
 
-    Optional<DisciplineAdminDTO> findById(Long id);
+    Optional<DisciplineAdminDTO> findDisciplineById(Long id);
 
-    List<DisciplineAdminDTO> findAll();
+    List<DisciplineAdminDTO> findAllDiscipline();
 
-    Page<DisciplineAdminDTO> findByTitle(String title, Integer page, Integer size);
+    Page<DisciplineAdminDTO> findDisciplineTitle(String title, Integer page, Integer size);
 
+    void deleteDisciplineById(Long id);
 
-    public static DisciplineAdminDTO mapToDTO(Discipline discipline) {
+    public static DisciplineAdminDTO mapToAdminDisciplineDTO(Discipline discipline) {
         return new DisciplineAdminDTO(
                 discipline.getId(),
                 discipline.getTitle(),

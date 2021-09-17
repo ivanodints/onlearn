@@ -1,6 +1,9 @@
 package ru.portal.onlearn.service;
 
+import org.springframework.stereotype.Service;
 import ru.portal.onlearn.controller.DTO.FacultyAdminDTO;
+import ru.portal.onlearn.model.Faculty;
+import ru.portal.onlearn.repo.FacultyRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,20 +20,25 @@ public class FacultyAdminServiceImpl implements FacultyAdminService{
     }
 
     @Override
-    public Optional<FacultyAdminDTO> findById(Long id) {
-        return facultyRepository.findById(id).map(faculty -> FacultyService.mapToDTO(faculty));
+    public Optional<FacultyAdminDTO> findFacultyById(Long id) {
+        return facultyRepository.findById(id).map(faculty -> FacultyAdminService.mapToAdminFacultyDTO(faculty));
     }
 
     @Override
-    public Faculty findByTitle(String title) {
+    public Faculty findFacultyByTitle(String title) {
         return facultyRepository.findByTitle(title);
     }
 
     @Override
-    public List<FacultyAdminDTO> findAll() {
+    public List<FacultyAdminDTO> findAllFaculties() {
         return facultyRepository.findAll()
                 .stream()
                 .map(faculty -> new FacultyAdminDTO(faculty))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public void deleteFacultyById(Long id) {
+        facultyRepository.deleteById(id);
     }
 }

@@ -15,22 +15,25 @@
         <div th:replace="fragments/sidebar :: sidebar"></div>
 
         <div class="content p-4">
-            <h2 class="mb-4" th:if="${edit}">Edit manufacturer</h2>
-            <h2 class="mb-4" th:if="${create}">Create manufacturer</h2>
+            <h2 class="mb-4" th:if="${edit}">Редактировать учебное направление</h2>
+            <h2 class="mb-4" th:if="${create}">Создать учебное направление</h2>
 
-            <form th:object="${manufacturer}" method="post" th:action="@{/admin/manufacturer}">
+            <form th:object="${direction}" method="post" th:action="@{/admin/directionPost}">
                 <div class="card mb-4">
                     <div class="card-body">
                         <input th:type="hidden" th:field="*{id}">
                         <div class="form-group">
-                            <label for="name">Manufacturers name</label>
+                            <label for="name">Название направления</label>
                             <input th:field="*{title}" type="text" class="form-control" id="name"
-                                placeholder="Enter brand name" required>
+                                placeholder="Введите название направления" required>
+                            <label for="description">Описание</label>
+                            <input th:field="*{description}" type="text" class="form-control" id="description"
+                                   placeholder="Введите описание направления" required>
                         </div>
                     </div>
 
                     <div class="card-footer bg-white">
-                        <button id="submint_obj" type="submit" class="btn btn-primary">Submit</button>
+                        <button id="submint_obj" type="submit" class="btn btn-primary">Применить</button>
                     </div>
                 </div>
             </form>

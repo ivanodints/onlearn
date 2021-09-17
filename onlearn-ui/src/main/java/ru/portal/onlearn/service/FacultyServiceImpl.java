@@ -31,8 +31,9 @@ public class FacultyServiceImpl implements FacultyService {
     }
 
     @Override
-    public Faculty findByTitle(String title) {
-        return facultyRepository.findByTitle(title);
+    public FacultyDTO findByTitle(String title) {
+        
+        return new FacultyDTO(facultyRepository.findByTitle(title));
     }
 
     @Override

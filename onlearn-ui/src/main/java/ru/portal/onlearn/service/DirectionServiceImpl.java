@@ -35,10 +35,13 @@ public class DirectionServiceImpl implements DirectionService {
                 .map(direction -> DirectionService.mapToDTO(direction));
     }
 
-    @Override
-    public Direction findByTitle(String title) {
 
-        return directionRepository.findByTitle(title);
+    @Override
+    public DirectionDTO findByTitle(String title) {
+
+        DirectionDTO directionDTO = new DirectionDTO(directionRepository.findByTitle(title));
+
+        return directionDTO;
     }
 
 

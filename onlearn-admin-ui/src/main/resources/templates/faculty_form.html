@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/header :: head"></head>
+
+<body class="bg-light">
+
+    <th:block th:if="${error}">
+        <div th:replace="fragments/header :: alert"></div>
+    </th:block>
+
+    <div th:replace="fragments/header :: header"></div>
+
+    <div class="d-flex">
+        <div th:replace="fragments/sidebar :: sidebar"></div>
+
+        <div class="content p-4">
+            <h2 class="mb-4" th:if="${edit}">Редактировать факультет</h2>
+            <h2 class="mb-4" th:if="${create}">Создать новый факультет</h2>
+
+            <form th:object="${faculty}" method="post" th:action="@{/admin/facultyPost}">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <input th:type="hidden" th:field="*{id}">
+                        <div class="form-group">
+                            <label for="name">Название факультета</label>
+                            <input th:field="*{title}" type="text" class="form-control" id="name"
+                                placeholder="Введите название факультета" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Стоимость обучения</label>
+                            <input th:field="*{price}" type="number" class="form-control" id="price"
+                                placeholder="Введите цену" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Описание факультета</label>
+                            <input th:field="*{description}" type="text" class="form-control" id="description"
+                                placeholder="Введите описание факультета" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="directions">Учебные направления</label>
+                            <select multiple class="form-control" id="directions" th:field="*{direction}" required>
+                                <option th:each="dir : ${directions}" th:text="${dir.title}" th:value="${dir.id}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-footer bg-white">
+                    <button id="submint_obj" type="submit" class="btn btn-primary">Применить</button>
+                </div>
+        </div>
+        </form>
+
+    </div>
+    </div>
+
+    <script th:replace="fragments/footer :: scripts"></script>
+
+</body>
+
+</html>

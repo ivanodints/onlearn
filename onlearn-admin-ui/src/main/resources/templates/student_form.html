@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/header :: head"></head>
+
+<body class="bg-light">
+
+    <th:block th:if="${error}">
+        <div th:replace="fragments/header :: alert"></div>
+    </th:block>
+
+    <div th:replace="fragments/header :: header"></div>
+
+    <div class="d-flex">
+        <div th:replace="fragments/sidebar :: sidebar"></div>
+
+        <div class="content p-4">
+            <h2 class="mb-4" th:if="${edit}">Редактировать данные студента</h2>
+            <h2 class="mb-4" th:if="${create}">Добавить нового студента</h2>
+
+            <form th:object="${student}" method="post" th:action="@{/admin/studentPost}">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <input th:type="hidden" th:field="*{id}">
+                        <div class="form-group">
+                            <label for="surname">Фамилия</label>
+                            <input th:field="*{surname}" type="text" class="form-control" id="surname"
+                                placeholder="Введите фамилию студента" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Имя</label>
+                            <input th:field="*{name}" type="text" class="form-control" id="name"
+                                   placeholder="Введите имя студента" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="middleName">Отчество</label>
+                            <input th:field="*{middleName}" type="text" class="form-control" id="middleName"
+                                   placeholder="Введите отчество студента" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="sex">Пол</label>
+                            <input th:field="*{sex}" type="text" class="form-control" id="sex"
+                                   placeholder="Введите пол студента" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Дата рождения</label>
+                            <input th:field="*{dateOfBirth}" type="date" class="form-control" id="date"
+                                   placeholder="Введите дату рождения студента" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="e-mail">E-mail</label>
+                            <input th:field="*{email}" type="email" class="form-control" id="e-mail"
+                                   placeholder="Введите e-mail студента" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phoneNumber">Номер телефона</label>
+                            <input th:field="*{phoneNumber}" type="text" class="form-control" id="phoneNumber"
+                                   placeholder="Введите номер телефона студента" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="role">Должность</label>
+                            <select multiple class="form-control" id="role" th:field="*{role}" required>
+                                <option th:each="rl : ${roles}" th:text="${rl.title}" th:value="${rl.id}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-footer bg-white">
+                    <button id="submint_obj" type="submit" class="btn btn-primary">Применить</button>
+                </div>
+        </div>
+        </form>
+
+    </div>
+    </div>
+
+    <script th:replace="fragments/footer :: scripts"></script>
+
+</body>
+
+</html>

@@ -31,7 +31,7 @@ public class DirectionAdminServiceImpl implements DirectionAdminService {
     @Override
     public Optional<DirectionAdminDTO> findDirectionById(Long id) {
         return directionRepository.findById(id)
-                .map(direction -> DirectionAdminService.mapToDTO(direction));
+                .map(direction -> DirectionAdminService.mapToAdminDirectionDTO(direction));
     }
 
     @Override
@@ -41,7 +41,7 @@ public class DirectionAdminServiceImpl implements DirectionAdminService {
     }
 
     @Override
-    public void deleteProductById(Long id) {
+    public void deleteDirectionById(Long id) {
         directionRepository.deleteById(id);
     }
 

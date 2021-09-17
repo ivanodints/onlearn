@@ -19,7 +19,7 @@ public interface FacultyService {
 
     Optional<FacultyDTO> findById(Long id);
 
-    Faculty findByTitle(String title);
+    FacultyDTO findByTitle(String title);
 
     List<FacultyDTO> findAll();
 

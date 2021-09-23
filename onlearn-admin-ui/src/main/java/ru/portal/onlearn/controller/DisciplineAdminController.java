@@ -1,5 +1,6 @@
 package ru.portal.onlearn.controller;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,6 +25,7 @@ public class DisciplineAdminController {
         this.disciplineRepository = disciplineRepository;
     }
 
+    @Secured({"ADMIN"})
     @GetMapping("/admin/discipline")
     public String adminDisciplinesPage(Model model){
         model.addAttribute("activePage", "Disciplines");
@@ -31,6 +33,7 @@ public class DisciplineAdminController {
         return "admin-discipline";
     }
 
+    @Secured({"ADMIN"})
     @DeleteMapping("/admin/discipline/{id}/delete")
     public String adminDeleteDiscipline(Model model, @PathVariable("id") Long id){
         model.addAttribute("activePage", "Disciplines");
@@ -38,6 +41,7 @@ public class DisciplineAdminController {
         return "redirect:/admin/discipline";
     }
 
+    @Secured({"ADMIN"})
     @GetMapping ("/admin/discipline/create")
     public String adminDirectionCreatePage(Model model){
         model.addAttribute("create", true);
@@ -46,6 +50,7 @@ public class DisciplineAdminController {
         return "discipline_form";
     }
 
+    @Secured({"ADMIN"})
     @GetMapping("/admin/discipline/{id}/edit")
     public String adminEditDirection(Model model, @PathVariable("id") Long id){
         model.addAttribute("edit",true);
@@ -54,6 +59,7 @@ public class DisciplineAdminController {
         return "discipline_form";
     }
 
+    @Secured({"ADMIN"})
     @PostMapping("/admin/disciplinePost")
     public String adminPostDirection(Model model, RedirectAttributes redirectAttributes, Discipline discipline){
         model.addAttribute("activePage", "Disciplines");

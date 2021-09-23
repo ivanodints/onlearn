@@ -1,5 +1,6 @@
 package ru.portal.onlearn.controller;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,7 @@ public class DirectionAdminController {
         this.directionRepository = directionRepository;
     }
 
+    @Secured({"ADMIN"})
     @GetMapping("/admin/direction")
     public String adminDirectionsPage(Model model){
         model.addAttribute("activePage", "Directions");
@@ -29,6 +31,7 @@ public class DirectionAdminController {
         return "admin-direction";
     }
 
+    @Secured({"ADMIN"})
     @DeleteMapping("/admin/direction/{id}/delete")
     public String adminDeleteDirection(Model model, @PathVariable("id") Long id){
         model.addAttribute("activePage", "Directions");
@@ -36,6 +39,7 @@ public class DirectionAdminController {
         return "redirect:/admin/direction";
     }
 
+    @Secured({"ADMIN"})
     @GetMapping ("/admin/direction/create")
     public String adminDirectionCreatePage(Model model){
         model.addAttribute("create", true);
@@ -44,6 +48,7 @@ public class DirectionAdminController {
         return "direction_form";
     }
 
+    @Secured({"ADMIN"})
     @GetMapping("/admin/direction/{id}/edit")
     public String adminEditDirection(Model model, @PathVariable("id") Long id){
         model.addAttribute("edit",true);
@@ -52,6 +57,7 @@ public class DirectionAdminController {
         return "direction_form";
     }
 
+    @Secured({"ADMIN"})
     @PostMapping("/admin/directionPost")
     public String adminPostDirection(Model model, RedirectAttributes redirectAttributes, Direction direction){
         model.addAttribute("activePage", "Directions");

@@ -25,12 +25,15 @@ public class Role implements Serializable {
     @Column(name = "title", nullable = false, unique = true)
     private String title;
 
-    @OneToMany(mappedBy = "role",
-            cascade = CascadeType.ALL)
-    private List<Employee> employee;
+//    @OneToMany(mappedBy = "role",
+//            cascade = CascadeType.ALL)
+//    private List<Employee> employee;
+//
+//    @OneToMany(mappedBy = "role",
+//            cascade = CascadeType.ALL)
+//    private List<Student> students;
 
-    @OneToMany(mappedBy = "role",
-            cascade = CascadeType.ALL)
-    private List<Student> students;
+    @ManyToMany(mappedBy  ="roles")
+    private List<User> users;
 
 }

@@ -7,6 +7,7 @@ import lombok.Setter;
 import ru.portal.onlearn.model.Faculty;
 import ru.portal.onlearn.model.Role;
 import ru.portal.onlearn.model.Student;
+import ru.portal.onlearn.model.User;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -35,7 +36,9 @@ public class StudentDTO implements Serializable {
 
     private String phoneNumber;
 
-    private Role role;
+    private User user;
+
+
 
     private List<Faculty> faculty;
 
@@ -48,7 +51,7 @@ public class StudentDTO implements Serializable {
         this.sex = student.getSex();
         this.email = student.getEmail();
         this.phoneNumber = student.getPhoneNumber();
-        this.role = student.getRole();
+        this.user = student.getUser();
 //        this.faculty = student.getFaculty();
     }
 }

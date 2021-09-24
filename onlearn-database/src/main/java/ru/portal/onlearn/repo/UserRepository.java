@@ -9,8 +9,5 @@ import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
-//    @Query("select u from User u where (u.password like :password or :password is null)")
-//    User findByLogin (@Param("password") String password);
-
     Optional<User> findUserByLogin(String name);
 }

@@ -51,10 +51,6 @@ public class Employee implements Serializable {
     @ManyToMany(mappedBy = "employees")
     private List<Discipline> disciplines;
 
-// Привязка идёт через таблицу User
-//    @ManyToOne(optional = false)
-//    private Role role;
-
     @ManyToOne(optional = true)
     private Department department;
 

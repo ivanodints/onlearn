@@ -45,10 +45,6 @@ public class Student  implements Serializable {
     @Column(name = "phone_number", nullable = false, unique = true)
     private String phoneNumber;
 
-// Привязка идёт через таблицу User
-//    @ManyToOne(optional = false)
-//    private Role role;
-
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "student_fac",
             joinColumns = @JoinColumn(name = "student_id"),

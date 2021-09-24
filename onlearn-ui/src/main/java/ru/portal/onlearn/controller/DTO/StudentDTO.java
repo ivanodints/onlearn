@@ -38,8 +38,6 @@ public class StudentDTO implements Serializable {
 
     private User user;
 
-
-
     private List<Faculty> faculty;
 
     public StudentDTO(Student student) {

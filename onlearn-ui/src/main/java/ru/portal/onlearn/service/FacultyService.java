@@ -17,11 +17,13 @@ import java.util.stream.Collectors;
 @Service
 public interface FacultyService {
 
-    Optional<FacultyDTO> findById(Long id);
+    Optional<FacultyDTO> findFacultyById(Long id);
 
     FacultyDTO findByTitle(String title);
 
-    List<FacultyDTO> findAll();
+    List<FacultyDTO> findAllFaculty();
+
+    List<FacultyDTO> findByDirectionId(Long id);
 
 //    Page<FacultyDTO> findByFilter(Long directionId, Integer pageNumber, Integer tableSize);
 

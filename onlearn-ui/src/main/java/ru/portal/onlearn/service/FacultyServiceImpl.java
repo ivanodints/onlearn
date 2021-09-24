@@ -26,7 +26,7 @@ public class FacultyServiceImpl implements FacultyService {
     }
 
     @Override
-    public Optional<FacultyDTO> findById(Long id) {
+    public Optional<FacultyDTO> findFacultyById(Long id) {
         return facultyRepository.findById(id).map(faculty -> FacultyService.mapToDTO(faculty));
     }
 
@@ -37,8 +37,17 @@ public class FacultyServiceImpl implements FacultyService {
     }
 
     @Override
-    public List<FacultyDTO> findAll() {
+    public List<FacultyDTO> findAllFaculty() {
         return facultyRepository.findAll()
+                .stream()
+                .map(faculty -> new FacultyDTO(faculty))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<FacultyDTO> findByDirectionId(Long id) {
+        //return (List<FacultyDTO>) facultyRepository.findByDirectionId(id);
+        return facultyRepository.findByDirectionId(id)
                 .stream()
                 .map(faculty -> new FacultyDTO(faculty))
                 .collect(Collectors.toList());

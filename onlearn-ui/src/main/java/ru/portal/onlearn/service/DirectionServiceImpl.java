@@ -3,7 +3,9 @@ package ru.portal.onlearn.service;
 
 import org.springframework.stereotype.Service;
 import ru.portal.onlearn.controller.DTO.DirectionDTO;
+import ru.portal.onlearn.controller.DTO.FacultyDTO;
 import ru.portal.onlearn.model.Direction;
+import ru.portal.onlearn.model.Faculty;
 import ru.portal.onlearn.repo.DirectionRepository;
 
 
@@ -32,7 +34,7 @@ public class DirectionServiceImpl implements DirectionService {
     @Override
     public Optional<DirectionDTO> findDirectionById(Long id) {
         return directionRepository.findById(id)
-                .map(direction -> DirectionService.mapToDTO(direction));
+                .map(DirectionService::mapToDTO);
     }
 
 

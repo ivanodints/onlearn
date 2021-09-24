@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ru.portal.onlearn.repo.DirectionRepository;
 import ru.portal.onlearn.repo.FacultyRepository;
 import ru.portal.onlearn.service.DirectionService;
+import ru.portal.onlearn.service.FacultyService;
 
 import java.util.Optional;
 
@@ -19,14 +20,16 @@ public class IndexController {
     private final DirectionRepository directionRepository;
     private final DirectionService directionService;
     private final FacultyRepository facultyRepository;
+    private final FacultyService facultyService;
 
-    public IndexController(DirectionRepository directionRepository, DirectionService directionService, FacultyRepository facultyRepository) {
+    public IndexController(DirectionRepository directionRepository, DirectionService directionService, FacultyRepository facultyRepository, FacultyService facultyService) {
         this.directionRepository = directionRepository;
         this.directionService = directionService;
         this.facultyRepository = facultyRepository;
+        this.facultyService = facultyService;
     }
 
-    @GetMapping
+    @GetMapping()
     public String indexPage(@RequestParam(value = "directionId", required = false) Long directionId,
                                          @RequestParam(value = "facultyId", required = false) Long facultyId,
                                          @RequestParam(value = "pageNumber", required = false, defaultValue = "1") Integer pageNumber,
@@ -35,6 +38,7 @@ public class IndexController {
                                          Model model){
 
         model.addAttribute("allDirection", directionService.findAllDirection());
+        model.addAttribute("facultyAll",facultyService.findAllFaculty());
 
         return "index";
     }

@@ -1,8 +1,8 @@
 package ru.portal.onlearn.service;
 
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import ru.portal.onlearn.controller.DTO.DirectionDTO;
+import ru.portal.onlearn.controller.DTO.FacultyDTO;
 import ru.portal.onlearn.model.Faculty;
 import ru.portal.onlearn.model.Direction;
 
@@ -19,7 +19,6 @@ public interface DirectionService {
     Optional<DirectionDTO> findDirectionById(Long id);
 
     DirectionDTO findByTitle (String title);
-
 
     public static DirectionDTO mapToDTO(Direction direction) {
         return new DirectionDTO(

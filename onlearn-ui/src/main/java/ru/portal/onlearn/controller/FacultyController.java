@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.portal.onlearn.repo.FacultyRepository;
@@ -27,7 +28,7 @@ public class FacultyController {
     }
 
     @GetMapping("/faculty")
-    public String directionsPage(@RequestParam(value = "facultyId", required = false) Long facultyId,
+    public String facultyPage(@RequestParam(value = "facultyId", required = false) Long facultyId,
                                          @RequestParam(value = "pageNumber", required = false, defaultValue = "1") Integer pageNumber,
                                          @RequestParam(value = "tableSize", required = false, defaultValue = "6") Integer tableSize,
                                          @RequestParam(value = "sort", required = false) Optional<String> sort,
@@ -35,10 +36,16 @@ public class FacultyController {
 
         logger.info("Faculty list page");
 
-        model.addAttribute("allFaculties", facultyService.findAll());
+        model.addAttribute("allFaculties", facultyService.findAllFaculty());
 
         return "faculty";
+    }
 
+    @GetMapping("/faculty/{id}")
+    public String facultyIdPage (@PathVariable Long id, Model model) throws Exception {
+        model.addAttribute("facultyAll",facultyService.findAllFaculty());
+        model.addAttribute("facultyId",facultyService.findFacultyById(id).orElseThrow(Exception::new));
+        return "facultyID";
     }
 
 }

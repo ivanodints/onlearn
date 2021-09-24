@@ -57,6 +57,13 @@
 									   th:text="${direction.getTitle()}">Программирование</a></li>
 							</ul>
 						</li>
+						<li class="menu-has-children"><a href="/onlearn/faculty">Факультеты</a>
+							<ul>
+								<li th:each="faculty : ${facultyAll}" >
+									<a th:href="@{/faculty/{id} (id = ${faculty.getId()})}"
+									   th:text="${faculty.getTitle()}">Программирование</a></li>
+							</ul>
+						</li>
 						<li><a href="/contacts">Контакты</a></li>
 						<li><a href="/login">Войти</a>
 							<ul>
@@ -316,104 +323,7 @@
 
 
 	<!-- Start Faculty Area -->
-	<section class="faculty-area section-gap">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-lg-8">
-					<div class="section-title text-center">
-						<h1>Наши преподаватели</h1>
-						<!-- <p>
-							If you are looking at blank cassettes on the web, you may be very confused at the difference
-							in price. You may see some for
-							as low as $.17 each.
-						</p> -->
-					</div>
-				</div>
-			</div>
-			<div class="row justify-content-center d-flex align-items-center">
-				<div class="col-lg-3 col-md-6 col-sm-12 single-faculty">
-					<div class="thumb d-flex justify-content-center">
-						<img class="img-fluid" src="img/faculty/f1.jpg" alt="">
-					</div>
-					<div class="meta-text text-center">
-						<h4>Сергей Нестеров</h4>
-						<p class="designation">Веб разработка</p>
-						<div class="info wow fadeIn" data-wow-duration="1s" data-wow-delay=".1s">
-							<p>
-								If you are looking at blank cassettes on the web, you may be very confused at the
-								difference in price.
-							</p>
-						</div>
-						<div class="align-items-center justify-content-center d-flex">
-							<!-- <a href="#"><i class="fa fa-facebook"></i></a>
-							<a href="#"><i class="fa fa-twitter"></i></a>
-							<a href="#"><i class="fa fa-linkedin"></i></a> -->
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 col-sm-12 single-faculty">
-					<div class="thumb d-flex justify-content-center">
-						<img class="img-fluid" src="img/faculty/f2.jpg" alt="">
-					</div>
-					<div class="meta-text text-center">
-						<h4>Алексей Сидельников</h4>
-						<p class="designation">Маркетинг</p>
-						<div class="info wow fadeIn" data-wow-duration="1s" data-wow-delay=".3s">
-							<p>
-								If you are looking at blank cassettes on the web, you may be very confused at the
-								difference in price.
-							</p>
-						</div>
-						<div class="align-items-center justify-content-center d-flex">
-							<!-- <a href="#"><i class="fa fa-facebook"></i></a>
-							<a href="#"><i class="fa fa-twitter"></i></a>
-							<a href="#"><i class="fa fa-linkedin"></i></a> -->
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 col-sm-12 single-faculty">
-					<div class="thumb d-flex justify-content-center">
-						<img class="img-fluid" src="img/faculty/f3.jpg" alt="">
-					</div>
-					<div class="meta-text text-center">
-						<h4>Михаил Кузнецов</h4>
-						<p class="designation">Pythone разработчик</p>
-						<div class="info wow fadeIn" data-wow-duration="1s" data-wow-delay=".5s">
-							<p>
-								If you are looking at blank cassettes on the web, you may be very confused at the
-								difference in price.
-							</p>
-						</div>
-						<div class="align-items-center justify-content-center d-flex">
-							<!-- <a href="#"><i class="fa fa-facebook"></i></a>
-							<a href="#"><i class="fa fa-twitter"></i></a>
-							<a href="#"><i class="fa fa-linkedin"></i></a> -->
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 col-sm-12 single-faculty">
-					<div class="thumb d-flex justify-content-center">
-						<img class="img-fluid" src="img/faculty/f4.jpg" alt="">
-					</div>
-					<div class="meta-text text-center">
-						<h4>Айгуль Эшонкулова</h4>
-						<p class="designation">Аналитика</p>
-						<div class="info wow fadeIn" data-wow-duration="1s" data-wow-delay=".7s">
-							<p>
-								If you are looking at blank cassettes on the web, you may be very confused at the
-								difference in price.
-							</p>
-						</div>
-						<div class="align-items-center justify-content-center d-flex">
-							<!-- <a href="#"><i class="fa fa-facebook"></i></a>
-							<a href="#"><i class="fa fa-twitter"></i></a>
-							<a href="#"><i class="fa fa-linkedin"></i></a> -->
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+	<teachers th:replace="fragments/teachers.html :: teachers"></teachers>
 	<!-- End Faculty Area -->
 
 

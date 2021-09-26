@@ -51,11 +51,11 @@ public class Employee implements Serializable {
     @ManyToMany(mappedBy = "employees")
     private List<Discipline> disciplines;
 
-    @ManyToOne(optional = false)
-    private Role role;
-
     @ManyToOne(optional = true)
     private Department department;
+
+    @OneToOne(optional = false)
+    private User user;
 
 //    @ManyToMany(mappedBy = "fac_student")
 //    @JoinColumn(name = "fac_id")

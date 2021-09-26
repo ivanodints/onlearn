@@ -1,5 +1,6 @@
 package ru.portal.onlearn.controller;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -31,7 +32,7 @@ public class EmployeeAdminController {
         this.roleRepository = roleRepository;
     }
 
-
+    @Secured({"ADMIN"})
     @GetMapping("/admin/employee")
     public String adminFacultyPage(Model model){
         model.addAttribute("activePage", "Employees");
@@ -39,6 +40,7 @@ public class EmployeeAdminController {
         return "admin-employee";
     }
 
+    @Secured({"ADMIN"})
     @DeleteMapping("/admin/employee/{id}/delete")
     public String adminDeleteFaculty(Model model, @PathVariable("id") Long id){
         model.addAttribute("activePage", "Employees");
@@ -46,6 +48,7 @@ public class EmployeeAdminController {
         return "redirect:/admin/faculty";
     }
 
+    @Secured({"ADMIN"})
     @GetMapping ("/admin/employee/create")
     public String adminFacultyCreatePage(Model model){
         model.addAttribute("create", true);
@@ -56,6 +59,7 @@ public class EmployeeAdminController {
         return "employee_form";
     }
 
+    @Secured({"ADMIN"})
     @GetMapping("/admin/employee/{id}/edit")
     public String adminEditFaculty(Model model, @PathVariable("id") Long id){
         model.addAttribute("edit",true);
@@ -66,6 +70,7 @@ public class EmployeeAdminController {
         return "employee_form";
     }
 
+    @Secured({"ADMIN"})
     @PostMapping("/admin/employeePost")
     public String adminPostFaculty(Model model, RedirectAttributes redirectAttributes, Employee employee){
         model.addAttribute("activePage", "Employees");

@@ -1,5 +1,6 @@
 package ru.portal.onlearn.controller;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,6 +28,7 @@ public class StudentAdminController {
         this.studentAdminService = studentAdminService;
     }
 
+    @Secured({"ADMIN"})
     @GetMapping("/admin/student")
     public String adminStudentPage(Model model){
         model.addAttribute("activePage", "Students");
@@ -34,6 +36,7 @@ public class StudentAdminController {
         return "admin-student";
     }
 
+    @Secured({"ADMIN"})
     @DeleteMapping("/admin/student/{id}/delete")
     public String adminDeleteStudent(Model model, @PathVariable("id") Long id){
         model.addAttribute("activePage", "Students");
@@ -41,6 +44,7 @@ public class StudentAdminController {
         return "redirect:/admin/student";
     }
 
+    @Secured({"ADMIN"})
     @GetMapping ("/admin/student/create")
     public String adminFacultyCreatePage(Model model){
         model.addAttribute("create", true);
@@ -50,6 +54,7 @@ public class StudentAdminController {
         return "student_form";
     }
 
+    @Secured({"ADMIN"})
     @GetMapping("/admin/student/{id}/edit")
     public String adminEditFaculty(Model model, @PathVariable("id") Long id){
         model.addAttribute("edit",true);
@@ -59,6 +64,7 @@ public class StudentAdminController {
         return "student_form";
     }
 
+    @Secured({"ADMIN"})
     @PostMapping("/admin/studentPost")
     public String adminPostFaculty(Model model, RedirectAttributes redirectAttributes, Student student){
         model.addAttribute("activePage", "Students");

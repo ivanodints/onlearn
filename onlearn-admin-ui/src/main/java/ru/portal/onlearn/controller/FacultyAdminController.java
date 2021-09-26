@@ -1,5 +1,6 @@
 package ru.portal.onlearn.controller;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,7 @@ public class FacultyAdminController {
         this.directionRepository = directionRepository;
     }
 
+    @Secured({"ADMIN"})
     @GetMapping("/admin/faculty")
     public String adminFacultyPage(Model model){
         model.addAttribute("activePage", "Faculties");
@@ -33,6 +35,7 @@ public class FacultyAdminController {
         return "admin-faculty";
     }
 
+    @Secured({"ADMIN"})
     @DeleteMapping("/admin/faculty/{id}/delete")
     public String adminDeleteFaculty(Model model, @PathVariable("id") Long id){
         model.addAttribute("activePage", "Faculties");
@@ -40,6 +43,7 @@ public class FacultyAdminController {
         return "redirect:/admin/faculty";
     }
 
+    @Secured({"ADMIN"})
     @GetMapping ("/admin/faculty/create")
     public String adminFacultyCreatePage(Model model){
         model.addAttribute("create", true);
@@ -49,6 +53,7 @@ public class FacultyAdminController {
         return "faculty_form";
     }
 
+    @Secured({"ADMIN"})
     @GetMapping("/admin/faculty/{id}/edit")
     public String adminEditFaculty(Model model, @PathVariable("id") Long id){
         model.addAttribute("edit",true);
@@ -58,6 +63,7 @@ public class FacultyAdminController {
         return "faculty_form";
     }
 
+    @Secured({"ADMIN"})
     @PostMapping("/admin/facultyPost")
     public String adminPostFaculty(Model model, RedirectAttributes redirectAttributes, Faculty faculty){
         model.addAttribute("activePage", "Faculties");

@@ -7,6 +7,7 @@ import lombok.Setter;
 import ru.portal.onlearn.model.Department;
 import ru.portal.onlearn.model.Employee;
 import ru.portal.onlearn.model.Role;
+import ru.portal.onlearn.model.User;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -33,7 +34,7 @@ public class EmployeeAdminDTO implements Serializable {
 
     private String phoneNumber;
 
-    private Role role;
+    private User user;
 
     private Department department;
 
@@ -62,7 +63,7 @@ public class EmployeeAdminDTO implements Serializable {
         this.sex = employee.getSex();
         this.email = employee.getEmail();
         this.phoneNumber = employee.getPhoneNumber();
-        this.role = employee.getRole();
+        this.user = employee.getUser();
         this.department = employee.getDepartment();
         this.bio = employee.getBio();
     }

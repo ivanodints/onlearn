@@ -9,6 +9,7 @@ import ru.portal.onlearn.model.Employee;
 import ru.portal.onlearn.model.Role;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.time.LocalDate;
 
 @Getter
@@ -25,7 +26,7 @@ public class EmployeeDTO implements Serializable {
 
     private String middleName;
 
-    private LocalDate dateOfBirth;
+    private Date dateOfBirth;
 
     private String sex;
 
@@ -37,7 +38,7 @@ public class EmployeeDTO implements Serializable {
 
     private Department department;
 
-    public EmployeeDTO(Long id, String name, String surname, String middleName, LocalDate dateOfBirth,
+    public EmployeeDTO(Long id, String name, String surname, String middleName, Date dateOfBirth,
                        String sex, String email, String phoneNumber, Department department) {
         this.id = id;
         this.name = name;

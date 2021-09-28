@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/header :: head"></head>
+
+<body class="bg-light">
+
+<div th:replace="fragments/header :: header"></div>
+
+<div class="d-flex">
+    <div th:replace="fragments/sidebar :: sidebar"></div>
+
+    <div class="content p-4">
+        <h2 class="mb-4">Список департаментов</h2>
+
+        <div class="card mb-4">
+
+            <div class="card-body">
+                <form class="form-group" th:action="@{/admin/department/create}">
+                    <button id="create_new" type="submit" class="btn btn-primary">Добавить департамент</button>
+                </form>
+
+                <table id="products" class="table table-hover" cellspacing="0" width="100%">
+                    <thead>
+                    <th>Id</th>
+                    <th>Название</th>
+                    <th class="actions"></th>
+                    </thead>
+                    <tbody>
+                    <tr th:each="department : ${departments}">
+                        <td th:text="${department.getId()}"></td>
+                        <td th:text="${department.getTitle()}"></td>
+                        <td>
+                            <a th:href="@{/admin/department/{id}/edit(id=${department.getId()})}"
+                               class="btn btn-icon btn-pill btn-primary" data-toggle="tooltip" title="Edit">
+                                <i class="fa fa-fw fa-edit"></i>
+                            </a>
+                            <form th:action="@{/admin/direction/{id}/delete(id=${department.getId()})}" th:method="delete"
+                                  class="d-inline">
+                                <button id="delete_btn" class="btn btn-icon btn-pill btn-danger"
+                                        data-toggle="tooltip" title="Delete">
+                                    <i class="fa fa-fw fa-trash"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:replace="fragments/footer :: scripts"></script>
+<script th:src="@{/js/datatables.min.js}"></script>
+<script>
+    $(document).ready(function () {
+        $('#products').DataTable();
+    });
+</script>
+
+</body>
+
+</html>

@@ -5,6 +5,9 @@
 
     <div th:fragment="sidebar" class="sidebar sidebar-dark bg-dark">
         <ul class="list-unstyled">
+            <li id="user_list" th:classappend="${activePage == 'Департаменты'} ? active">
+                <a th:href="@{/admin/department}">
+                    <i class="fa fa-fw fa-link"></i> Направления</a></li>
             <li id="user_list" th:classappend="${activePage == 'Направления'} ? active">
                 <a th:href="@{/admin/direction}">
                     <i class="fa fa-fw fa-link"></i> Направления</a></li>

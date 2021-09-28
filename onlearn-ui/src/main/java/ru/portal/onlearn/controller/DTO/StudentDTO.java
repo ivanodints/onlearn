@@ -11,6 +11,7 @@ import ru.portal.onlearn.model.User;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class StudentDTO implements Serializable {
 
     private String middleName;
 
-    private LocalDate dateOfBirth;
+    private Date dateOfBirth;
 
     private String sex;
 

@@ -7,9 +7,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "employee")
@@ -34,7 +34,7 @@ public class Employee implements Serializable {
     private String middleName;
 
     @Column(name = "date_of_birth", nullable = false)
-    private LocalDate dateOfBirth;
+    private Date dateOfBirth;
 
     @Column(name = "sex", nullable = false)
     private String sex;
@@ -63,7 +63,7 @@ public class Employee implements Serializable {
 
 
     public Employee(Long id, String name, String surname,
-                    String middleName, LocalDate dateOfBirth, String sex, String email, String phoneNumber, String bio) {
+                    String middleName, Date dateOfBirth, String sex, String email, String phoneNumber, String bio) {
         this.id = id;
         this.name = name;
         this.surname = surname;

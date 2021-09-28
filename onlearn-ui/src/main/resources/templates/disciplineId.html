@@ -54,13 +54,15 @@
                             <ul>
                                 <li th:each="direction : ${allDirection}" >
                                      <a th:href="@{/{id}/direction (id = ${direction.getId()})}"
-                                        th:text="${direction.getTitle()}">Программирование</a></li>
+                                        th:text="${direction.getTitle()}">направления</a></li>
                             </ul>
                         </li>
                         <li class="menu-has-children"><a href="/onlearn/faculty">Факультеты</a>
-<!--                            <ul>-->
-<!--                                <li><a th:href="@{/faculty/{id} (id = ${faculty.getId()})}">Программирование</a></li>-->
-<!--                            </ul>-->
+                            <ul>
+                                <li th:each="faculty : ${findAll}">
+                                    <a th:href="@{/faculty/{id} (id = ${faculty.getId()})}"
+                                    th:text="${faculty.getTitle()}">факультеты</a></li>
+                            </ul>
                         </li>
                         <li class="menu-has-children"><a href="/onlearn/discipline">Дисциплины</a>
                             <ul>
@@ -92,6 +94,7 @@
                         название дисциплины
                     </h1>
                     <p class="text--white" th:text="${disciplineId.getDescription()}">Описание</p>
+
                 </div>
             </div>
         </div>
@@ -190,15 +193,13 @@
     <!-- End Feature Area -->
 
 
-    <!-- Start Faculty Area -->
-        <footer th:replace="fragments/teachers.html :: teachers"></footer>
-    <!-- End Faculty Area -->
+<!--    &lt;!&ndash; Start Faculty Area &ndash;&gt;-->
+<!--        <footer th:replace="fragments/teachers.html :: teachers"></footer>-->
+<!--    &lt;!&ndash; End Faculty Area &ndash;&gt;-->
 
-
-    <!-- Start Testimonials Area -->
-        <footer th:replace="fragments/review.html :: review"></footer>
-    <!-- End Testimonials Area -->
-
+<!--    &lt;!&ndash; Start Testimonials Area &ndash;&gt;-->
+<!--        <footer th:replace="fragments/review.html :: review"></footer>-->
+<!--    &lt;!&ndash; End Testimonials Area &ndash;&gt;-->
 
     <!-- Start Footer Area -->
         <footer th:replace="fragments/footer.html :: footer"></footer>

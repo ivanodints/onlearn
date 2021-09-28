@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.portal.onlearn.error.NotFoundException;
 import ru.portal.onlearn.repo.DirectionRepository;
-import ru.portal.onlearn.repo.DisciplineRepository;
 import ru.portal.onlearn.service.DirectionService;
 import ru.portal.onlearn.service.DisciplineService;
+import ru.portal.onlearn.service.FacultyService;
 
 import java.util.Optional;
 
@@ -24,11 +24,14 @@ public class DisciplineController {
 
     private final DirectionRepository directionRepository;
 
+    private final FacultyService facultyService;
+
     public DisciplineController(DisciplineService disciplineService,
-                                DirectionService directionService, DirectionRepository directionRepository) {
+                                DirectionService directionService, DirectionRepository directionRepository, FacultyService facultyService) {
         this.disciplineService = disciplineService;
         this.directionService = directionService;
         this.directionRepository = directionRepository;
+        this.facultyService = facultyService;
     }
 
     @GetMapping("/discipline")
@@ -39,6 +42,9 @@ public class DisciplineController {
             @RequestParam(value = "sort", required = false) Optional<String> sort,
             Model model){
 
+
+        model.addAttribute("allDirection", directionService.findAllDirection());
+        model.addAttribute("findAll", facultyService.findAllFaculty());
         model.addAttribute("allDiscipline", disciplineService.findAllDiscipline());
 
         return "discipline";
@@ -50,6 +56,7 @@ public class DisciplineController {
     public String disciplinePage(@PathVariable("id") Long id, Model model) {
 
         model.addAttribute("allDirection", directionService.findAllDirection());
+        model.addAttribute("findAll", facultyService.findAllFaculty());
         model.addAttribute("disciplineAll",disciplineService.findAllDiscipline());
         model.addAttribute("disciplineId", disciplineService.findDisciplineById(id).orElseThrow(NotFoundException::new));
 

@@ -30,7 +30,7 @@
                                 <th>Пол</th>
                                 <th>Дата рождения</th>
                                 <th>E-mail</th>
-                                <th>Телефонный номер</th>
+                                <th>Номер Телефона</th>
                                 <th>Департамент</th>
                                 <th>Должность</th>
                                 <th>О себе</th>
@@ -48,7 +48,7 @@
                                 <td th:text="${employee.email}"></td>
                                 <td th:text="${employee.phoneNumber}"></td>
                                 <td th:text="${employee.getDepartment().getTitle()}"></td>
-                                <td th:text="${employee.role.getTitle()}"></td>
+                                <td th:text="${employee.user.getRoles()}"></td>
                                 <td th:text="${employee.bio}"></td>
 
                                 <td>

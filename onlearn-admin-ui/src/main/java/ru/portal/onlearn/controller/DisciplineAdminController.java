@@ -11,18 +11,24 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ru.portal.onlearn.error.NotFoundException;
 import ru.portal.onlearn.model.Discipline;
 import ru.portal.onlearn.repo.DisciplineRepository;
+import ru.portal.onlearn.repo.FacultyRepository;
 import ru.portal.onlearn.service.DisciplineAdminService;
+import ru.portal.onlearn.service.FacultyAdminService;
 
 @Controller
 public class DisciplineAdminController {
 
     private final DisciplineAdminService disciplineAdminService;
     private final DisciplineRepository disciplineRepository;
+    private final FacultyRepository facultyRepository;
+    private final FacultyAdminService facultyAdminService;
 
     public DisciplineAdminController(DisciplineAdminService disciplineAdminService,
-                                     DisciplineRepository disciplineRepository) {
+                                     DisciplineRepository disciplineRepository, FacultyRepository facultyRepository, FacultyAdminService facultyAdminService) {
         this.disciplineAdminService = disciplineAdminService;
         this.disciplineRepository = disciplineRepository;
+        this.facultyRepository = facultyRepository;
+        this.facultyAdminService = facultyAdminService;
     }
 
     @Secured({"ADMIN"})
@@ -30,6 +36,7 @@ public class DisciplineAdminController {
     public String adminDisciplinesPage(Model model){
         model.addAttribute("activePage", "Disciplines");
         model.addAttribute("disciplines", disciplineAdminService.findAllDiscipline());
+        model.addAttribute("faculties", facultyRepository.findAll());
         return "admin-discipline";
     }
 
@@ -47,6 +54,7 @@ public class DisciplineAdminController {
         model.addAttribute("create", true);
         model.addAttribute("activePage", "Disciplines");
         model.addAttribute("discipline", new Discipline());
+        model.addAttribute("faculties", facultyRepository.findAll());
         return "discipline_form";
     }
 
@@ -56,6 +64,7 @@ public class DisciplineAdminController {
         model.addAttribute("edit",true);
         model.addAttribute("activePage", "Disciplines");
         model.addAttribute("discipline", disciplineAdminService.findDisciplineById(id).orElseThrow(NotFoundException::new));
+        model.addAttribute("faculties", facultyRepository.findAll());
         return "discipline_form";
     }
 

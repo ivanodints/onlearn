@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ru.portal.onlearn.error.NotFoundException;
 import ru.portal.onlearn.model.Employee;
+import ru.portal.onlearn.model.User;
 import ru.portal.onlearn.repo.DepartmentRepository;
 import ru.portal.onlearn.repo.EmployeeRepository;
 import ru.portal.onlearn.repo.RoleRepository;
+import ru.portal.onlearn.repo.UserRepository;
 import ru.portal.onlearn.service.EmployeeAdminService;
 
 @Controller
@@ -22,14 +24,16 @@ public class EmployeeAdminController {
     private final EmployeeRepository employeeRepository;
     private final DepartmentRepository departmentRepository;
     private final RoleRepository roleRepository;
+    private final UserRepository userRepository;
 
     public EmployeeAdminController(EmployeeAdminService employeeAdminService,
                                    EmployeeRepository employeeRepository,
-                                   DepartmentRepository departmentRepository, RoleRepository roleRepository) {
+                                   DepartmentRepository departmentRepository, RoleRepository roleRepository, UserRepository userRepository) {
         this.employeeAdminService = employeeAdminService;
         this.employeeRepository = employeeRepository;
         this.departmentRepository = departmentRepository;
         this.roleRepository = roleRepository;
+        this.userRepository = userRepository;
     }
 
     @Secured({"ADMIN"})
@@ -37,6 +41,7 @@ public class EmployeeAdminController {
     public String adminFacultyPage(Model model){
         model.addAttribute("activePage", "Employees");
         model.addAttribute("employees", employeeAdminService.findAllEmployee());
+        model.addAttribute("users", userRepository.findAll());
         return "admin-employee";
     }
 
@@ -56,6 +61,7 @@ public class EmployeeAdminController {
         model.addAttribute("departments", departmentRepository.findAll());
         model.addAttribute("roles", roleRepository.findAll());
         model.addAttribute("employee", new Employee());
+        model.addAttribute("user", userRepository.findAll());
         return "employee_form";
     }
 
@@ -67,6 +73,7 @@ public class EmployeeAdminController {
         model.addAttribute("employee", employeeAdminService.findEmployeeById(id).orElseThrow(NotFoundException::new));
         model.addAttribute("departments", departmentRepository.findAll());
         model.addAttribute("roles", roleRepository.findAll());
+        model.addAttribute("user", userRepository.findAll());
         return "employee_form";
     }
 

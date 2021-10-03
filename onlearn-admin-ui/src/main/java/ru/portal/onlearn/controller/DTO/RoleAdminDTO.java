@@ -9,6 +9,7 @@ import ru.portal.onlearn.model.User;
 
 import javax.validation.constraints.NotEmpty;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -20,10 +21,10 @@ public class RoleAdminDTO {
 
     private String title;
 
-    private List<User> users;
+    private Set<User> users;
 
 
-    public RoleAdminDTO(@NotEmpty String title, List<User> users) {
+    public RoleAdminDTO(@NotEmpty String title, Set<User> users) {
         this.title = title;
         this.users = users;
     }

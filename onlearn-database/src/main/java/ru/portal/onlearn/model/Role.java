@@ -8,6 +8,8 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "web_role")
@@ -26,6 +28,6 @@ public class Role implements Serializable {
     private String title;
 
     @ManyToMany(mappedBy  ="roles")
-    private List<User> users;
+    private Set<User> users;
 
 }

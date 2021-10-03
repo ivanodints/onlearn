@@ -3,6 +3,7 @@ package ru.portal.onlearn.controller.DTO;
 import java.io.Serializable;
 import java.time.LocalTime;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -38,6 +39,10 @@ public class DisciplineAdminDTO implements Serializable {
         this.description = discipline.getDescription();
         this.faculty = discipline.getFaculty();
         this.employees = discipline.getEmployees();
+    }
+
+    public String getFacultyTitle (){
+        return faculty.stream().map(faculty1 -> faculty1.getTitle()).collect(Collectors.joining(", "));
     }
 
 }

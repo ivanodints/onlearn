@@ -10,6 +10,7 @@ import ru.portal.onlearn.model.User;
 import javax.validation.constraints.NotEmpty;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -19,12 +20,9 @@ public class UserAdminDTO {
 
     private Long id;
 
-
     private String login;
 
-
     private String password;
-
 
     private Set<Role> roles;
 
@@ -39,5 +37,9 @@ public class UserAdminDTO {
         this.login = user.getLogin();
         this.password = user.getPassword();
         this.roles = new HashSet<>(user.getRoles());
+    }
+
+    public String getRoleTitle (){
+        return roles.stream().map(loginTitle -> loginTitle.getTitle()).collect(Collectors.joining(", "));
     }
 }

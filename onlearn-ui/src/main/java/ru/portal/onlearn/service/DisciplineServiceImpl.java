@@ -6,8 +6,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import ru.portal.onlearn.controller.DTO.DisciplineDTO;
+import ru.portal.onlearn.controller.DTO.FacultyDTO;
 import ru.portal.onlearn.model.Discipline;
 import ru.portal.onlearn.repo.DisciplineRepository;
+import ru.portal.onlearn.repo.FacultyRepository;
 import ru.portal.onlearn.repo.specification.DisciplineSpecification;
 
 import java.util.List;
@@ -18,9 +20,11 @@ import java.util.stream.Collectors;
 public class DisciplineServiceImpl implements DisciplineService {
 
     private final DisciplineRepository disciplineRepository;
+    private final FacultyRepository facultyRepository;
 
-    public DisciplineServiceImpl(DisciplineRepository disciplineRepository) {
+    public DisciplineServiceImpl(DisciplineRepository disciplineRepository, FacultyRepository facultyRepository) {
         this.disciplineRepository = disciplineRepository;
+        this.facultyRepository = facultyRepository;
     }
 
     @Override

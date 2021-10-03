@@ -26,6 +26,7 @@
                             <th>Название</th>
                             <th>Академические часы</th>
                             <th>Описание</th>
+                            <th>Факультеты</th>
                             <th class="actions"></th>
                         </thead>
                         <tbody>
@@ -34,6 +35,7 @@
                                 <td th:text="${discipline.getTitle()}"></td>
                                 <td th:text="${discipline.getDiscTime()}"></td>
                                 <td th:text="${discipline.getDescription()}"></td>
+                                <td th:text="${discipline.getFacultyTitle()}"></td>
                                 <td>
                                     <a th:href="@{/admin/discipline/{id}/edit(id=${discipline.getId()})}"
                                         class="btn btn-icon btn-pill btn-primary" data-toggle="tooltip" title="Edit">

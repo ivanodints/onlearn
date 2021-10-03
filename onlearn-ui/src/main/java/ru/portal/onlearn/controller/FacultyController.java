@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.portal.onlearn.repo.FacultyRepository;
+import ru.portal.onlearn.service.DisciplineService;
 import ru.portal.onlearn.service.FacultyService;
 
 import java.util.Optional;
@@ -21,10 +22,13 @@ public class FacultyController {
 
     private final FacultyRepository facultyRepository;
     private final FacultyService facultyService;
+    private final DisciplineService disciplineService;
 
-    public FacultyController(FacultyRepository facultyRepository, FacultyService facultyService) {
+    public FacultyController(FacultyRepository facultyRepository, FacultyService facultyService,
+                             DisciplineService disciplineService) {
         this.facultyRepository = facultyRepository;
         this.facultyService = facultyService;
+        this.disciplineService = disciplineService;
     }
 
     @GetMapping("/faculty")

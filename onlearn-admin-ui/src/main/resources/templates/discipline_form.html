@@ -32,6 +32,14 @@
                             <label for="description">Описание</label>
                             <input th:field="*{description}" type="text" class="form-control" id="description"
                                    placeholder="Введите описание учебной дисциплины" required>
+                            <label for="faculty">Факультеты</label>
+                            <p>
+                                <select multiple="multiple" th:field="*{faculty}" type="text" class="form-control" id="faculty"
+                                       placeholder="Выберите для дисциплины все факультеты в которые она входит" required>
+                                    <option th:each="fuc : ${faculties}" th:text="${fuc.title}" th:value="${fuc.id}">
+                                    </option>
+                                </select>
+                            </p>
                         </div>
                     </div>
 

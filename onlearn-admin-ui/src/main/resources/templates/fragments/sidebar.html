@@ -5,9 +5,9 @@
 
     <div th:fragment="sidebar" class="sidebar sidebar-dark bg-dark">
         <ul class="list-unstyled">
-            <li id="user_list" th:classappend="${activePage == 'Департаменты'} ? active">
+            <li id="manufacture_list" th:classappend="${activePage == 'Департаменты'} ? active">
                 <a th:href="@{/admin/department}">
-                    <i class="fa fa-fw fa-link"></i> Направления</a></li>
+                    <i class="fa fa-fw fa-link"></i> Департаменты</a></li>
             <li id="user_list" th:classappend="${activePage == 'Направления'} ? active">
                 <a th:href="@{/admin/direction}">
                     <i class="fa fa-fw fa-link"></i> Направления</a></li>
@@ -23,6 +23,10 @@
             <li id="manufacture_list" th:classappend="${activePage == 'Студенты'} ? active">
                 <a th:href="@{/admin/student}">
                     <i class="fa fa-fw fa-link"></i> Студенты</a></li>
+            <li id="manufacture_list" th:classappend="${activePage == 'Users'} ? active">
+                <a th:href="@{/admin/user}">
+                    <i class="fa fa-fw fa-link"></i> Users</a>
+            </li>
         </ul>
     </div>
 

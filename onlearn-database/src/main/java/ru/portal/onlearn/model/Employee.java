@@ -8,7 +8,6 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
-import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -57,13 +56,10 @@ public class Employee implements Serializable {
     @OneToOne(optional = false)
     private User user;
 
-//    @ManyToMany(mappedBy = "fac_student")
-//    @JoinColumn(name = "fac_id")
-//    private List<Departments> emplDepartments;
-
 
     public Employee(Long id, String name, String surname,
-                    String middleName, Date dateOfBirth, String sex, String email, String phoneNumber, String bio) {
+                    String middleName, Date dateOfBirth, String sex, String email, String phoneNumber, String bio,
+                    User user) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -73,6 +69,7 @@ public class Employee implements Serializable {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.bio = bio;
+        this.user = user;
     }
 
 }

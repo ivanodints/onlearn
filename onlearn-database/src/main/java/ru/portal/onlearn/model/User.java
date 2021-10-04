@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -30,14 +31,24 @@ public class User implements Serializable {
     @Column(name = "password", nullable = false)
     private String password;
 
+    public void setPassword(String password) {
+        this.password = encodePassword(password);
+    }
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
-
     public Set<String> getRoleTitle(){
         return roles.stream().map(t -> t.getTitle()).collect(Collectors.toSet());
     }
+
+    public String encodePassword(String password) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String passwordEncode = passwordEncoder.encode(password);
+        return passwordEncode;
+    }
+
 }

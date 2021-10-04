@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import ru.portal.onlearn.model.Role;
 import ru.portal.onlearn.model.User;
 
@@ -38,7 +39,7 @@ public class UserAdminDTO {
         this.password = user.getPassword();
         this.roles = new HashSet<>(user.getRoles());
     }
-
+    
     public String getRoleTitle (){
         return roles.stream().map(loginTitle -> loginTitle.getTitle()).collect(Collectors.joining(", "));
     }

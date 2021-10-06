@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -40,9 +42,11 @@ public class Student  implements Serializable {
     @Column(name = "sex", nullable = false)
     private String sex;
 
+    @Email
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
+    @Size(min = 11, max = 12)
     @Column(name = "phone_number", nullable = false, unique = true)
     private String phoneNumber;
 
@@ -52,7 +56,7 @@ public class Student  implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "faculty_id"))
     private Set<Faculty> faculty;
 
-    @OneToOne(optional = false)
+    @OneToOne(optional = false, cascade = CascadeType.ALL)
     private User user;
 
     public Student(Long id, String name, String surname,
@@ -66,4 +70,5 @@ public class Student  implements Serializable {
         this.email = email;
         this.phoneNumber = phoneNumber;
     }
+
 }

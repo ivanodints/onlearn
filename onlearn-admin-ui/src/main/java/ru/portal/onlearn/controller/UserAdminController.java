@@ -4,6 +4,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,8 @@ import ru.portal.onlearn.model.User;
 import ru.portal.onlearn.repo.RoleRepository;
 import ru.portal.onlearn.repo.UserRepository;
 import ru.portal.onlearn.service.UserAdminService;
+
+import javax.validation.Valid;
 
 @Controller
 public class UserAdminController {
@@ -39,13 +42,13 @@ public class UserAdminController {
         return "admin-user";
     }
 
-    @Secured({"ADMIN"})
-    @DeleteMapping("/admin/user/{id}/delete")
-    public String adminDeleteUser(Model model, @PathVariable("id") Long id){
-        model.addAttribute("activePage", "Users");
-        userAdminService.deleteUserById(id);
-        return "redirect:/admin/user";
-    }
+//    @Secured({"ADMIN"})
+//    @DeleteMapping("/admin/user/{id}/delete")
+//    public String adminDeleteUser(Model model, @PathVariable("id") Long id){
+//        model.addAttribute("activePage", "Users");
+//        userAdminService.deleteUserById(id);
+//        return "redirect:/admin/user";
+//    }
 
     @Secured({"ADMIN"})
     @GetMapping ("/admin/user/create")
@@ -69,8 +72,14 @@ public class UserAdminController {
 
     @Secured({"ADMIN"})
     @PostMapping("/admin/userPost")
-    public String adminPostUser(Model model, RedirectAttributes redirectAttributes, User user){
+    public String adminPostUser(Model model, RedirectAttributes redirectAttributes, @Valid User user,
+                                BindingResult bindingResult){
         model.addAttribute("activePage", "Users");
+
+        if (bindingResult.hasErrors()){
+            model.addAttribute("roles", roleRepository.findAll());
+            return "user_form_create";
+        }
         try {
             userRepository.save(user);
         } catch (Exception ex) {

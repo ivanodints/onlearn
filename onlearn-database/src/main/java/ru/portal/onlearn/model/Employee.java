@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
@@ -38,9 +40,11 @@ public class Employee implements Serializable {
     @Column(name = "sex", nullable = false)
     private String sex;
 
+    @Email
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
+    @Size(min = 11, max = 12)
     @Column(name = "phone_number", nullable = false, unique = true)
     private String phoneNumber;
 
@@ -53,7 +57,7 @@ public class Employee implements Serializable {
     @ManyToOne(optional = true)
     private Department department;
 
-    @OneToOne(optional = false)
+    @OneToOne(optional = false, cascade = CascadeType.ALL)
     private User user;
 
 

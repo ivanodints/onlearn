@@ -52,4 +52,6 @@ public class FacultyServiceImpl implements FacultyService {
                 .map(faculty -> new FacultyDTO(faculty))
                 .collect(Collectors.toList());
     }
+
+
 }

@@ -8,6 +8,7 @@ import lombok.Setter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import java.io.Serializable;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -25,9 +26,11 @@ public class User implements Serializable {
     @Column(name = "id")
     private Long id;
 
+//    @Min(7)
     @Column(name = "login", nullable = false, unique = true)
     private String login;
 
+//    @Min(8)
     @Column(name = "password", nullable = false)
     private String password;
 
@@ -41,8 +44,8 @@ public class User implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
-    public Set<String> getRoleTitle(){
-        return roles.stream().map(t -> t.getTitle()).collect(Collectors.toSet());
+    public String getRoleTitle(){
+        return roles.stream().map(t -> t.getTitle()).collect(Collectors.joining(""));
     }
 
     public String encodePassword(String password) {

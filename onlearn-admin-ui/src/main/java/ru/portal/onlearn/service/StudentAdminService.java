@@ -5,6 +5,7 @@ import ru.portal.onlearn.controller.DTO.DirectionAdminDTO;
 import ru.portal.onlearn.controller.DTO.StudentAdminDTO;
 import ru.portal.onlearn.model.Direction;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,4 +19,6 @@ public interface StudentAdminService {
     StudentAdminDTO findStudentBySurname(String surname);
 
     void deleteStudentById(Long id);
+
+    void saveStudent (StudentAdminDTO studentAdminDTO) throws IOException;
 }

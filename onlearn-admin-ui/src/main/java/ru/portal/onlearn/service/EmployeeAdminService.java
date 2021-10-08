@@ -2,9 +2,11 @@ package ru.portal.onlearn.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
+import ru.portal.onlearn.controller.DTO.DirectionAdminDTO;
 import ru.portal.onlearn.controller.DTO.EmployeeAdminDTO;
 import ru.portal.onlearn.model.Employee;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,4 +35,6 @@ public interface EmployeeAdminService {
                 employee.getDepartment(),
                 employee.getBio());
     }
+
+    void saveEmployee (EmployeeAdminDTO employeeAdminDTO) throws IOException;
 }

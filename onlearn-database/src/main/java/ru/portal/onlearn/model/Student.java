@@ -59,6 +59,9 @@ public class Student  implements Serializable {
     @OneToOne(optional = false, cascade = CascadeType.ALL)
     private User user;
 
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    private List<Picture> pictures;
+
     public Student(Long id, String name, String surname,
                    String middleName, Date dateOfBirth, String sex, String email, String phoneNumber) {
         this.id = id;

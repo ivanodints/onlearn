@@ -42,5 +42,30 @@ public class Faculty implements Serializable {
     @ManyToMany(mappedBy = "faculty")
     private Set<Student> students;
 
+    @OneToMany(mappedBy = "faculty", cascade = CascadeType.ALL)
+    private List<Picture> pictures;
 
+    public Faculty(Long id, String title, BigDecimal price, String description) {
+        this.id = id;
+        this.title = title;
+        this.price = price;
+        this.description = description;
+    }
+
+    public Faculty(Long id, String title, BigDecimal price, String description, Direction direction) {
+        this.id = id;
+        this.title = title;
+        this.price = price;
+        this.description = description;
+        this.direction = direction;
+    }
+
+    public Faculty(Long id, String title, BigDecimal price, String description, Direction direction, List<Picture> pictures) {
+        this.id = id;
+        this.title = title;
+        this.price = price;
+        this.description = description;
+        this.direction = direction;
+        this.pictures = pictures;
+    }
 }

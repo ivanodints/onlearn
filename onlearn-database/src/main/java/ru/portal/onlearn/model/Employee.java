@@ -60,6 +60,9 @@ public class Employee implements Serializable {
     @OneToOne(optional = false, cascade = CascadeType.ALL)
     private User user;
 
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    private List<Picture> pictures;
+
 
     public Employee(Long id, String name, String surname,
                     String middleName, Date dateOfBirth, String sex, String email, String phoneNumber, String bio,

@@ -5,11 +5,17 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import ru.portal.onlearn.controller.DTO.DisciplineAdminDTO;
+import ru.portal.onlearn.error.NotFoundException;
 import ru.portal.onlearn.model.Discipline;
+import ru.portal.onlearn.model.Picture;
 import ru.portal.onlearn.repo.DisciplineRepository;
 import ru.portal.onlearn.repo.specification.DisciplineSpecification;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -18,9 +24,11 @@ import java.util.stream.Collectors;
 public class DisciplineAdminServiceImpl implements DisciplineAdminService{
 
     private final DisciplineRepository disciplineRepository;
+    private final PictureService pictureService;
 
-    public DisciplineAdminServiceImpl(DisciplineRepository disciplineRepository) {
+    public DisciplineAdminServiceImpl(DisciplineRepository disciplineRepository, PictureService pictureService) {
         this.disciplineRepository = disciplineRepository;
+        this.pictureService = pictureService;
     }
 
     @Override
@@ -57,4 +65,33 @@ public class DisciplineAdminServiceImpl implements DisciplineAdminService{
     public void deleteDisciplineById(Long id) {
         disciplineRepository.deleteById(id);
     }
-}
+
+    @Override
+    @Transactional
+    public void saveDiscipline (DisciplineAdminDTO disciplineAdminDTO) throws IOException {
+
+        Discipline discipline;
+        if (disciplineAdminDTO.getId() != null) discipline = disciplineRepository.findById(disciplineAdminDTO.getId())
+                .orElseThrow(NotFoundException::new);
+        else discipline = new Discipline();
+        discipline.setId(disciplineAdminDTO.getId());
+        discipline.setTitle(disciplineAdminDTO.getTitle());
+        discipline.setDiscTime(disciplineAdminDTO.getDiscTime());
+        discipline.setDescription(disciplineAdminDTO.getDescription());
+        if (disciplineAdminDTO.getNewPictures() != null){
+            for (MultipartFile newPicture : disciplineAdminDTO.getNewPictures()){
+                if (discipline.getPictures() == null){
+                    discipline.setPictures(new ArrayList<>());
+                }
+                discipline.getPictures().add(new Picture(
+                        newPicture.getOriginalFilename(),
+                        newPicture.getContentType(),
+                        pictureService.createPictureData(newPicture.getBytes()),
+                        discipline
+                ));
+            }
+        }
+        disciplineRepository.save(discipline);
+    }
+
+    }

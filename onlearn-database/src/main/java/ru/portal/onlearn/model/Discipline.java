@@ -45,6 +45,9 @@ public class Discipline implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "employee_id"))
     private Set<Employee> employees;
 
+    @OneToMany(mappedBy = "discipline", cascade = CascadeType.ALL)
+    private List<Picture> pictures;
+
 
     public Discipline(Long id, String title, LocalTime discTime, String description) {
         this.id = id;

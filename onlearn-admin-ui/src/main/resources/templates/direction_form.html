@@ -18,7 +18,8 @@
             <h2 class="mb-4" th:if="${edit}">Редактировать учебное направление</h2>
             <h2 class="mb-4" th:if="${create}">Создать учебное направление</h2>
 
-            <form th:object="${direction}" method="post" th:action="@{/admin/directionPost}">
+            <form th:object="${direction}" method="post" th:action="@{/admin/directionPost}"
+                enctype="multipart/form-data">
                 <div class="card mb-4">
                     <div class="card-body">
                         <input th:type="hidden" th:field="*{id}">
@@ -28,7 +29,12 @@
                                 placeholder="Введите название направления" required>
                             <label for="description">Описание</label>
                             <input th:field="*{description}" type="text" class="form-control" id="description"
-                                   placeholder="Введите описание направления" required>
+                                placeholder="Введите описание направления" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="newPictures">Логотип</label>
+                            <input th:field="*{newPictures}" type="file" class="form-control" id="newPictures"
+                                placeholder="Загрузите изображение" multiple>
                         </div>
                     </div>
 
@@ -37,6 +43,19 @@
                     </div>
                 </div>
             </form>
+
+                        <div class="container-fluid mb-4">
+                            <div class="card-columns" style="column-count: 5">
+                                <div class="card" th:each="pict : ${direction.pictures}">
+                                    <form class="card-header" th:method="delete"
+                                          th:action="@{deleteDirectionPicture/{pictureId}(pictureId=${pict.id})}">
+                                        Picture<button class="float-right"><i class="fa fa-times"></i></button>
+                                    </form>
+                                    <img class="card-img-bottom" th:src="@{/picture/{pictureId}(pictureId=${pict.id})}"
+                                         width="40%" />
+                                </div>
+                            </div>
+                        </div>
 
         </div>
     </div>

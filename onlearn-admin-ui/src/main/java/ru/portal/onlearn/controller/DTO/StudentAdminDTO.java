@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 import ru.portal.onlearn.model.Faculty;
 import ru.portal.onlearn.model.Role;
 import ru.portal.onlearn.model.Student;
@@ -39,6 +40,10 @@ public class StudentAdminDTO implements Serializable {
     private User user;
 
     private List<Faculty> faculty;
+
+    private List<PictureDTO> pictures;
+
+    private MultipartFile[] newPictures;
 
     public StudentAdminDTO(Student student) {
         this.id = student.getId();

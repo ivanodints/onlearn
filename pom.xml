@@ -46,6 +46,7 @@
         <module>onlearn-database</module>
         <module>onlearn-ui</module>
         <module>onlearn-admin-ui</module>
+        <module>onlearn-picture-service</module>
     </modules>
 
 

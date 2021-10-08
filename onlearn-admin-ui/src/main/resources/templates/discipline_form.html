@@ -18,36 +18,40 @@
             <h2 class="mb-4" th:if="${edit}">Редактировать учебную дисциплину</h2>
             <h2 class="mb-4" th:if="${create}">Создать учебную дисциплину</h2>
 
-            <form th:object="${discipline}" method="post" th:action="@{/admin/disciplinePost}">
+            <form th:object="${discipline}" method="post" th:action="@{/admin/disciplinePost}"
+                enctype="multipart/form-data">
                 <div class="card mb-2">
                     <div class="card-body">
                         <input th:type="hidden" th:field="*{id}">
                         <div class="form-group">
-                            <label for="name">Название учебной дисциплины</label>
-                                <input th:field="*{title}" type="text" class="form-control" id="name"
-                                    placeholder="Введите название учебной дисциплины" required>
-                            <label for="time">Количество академических часов</label>
-                                <input th:field="*{discTime}" type="time" class="form-control" id="time"
-                                       placeholder="Введите количество академических часов" required>
-                            <label for="description">Описание</label>
-                                <input th:field="*{description}" type="text" class="form-control" id="description"
-                                       placeholder="Введите описание учебной дисциплины" required>
-                            <label for="faculty">Факультеты</label>
-<!--                            <p>-->
-<!--                                <select multiple="multiple" th:field="*{faculty}" type="text" class="form-control" id="faculty"-->
-<!--                                       placeholder="Выберите для дисциплины все факультеты в которые она входит" required>-->
-<!--                                    <option th:each="fuc : ${faculties}" th:text="${fuc.title}" th:value="${fuc.id}">-->
-<!--                                    </option>-->
-<!--                                </select>-->
-<!--                            </p>-->
 
+                            <label for="name">Название учебной дисциплины</label>
+                            <input th:field="*{title}" type="text" class="form-control" id="name"
+                                placeholder="Введите название учебной дисциплины" required>
+
+                            <label for="time">Количество академических часов</label>
+                            <input th:field="*{discTime}" type="time" class="form-control" id="time"
+                                placeholder="Введите количество академических часов" required>
+
+                            <label for="description">Описание</label>
+                            <input th:field="*{description}" type="text" class="form-control" id="description"
+                                placeholder="Введите описание учебной дисциплины" required>
+
+                            <label for="faculty">Факультеты</label>
                             <div class="list-group">
-                                <label class="list-group-item table-hover" id="faculty" th:each="fuc : ${faculties}">
-                                    <input class="form-check-input me-1" type="checkbox"
-                                            th:text="${fuc.title}" th:value="${fuc.id}">
+                                <label class="list-group-item table-hover" id="faculty" th:each="fac : ${faculties}">
+                                    <input class="form-check-input me-1" type="checkbox" th:text="${fac.title}"
+                                        th:value="${fac.id}">
                                 </label>
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <label for="newPictures">Логотип</label>
+                            <input th:field="*{newPictures}" type="file" class="form-control" id="newPictures"
+                                placeholder="Загрузите изображение" multiple>
+                        </div>
+
                     </div>
 
                     <div class="card-footer bg-white">
@@ -55,6 +59,19 @@
                     </div>
                 </div>
             </form>
+
+                        <div class="container-fluid mb-4">
+                            <div class="card-columns" style="column-count: 5">
+                                <div class="card" th:each="pict : ${discipline.pictures}">
+                                    <form class="card-header" th:method="delete"
+                                          th:action="@{deleteDisciplinePicture/{pictureId}(pictureId=${pict.id})}">
+                                        Picture<button class="float-right"><i class="fa fa-times"></i></button>
+                                    </form>
+                                    <img class="card-img-bottom" th:src="@{/picture/{pictureId}(pictureId=${pict.id})}"
+                                         width="40%" />
+                                </div>
+                            </div>
+                        </div>
 
         </div>
     </div>

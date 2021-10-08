@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import ru.portal.onlearn.controller.DTO.EmployeeAdminDTO;
 import ru.portal.onlearn.error.NotFoundException;
 import ru.portal.onlearn.model.Employee;
 import ru.portal.onlearn.model.User;
@@ -82,16 +83,16 @@ public class EmployeeAdminController {
 
     @Secured({"ADMIN"})
     @PostMapping("/admin/employeePost")
-    public String adminPostEmployee(Model model, RedirectAttributes redirectAttributes, @Valid Employee employee){
+    public String adminPostEmployee(Model model, RedirectAttributes redirectAttributes, @Valid EmployeeAdminDTO employeeAdminDTO){
         model.addAttribute("activePage", "Employees");
         try {
-            employeeRepository.save(employee);
+            employeeAdminService.saveEmployee(employeeAdminDTO);
         } catch (Exception ex) {
             redirectAttributes.addFlashAttribute("error", true);
-            if (employee.getId() == null){
+            if (employeeAdminDTO.getId() == null){
                 return "redirect:/admin/employee/create";
             }
-            return "redirect:/admin/employee/" + employee.getId() + "/edit";
+            return "redirect:/admin/employee/" + employeeAdminDTO.getId() + "/edit";
         }
         return "redirect:/admin/employee";
     }

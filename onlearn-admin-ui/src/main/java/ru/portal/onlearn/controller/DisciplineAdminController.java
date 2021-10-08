@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import ru.portal.onlearn.controller.DTO.DisciplineAdminDTO;
 import ru.portal.onlearn.error.NotFoundException;
 import ru.portal.onlearn.model.Discipline;
 import ru.portal.onlearn.repo.DisciplineRepository;
@@ -70,16 +71,16 @@ public class DisciplineAdminController {
 
     @Secured({"ADMIN"})
     @PostMapping("/admin/disciplinePost")
-    public String adminPostDirection(Model model, RedirectAttributes redirectAttributes, Discipline discipline){
+    public String adminPostDirection(Model model, RedirectAttributes redirectAttributes, DisciplineAdminDTO disciplineAdminDTO){
         model.addAttribute("activePage", "Disciplines");
         try {
-            disciplineRepository.save(discipline);
+            disciplineAdminService.saveDiscipline(disciplineAdminDTO);
         } catch (Exception ex) {
             redirectAttributes.addFlashAttribute("error", true);
-            if (discipline.getId() == null){
+            if (disciplineAdminDTO.getId() == null){
                 return "redirect:/admin/discipline/create";
             }
-            return "redirect:/admin/discipline/" + discipline.getId() + "/edit";
+            return "redirect:/admin/discipline/" + disciplineAdminDTO.getId() + "/edit";
         }
         return "redirect:/admin/discipline";
     }

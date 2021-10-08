@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 import ru.portal.onlearn.model.Department;
 import ru.portal.onlearn.model.Employee;
 import ru.portal.onlearn.model.Role;
@@ -12,6 +13,7 @@ import ru.portal.onlearn.model.User;
 import java.io.Serializable;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -40,6 +42,10 @@ public class EmployeeAdminDTO implements Serializable {
     private Department department;
 
     private String bio;
+
+    private List<PictureDTO> pictures;
+
+    private MultipartFile[] newPictures;
 
     public EmployeeAdminDTO(Long id, String name, String surname, String middleName, Date dateOfBirth,
                        String sex, String email, String phoneNumber, Department department, String bio) {

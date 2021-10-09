@@ -54,8 +54,8 @@ public class DisciplineAdminController {
     public String adminDirectionCreatePage(Model model){
         model.addAttribute("create", true);
         model.addAttribute("activePage", "Disciplines");
-        model.addAttribute("discipline", new Discipline());
         model.addAttribute("faculties", facultyRepository.findAll());
+        model.addAttribute("discipline", new DisciplineAdminDTO());
         return "discipline_form";
     }
 

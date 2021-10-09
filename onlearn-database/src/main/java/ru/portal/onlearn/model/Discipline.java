@@ -56,4 +56,11 @@ public class Discipline implements Serializable {
         this.description = description;
     }
 
+    public Discipline(Long id, String title, LocalTime discTime, String description, List<Picture> pictures) {
+        this.id = id;
+        this.title = title;
+        this.discTime = discTime;
+        this.description = description;
+        this.pictures = pictures;
+    }
 }

@@ -78,6 +78,7 @@ public class DisciplineAdminServiceImpl implements DisciplineAdminService{
         discipline.setTitle(disciplineAdminDTO.getTitle());
         discipline.setDiscTime(disciplineAdminDTO.getDiscTime());
         discipline.setDescription(disciplineAdminDTO.getDescription());
+        discipline.setFaculty(disciplineAdminDTO.getFaculty());
         if (disciplineAdminDTO.getNewPictures() != null){
             for (MultipartFile newPicture : disciplineAdminDTO.getNewPictures()){
                 if (discipline.getPictures() == null){

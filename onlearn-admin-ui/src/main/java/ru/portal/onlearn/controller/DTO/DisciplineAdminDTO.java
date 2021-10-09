@@ -43,6 +43,27 @@ public class DisciplineAdminDTO implements Serializable {
         this.title = discipline.getTitle();
         this.discTime = discipline.getDiscTime();
         this.description = discipline.getDescription();
+        this.faculty = discipline.getFaculty();
+        this.employees = discipline.getEmployees();
+    }
+
+    public DisciplineAdminDTO(Long id, String title, LocalTime discTime, String description, Set<Faculty> faculty, List<PictureDTO> pictures) {
+        this.id = id;
+        this.title = title;
+        this.discTime = discTime;
+        this.description = description;
+        this.faculty = faculty;
+        this.pictures = pictures;
+    }
+
+    public DisciplineAdminDTO(Long id, String title, LocalTime discTime, String description, Set<Faculty> faculty, Set<Employee> employees, List<PictureDTO> pictures) {
+        this.id = id;
+        this.title = title;
+        this.discTime = discTime;
+        this.description = description;
+        this.faculty = faculty;
+        this.employees = employees;
+        this.pictures = pictures;
     }
 
     public DisciplineAdminDTO(Long id, String title, LocalTime discTime, String description, List<PictureDTO> pictureDTO) {
@@ -53,8 +74,10 @@ public class DisciplineAdminDTO implements Serializable {
         this.pictures = pictureDTO;
     }
 
-    public String getFacultyTitle (){
-        return faculty.stream().map(faculty1 -> faculty1.getTitle()).collect(Collectors.joining(", "));
+    public String getFacultyTitle() {
+        if (faculty != null) {
+            return faculty.stream().map(faculty -> faculty.getTitle()).collect(Collectors.joining(", "));
+        }
+        return null;
     }
-
 }

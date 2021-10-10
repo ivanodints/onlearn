@@ -2,6 +2,7 @@ package ru.portal.onlearn.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import ru.portal.onlearn.controller.DTO.EmployeeAdminDTO;
 import ru.portal.onlearn.controller.DTO.StudentAdminDTO;
 import ru.portal.onlearn.error.NotFoundException;
 import ru.portal.onlearn.model.Picture;
@@ -36,7 +37,7 @@ public class StudentAdminServiceImpl implements StudentAdminService{
 
     @Override
     public Optional<StudentAdminDTO> findStudentById(Long id) {
-        return studentRepository.findById(id).map(student -> new StudentAdminDTO(student));
+        return studentRepository.findById(id).map(student -> StudentAdminService.mapToAdminStudentDTO(student));
     }
 
     @Override
@@ -68,6 +69,7 @@ public class StudentAdminServiceImpl implements StudentAdminService{
         student.setSex(studentAdminDTO.getSex());
         student.setEmail(studentAdminDTO.getEmail());
         student.setPhoneNumber(studentAdminDTO.getPhoneNumber());
+        student.setUser(studentAdminDTO.getUser());
         if (studentAdminDTO.getNewPictures() != null){
             for (MultipartFile newPicture : studentAdminDTO.getNewPictures()){
                 if (student.getPictures() == null){

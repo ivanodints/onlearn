@@ -14,6 +14,7 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -61,6 +62,39 @@ public class EmployeeAdminDTO implements Serializable {
         this.bio = bio;
     }
 
+    public EmployeeAdminDTO(Long id, String name, String surname, String middleName, Date dateOfBirth,
+                            String sex, String email, String phoneNumber, User user, Department department,
+                            String bio, List<PictureDTO> pictures) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.middleName = middleName;
+        this.dateOfBirth = dateOfBirth;
+        this.sex = sex;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.user = user;
+        this.department = department;
+        this.bio = bio;
+        this.pictures = pictures;
+    }
+
+    public EmployeeAdminDTO(Long id, String name, String surname, String middleName, Date dateOfBirth,
+                            String sex, String email, String phoneNumber, Department department, String bio,
+                            List<PictureDTO> pictures) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.middleName = middleName;
+        this.dateOfBirth = dateOfBirth;
+        this.sex = sex;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.department = department;
+        this.bio = bio;
+        this.pictures = pictures;
+    }
+
     public EmployeeAdminDTO(Employee employee) {
         this.id = employee.getId();
         this.name = employee.getName();
@@ -74,4 +108,12 @@ public class EmployeeAdminDTO implements Serializable {
         this.department = employee.getDepartment();
         this.bio = employee.getBio();
     }
+
+    public String getDepartmentTitle() {
+        if (department != null) {
+            return department.getTitle();
+        }
+        return null;
+    }
+
 }

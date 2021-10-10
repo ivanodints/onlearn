@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import ru.portal.onlearn.controller.DTO.UserAdminDTO;
 import ru.portal.onlearn.error.NotFoundException;
 import ru.portal.onlearn.model.Role;
 import ru.portal.onlearn.model.User;
@@ -35,20 +36,21 @@ public class UserAdminController {
 
     @Secured({"ADMIN"})
     @GetMapping("/admin/user")
-    public String adminFacultyPage(Model model){
+    public String adminUserPage(Model model){
         model.addAttribute("activePage", "Users");
         model.addAttribute("users", userAdminService.findAllUser());
         model.addAttribute("roles", roleRepository.findAll());
         return "admin-user";
     }
 
-//    @Secured({"ADMIN"})
-//    @DeleteMapping("/admin/user/{id}/delete")
-//    public String adminDeleteUser(Model model, @PathVariable("id") Long id){
-//        model.addAttribute("activePage", "Users");
-//        userAdminService.deleteUserById(id);
-//        return "redirect:/admin/user";
-//    }
+    @Secured({"ADMIN"})
+    @DeleteMapping("/admin/user/{id}/delete")
+    public String adminDeleteUser(Model model, @PathVariable("id") Long id){
+        model.addAttribute("activePage", "Users");
+        userAdminService.deleteUserById(id);
+        return "redirect:/admin/user";
+    }
+
 
     @Secured({"ADMIN"})
     @GetMapping ("/admin/user/create")
@@ -56,13 +58,23 @@ public class UserAdminController {
         model.addAttribute("create", true);
         model.addAttribute("activePage", "Users");
         model.addAttribute("roles", roleRepository.findAll());
-        model.addAttribute("user", new User());
+        model.addAttribute("user", new UserAdminDTO());
         return "user_form_create";
     }
 
     @Secured({"ADMIN"})
+    @GetMapping ("/admin/userStudent/create")
+    public String adminStudentUserCreatePage(Model model){
+        model.addAttribute("create", true);
+        model.addAttribute("activePage", "Users");
+        model.addAttribute("roles", roleRepository.findAll());
+        model.addAttribute("user", new UserAdminDTO());
+        return "student_user_form_create";
+    }
+
+    @Secured({"ADMIN"})
     @GetMapping("/admin/user/{id}/edit")
-    public String adminEditFaculty(Model model, @PathVariable("id") Long id){
+    public String adminEditUser(Model model, @PathVariable("id") Long id){
         model.addAttribute("edit",true);
         model.addAttribute("activePage", "Users");
         model.addAttribute("user", userAdminService.findUserById(id).orElseThrow(NotFoundException::new));
@@ -71,8 +83,18 @@ public class UserAdminController {
     }
 
     @Secured({"ADMIN"})
+    @GetMapping("/admin/userStudent/{id}/edit")
+    public String adminEditUserStudent(Model model, @PathVariable("id") Long id){
+        model.addAttribute("edit",true);
+        model.addAttribute("activePage", "Users");
+        model.addAttribute("user", userAdminService.findUserById(id).orElseThrow(NotFoundException::new));
+        model.addAttribute("roles", roleRepository.findAll());
+        return "student_user_form";
+    }
+
+    @Secured({"ADMIN"})
     @PostMapping("/admin/userPost")
-    public String adminPostUser(Model model, RedirectAttributes redirectAttributes, @Valid User user,
+    public String adminPostUser(Model model, RedirectAttributes redirectAttributes, @Valid UserAdminDTO userAdminDTO,
                                 BindingResult bindingResult){
         model.addAttribute("activePage", "Users");
 
@@ -81,15 +103,37 @@ public class UserAdminController {
             return "user_form_create";
         }
         try {
-            userRepository.save(user);
+            userAdminService.saveUser(userAdminDTO);
         } catch (Exception ex) {
             redirectAttributes.addFlashAttribute("error", true);
-            if (user.getId() == null){
+            if (userAdminDTO.getId() == null){
                 return "redirect:/admin/user/create";
             }
-            return "redirect:/admin/user/" + user.getId() + "/edit";
+            return "redirect:/admin/user/" + userAdminDTO.getId() + "/edit";
         }
         return "redirect:/admin/employee/create";
+    }
+
+    @Secured({"ADMIN"})
+    @PostMapping("/admin/userStudentPost")
+    public String adminPostStudentUser(Model model, RedirectAttributes redirectAttributes, @Valid UserAdminDTO userAdminDTO,
+                                BindingResult bindingResult){
+        model.addAttribute("activePage", "Users");
+
+        if (bindingResult.hasErrors()){
+            model.addAttribute("roles", roleRepository.findAll());
+            return "student_user_form_create";
+        }
+        try {
+            userAdminService.saveUser(userAdminDTO);
+        } catch (Exception ex) {
+            redirectAttributes.addFlashAttribute("error", true);
+            if (userAdminDTO.getId() == null){
+                return "redirect:/admin/userStudent/create";
+            }
+            return "redirect:/admin/userStudent/" + userAdminDTO.getId() + "/edit";
+        }
+        return "redirect:/admin/student/create";
     }
 
 }

@@ -47,7 +47,8 @@ public class DisciplineAdminDTO implements Serializable {
         this.employees = discipline.getEmployees();
     }
 
-    public DisciplineAdminDTO(Long id, String title, LocalTime discTime, String description, Set<Faculty> faculty, List<PictureDTO> pictures) {
+    public DisciplineAdminDTO(Long id, String title, LocalTime discTime, String description,
+                              Set<Faculty> faculty, List<PictureDTO> pictures) {
         this.id = id;
         this.title = title;
         this.discTime = discTime;
@@ -56,7 +57,8 @@ public class DisciplineAdminDTO implements Serializable {
         this.pictures = pictures;
     }
 
-    public DisciplineAdminDTO(Long id, String title, LocalTime discTime, String description, Set<Faculty> faculty, Set<Employee> employees, List<PictureDTO> pictures) {
+    public DisciplineAdminDTO(Long id, String title, LocalTime discTime, String description,
+                              Set<Faculty> faculty, Set<Employee> employees, List<PictureDTO> pictures) {
         this.id = id;
         this.title = title;
         this.discTime = discTime;
@@ -66,7 +68,8 @@ public class DisciplineAdminDTO implements Serializable {
         this.pictures = pictures;
     }
 
-    public DisciplineAdminDTO(Long id, String title, LocalTime discTime, String description, List<PictureDTO> pictureDTO) {
+    public DisciplineAdminDTO(Long id, String title, LocalTime discTime,
+                              String description, List<PictureDTO> pictureDTO) {
         this.id = id;
         this.title = title;
         this.discTime = discTime;

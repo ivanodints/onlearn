@@ -10,7 +10,9 @@ import ru.portal.onlearn.controller.DTO.EmployeeAdminDTO;
 import ru.portal.onlearn.error.NotFoundException;
 import ru.portal.onlearn.model.Employee;
 import ru.portal.onlearn.model.Picture;
+import ru.portal.onlearn.model.User;
 import ru.portal.onlearn.repo.EmployeeRepository;
+import ru.portal.onlearn.repo.UserRepository;
 import ru.portal.onlearn.repo.specification.EmployeeSpecification;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,10 +27,12 @@ public class EmployeeAdminServiceImpl implements EmployeeAdminService {
 
     private final EmployeeRepository employeeRepository;
     private final PictureService pictureService;
+    private final UserRepository userRepository;
 
-    public EmployeeAdminServiceImpl(EmployeeRepository employeeRepository, PictureService pictureService) {
+    public EmployeeAdminServiceImpl(EmployeeRepository employeeRepository, PictureService pictureService, UserRepository userRepository) {
         this.employeeRepository = employeeRepository;
         this.pictureService = pictureService;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -83,6 +87,8 @@ public class EmployeeAdminServiceImpl implements EmployeeAdminService {
         employee.setEmail(employeeAdminDTO.getEmail());
         employee.setPhoneNumber(employeeAdminDTO.getPhoneNumber());
         employee.setBio(employeeAdminDTO.getBio());
+        employee.setUser(employeeAdminDTO.getUser());
+        employee.setDepartment(employeeAdminDTO.getDepartment());
         if (employeeAdminDTO.getNewPictures() != null){
             for (MultipartFile newPicture : employeeAdminDTO.getNewPictures()){
                 if (employee.getPictures() == null){
@@ -98,4 +104,6 @@ public class EmployeeAdminServiceImpl implements EmployeeAdminService {
         }
         employeeRepository.save(employee);
     }
+
+
 }

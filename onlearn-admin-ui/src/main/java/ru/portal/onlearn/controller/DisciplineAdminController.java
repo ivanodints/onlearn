@@ -51,7 +51,7 @@ public class DisciplineAdminController {
 
     @Secured({"ADMIN"})
     @GetMapping ("/admin/discipline/create")
-    public String adminDirectionCreatePage(Model model){
+    public String adminDisciplineCreatePage(Model model){
         model.addAttribute("create", true);
         model.addAttribute("activePage", "Disciplines");
         model.addAttribute("faculties", facultyRepository.findAll());
@@ -61,7 +61,7 @@ public class DisciplineAdminController {
 
     @Secured({"ADMIN"})
     @GetMapping("/admin/discipline/{id}/edit")
-    public String adminEditDirection(Model model, @PathVariable("id") Long id){
+    public String adminEditDiscipline(Model model, @PathVariable("id") Long id){
         model.addAttribute("edit",true);
         model.addAttribute("activePage", "Disciplines");
         model.addAttribute("discipline", disciplineAdminService.findDisciplineById(id).orElseThrow(NotFoundException::new));
@@ -71,7 +71,7 @@ public class DisciplineAdminController {
 
     @Secured({"ADMIN"})
     @PostMapping("/admin/disciplinePost")
-    public String adminPostDirection(Model model, RedirectAttributes redirectAttributes, DisciplineAdminDTO disciplineAdminDTO){
+    public String adminPostDiscipline(Model model, RedirectAttributes redirectAttributes, DisciplineAdminDTO disciplineAdminDTO){
         model.addAttribute("activePage", "Disciplines");
         try {
             disciplineAdminService.saveDiscipline(disciplineAdminDTO);

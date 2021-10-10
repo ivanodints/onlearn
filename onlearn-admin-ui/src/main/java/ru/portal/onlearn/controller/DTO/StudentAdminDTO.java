@@ -14,6 +14,7 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -39,11 +40,40 @@ public class StudentAdminDTO implements Serializable {
 
     private User user;
 
-    private List<Faculty> faculty;
+    private Set<Faculty> faculty;
 
     private List<PictureDTO> pictures;
 
     private MultipartFile[] newPictures;
+
+
+    public StudentAdminDTO(Long id, String name, String surname, String middleName, Date dateOfBirth, String sex,
+                           String email, String phoneNumber, Set<Faculty> faculty, List<PictureDTO> pictures) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.middleName = middleName;
+        this.dateOfBirth = dateOfBirth;
+        this.sex = sex;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.faculty = faculty;
+        this.pictures = pictures;
+    }
+
+    public StudentAdminDTO(Long id, String name, String surname, String middleName, Date dateOfBirth, String sex,
+                           String email, String phoneNumber, User user, List<PictureDTO> pictures) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.middleName = middleName;
+        this.dateOfBirth = dateOfBirth;
+        this.sex = sex;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.user = user;
+        this.pictures = pictures;
+    }
 
     public StudentAdminDTO(Student student) {
         this.id = student.getId();
@@ -55,6 +85,19 @@ public class StudentAdminDTO implements Serializable {
         this.email = student.getEmail();
         this.phoneNumber = student.getPhoneNumber();
         this.user = student.getUser();
-//        this.faculty = student.getFaculty();
+        this.faculty = student.getFaculty();
+    }
+
+    public StudentAdminDTO(Long id, String name, String surname, String middleName, Date dateOfBirth, String sex,
+                           String email, String phoneNumber, List<PictureDTO> pictures) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.middleName = middleName;
+        this.dateOfBirth = dateOfBirth;
+        this.sex = sex;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.pictures = pictures;
     }
 }

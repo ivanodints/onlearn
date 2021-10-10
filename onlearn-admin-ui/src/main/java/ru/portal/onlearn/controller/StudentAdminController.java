@@ -9,12 +9,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ru.portal.onlearn.controller.DTO.StudentAdminDTO;
+import ru.portal.onlearn.controller.DTO.StudentDTO;
 import ru.portal.onlearn.error.NotFoundException;
-import ru.portal.onlearn.model.Employee;
-import ru.portal.onlearn.model.Student;
+import ru.portal.onlearn.model.User;
 import ru.portal.onlearn.repo.RoleRepository;
 import ru.portal.onlearn.repo.StudentRepository;
+import ru.portal.onlearn.repo.UserRepository;
 import ru.portal.onlearn.service.StudentAdminService;
+
+import java.util.List;
 
 @Controller
 public class StudentAdminController {
@@ -22,17 +25,21 @@ public class StudentAdminController {
     private final StudentRepository studentRepository;
     private final RoleRepository roleRepository;
     private final StudentAdminService studentAdminService;
+    private final UserRepository userRepository;
 
-    public StudentAdminController(StudentRepository studentRepository, RoleRepository roleRepository, StudentAdminService studentAdminService) {
+    public StudentAdminController(StudentRepository studentRepository, RoleRepository roleRepository,
+                                  StudentAdminService studentAdminService, UserRepository userRepository) {
         this.studentRepository = studentRepository;
         this.roleRepository = roleRepository;
         this.studentAdminService = studentAdminService;
+        this.userRepository = userRepository;
     }
 
     @Secured({"ADMIN"})
     @GetMapping("/admin/student")
     public String adminStudentPage(Model model){
         model.addAttribute("activePage", "Students");
+        model.addAttribute("users", userRepository.findAll());
         model.addAttribute("students", studentAdminService.findAllStudent());
         return "admin-student";
     }
@@ -47,27 +54,37 @@ public class StudentAdminController {
 
     @Secured({"ADMIN"})
     @GetMapping ("/admin/student/create")
-    public String adminFacultyCreatePage(Model model){
+    public String adminStudentCreatePage(Model model){
+
+        List<User> userList = userRepository.findAll();
+        User lastUser = userList.get(userList.size()-1);
+
         model.addAttribute("create", true);
         model.addAttribute("activePage", "Students");
         model.addAttribute("roles", roleRepository.findAll());
-        model.addAttribute("student", new Student());
+        model.addAttribute("user", lastUser);
+        model.addAttribute("student", new StudentAdminDTO());
         return "student_form";
     }
 
     @Secured({"ADMIN"})
     @GetMapping("/admin/student/{id}/edit")
-    public String adminEditFaculty(Model model, @PathVariable("id") Long id){
+    public String adminEditStudent(Model model, @PathVariable("id") Long id){
+
+        List<User> userList = userRepository.findAll();
+        User lastUser = userList.get(userList.size()-1);
+
         model.addAttribute("edit",true);
         model.addAttribute("activePage", "Students");
-        model.addAttribute("employee", studentAdminService.findStudentById(id).orElseThrow(NotFoundException::new));
         model.addAttribute("roles", roleRepository.findAll());
+        model.addAttribute("user", lastUser);
+        model.addAttribute("student", studentAdminService.findStudentById(id).orElseThrow(NotFoundException::new));
         return "student_form";
     }
 
     @Secured({"ADMIN"})
     @PostMapping("/admin/studentPost")
-    public String adminPostFaculty(Model model, RedirectAttributes redirectAttributes, StudentAdminDTO studentAdminDTO){
+    public String adminPostStudent(Model model, RedirectAttributes redirectAttributes, StudentAdminDTO studentAdminDTO){
         model.addAttribute("activePage", "Students");
         try {
             studentAdminService.saveStudent(studentAdminDTO);

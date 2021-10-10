@@ -33,7 +33,8 @@ public class DisciplineAdminServiceImpl implements DisciplineAdminService{
 
     @Override
     public Optional<DisciplineAdminDTO> findDisciplineById(Long id){
-        return disciplineRepository.findById(id).map(discipline -> DisciplineAdminService.mapToAdminDisciplineDTO(discipline));
+        return disciplineRepository.findById(id).
+                map(discipline -> DisciplineAdminService.mapToAdminDisciplineDTO(discipline));
     }
 
     @Override

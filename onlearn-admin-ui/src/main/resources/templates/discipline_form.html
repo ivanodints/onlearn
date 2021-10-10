@@ -19,7 +19,7 @@
             <h2 class="mb-4" th:if="${create}">Создать учебную дисциплину</h2>
 
             <form th:object="${discipline}" method="post" th:action="@{/admin/disciplinePost}"
-                enctype="multipart/form-data">
+                  enctype="multipart/form-data">
                 <div class="card mb-4">
                     <div class="card-body">
                         <input th:type="hidden" th:field="*{id}">
@@ -44,7 +44,7 @@
                             <select multiple class="form-control" id="faculties" th:field="*{faculty}" required>
                                 <option th:each="fac : ${faculties}" th:text="${fac.title}" th:value="${fac.id}">
                                 </option>
-                                </label>
+                                </select>
                         </div>
 
                         <div class="form-group">

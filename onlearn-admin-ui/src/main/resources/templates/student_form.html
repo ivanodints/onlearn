@@ -18,10 +18,10 @@
             <h2 class="mb-4" th:if="${edit}">Редактировать данные студента</h2>
             <h2 class="mb-4" th:if="${create}">Добавить нового студента</h2>
 
-            <form th:object="${student}" method="post" th:action="@{/admin/studentPost}">
+            <form th:object="${student}" method="post" th:action="@{/admin/studentPost}" enctype="multipart/form-data">
                 <div class="card mb-4">
                     <div class="card-body">
-                        <input th:type="hidden" th:field="*{id}">
+                        <input th:type="hidden" th:field="${student.id}">
                         <div class="form-group">
                             <label for="surname">Фамилия</label>
                             <input th:field="*{surname}" type="text" class="form-control" id="surname"
@@ -30,38 +30,38 @@
                         <div class="form-group">
                             <label for="name">Имя</label>
                             <input th:field="*{name}" type="text" class="form-control" id="name"
-                                   placeholder="Введите имя студента" required>
+                                placeholder="Введите имя студента" required>
                         </div>
                         <div class="form-group">
                             <label for="middleName">Отчество</label>
                             <input th:field="*{middleName}" type="text" class="form-control" id="middleName"
-                                   placeholder="Введите отчество студента" required>
+                                placeholder="Введите отчество студента" required>
                         </div>
                         <div class="form-group">
                             <label for="sex">Пол</label>
                             <input th:field="*{sex}" type="text" class="form-control" id="sex"
-                                   placeholder="Введите пол студента" required>
+                                placeholder="Введите пол студента" required>
                         </div>
                         <div class="form-group">
                             <label for="date">Дата рождения</label>
                             <input th:field="*{dateOfBirth}" type="date" class="form-control" id="date"
-                                   placeholder="Введите дату рождения студента" required>
+                                placeholder="Введите дату рождения студента" required>
                         </div>
                         <div class="form-group">
                             <label for="e-mail">E-mail</label>
                             <input th:field="*{email}" type="email" class="form-control" id="e-mail"
-                                   placeholder="Введите e-mail студента" required>
+                                placeholder="Введите e-mail студента" required>
                         </div>
                         <div class="form-group">
                             <label for="phoneNumber">Номер телефона</label>
                             <input th:field="*{phoneNumber}" type="text" class="form-control" id="phoneNumber"
-                                   placeholder="Введите номер телефона студента" required>
+                                placeholder="Введите номер телефона студента" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="role">Должность</label>
-                            <select multiple class="form-control" id="role" th:field="*{user}" required>
-                                <option th:each="rl : ${roles}" th:text="${rl.title}" th:value="${rl.id}">
+                            <label for="user">Логин</label>
+                            <select multiple class="form-control" id="user" th:field="*{user}" required>
+                                <option th:each="user : ${user}" th:text="${user.getLogin()}" th:value="${user.id}">
                                 </option>
                             </select>
                         </div>
@@ -69,32 +69,31 @@
                         <div class="form-group">
                             <label for="newPictures">Логотип</label>
                             <input th:field="*{newPictures}" type="file" class="form-control" id="newPictures"
-                                   placeholder="Загрузите изображение" multiple>
+                                placeholder="Загрузите изображение" multiple>
                         </div>
 
                     </div>
-                </div>
 
-                <div class="card-footer bg-white">
-                    <button id="submint_obj" type="submit" class="btn btn-primary">Применить</button>
+                    <div class="card-footer bg-white">
+                        <button id="submint_obj" type="submit" class="btn btn-primary">Применить</button>
+                    </div>
                 </div>
-        </div>
-        </form>
+            </form>
 
-        <div class="container-fluid mb-4">
-            <div class="card-columns" style="column-count: 5">
-                <div class="card" th:each="pict : ${student.pictures}">
-                    <form class="card-header" th:method="delete"
-                          th:action="@{deleteStudentPicture/{pictureId}(pictureId=${pict.id})}">
-                        Picture<button class="float-right"><i class="fa fa-times"></i></button>
-                    </form>
-                    <img class="card-img-bottom" th:src="@{/picture/{pictureId}(pictureId=${pict.id})}"
-                         width="40%" />
+            <div class="container-fluid mb-4">
+                <div class="card-columns" style="column-count: 5">
+                    <div class="card" th:each="pict : ${student.pictures}">
+                        <form class="card-header" th:method="delete"
+                            th:action="@{deleteStudentPicture/{pictureId}(pictureId=${pict.id})}">
+                            Picture<button class="float-right"><i class="fa fa-times"></i></button>
+                        </form>
+                        <img class="card-img-bottom" th:src="@{/picture/{pictureId}(pictureId=${pict.id})}"
+                            width="40%" />
+                    </div>
                 </div>
             </div>
-        </div>
 
-    </div>
+        </div>
     </div>
 
     <script th:replace="fragments/footer :: scripts"></script>

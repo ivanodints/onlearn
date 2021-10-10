@@ -2,13 +2,15 @@ package ru.portal.onlearn.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
-import ru.portal.onlearn.controller.DTO.DirectionAdminDTO;
 import ru.portal.onlearn.controller.DTO.EmployeeAdminDTO;
+import ru.portal.onlearn.controller.DTO.PictureDTO;
 import ru.portal.onlearn.model.Employee;
+import ru.portal.onlearn.model.User;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -22,7 +24,7 @@ public interface EmployeeAdminService {
 
     Page<EmployeeAdminDTO> findByFilter(String surname, Integer page, Integer size);
 
-    public static EmployeeAdminDTO mapToAdminEmployeeDTO(Employee employee) {
+    static EmployeeAdminDTO mapToAdminEmployeeDTO(Employee employee) {
         return new EmployeeAdminDTO(
                 employee.getId(),
                 employee.getName(),
@@ -33,8 +35,10 @@ public interface EmployeeAdminService {
                 employee.getEmail(),
                 employee.getPhoneNumber(),
                 employee.getDepartment(),
-                employee.getBio());
+                employee.getBio(),
+                employee.getPictures().stream().map(picture -> new PictureDTO(picture)).collect(Collectors.toList()));
     }
 
     void saveEmployee (EmployeeAdminDTO employeeAdminDTO) throws IOException;
+
 }

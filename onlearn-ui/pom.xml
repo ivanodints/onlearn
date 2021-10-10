@@ -113,6 +113,12 @@
             <artifactId>hibernate-java8</artifactId>
             <version>5.1.10.Final</version>
         </dependency>
+        <dependency>
+            <groupId>ru.portal.onlearn</groupId>
+            <artifactId>onlearn-picture-service</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
 
     </dependencies>
 

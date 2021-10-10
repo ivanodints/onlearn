@@ -28,5 +28,5 @@ public interface PictureService {
 
     Optional<PictureDTO> findPictureById (Long id);
 
-    List<PictureDTO> showAllPictures();
+    List<PictureDTO> findAllPictures();
 }

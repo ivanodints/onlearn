@@ -81,7 +81,7 @@ public class PictureServiceImpl implements PictureService{
     }
 
     @Override
-    public List<PictureDTO> showAllPictures() {
+    public List<PictureDTO> findAllPictures() {
         return pictureRepository.findAll().stream().map(picture -> new PictureDTO(picture)).
                 collect(Collectors.toList());
     }

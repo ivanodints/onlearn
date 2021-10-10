@@ -83,15 +83,12 @@ public class EmployeeAdminController{
     @GetMapping("/admin/employee/{id}/edit")
     public String adminEditEmployee(Model model, @PathVariable("id") Long id){
 
-        List <User> userList = userRepository.findAll();
-        User lastUser = userList.get(userList.size()-1);
-
         model.addAttribute("edit",true);
         model.addAttribute("activePage", "Employees");
         model.addAttribute("employee", employeeAdminService.findEmployeeById(id).orElseThrow(NotFoundException::new));
         model.addAttribute("departments", departmentRepository.findAll());
         model.addAttribute("roles", roleRepository.findAll());
-        model.addAttribute("user", lastUser);
+        model.addAttribute("user", userRepository.findAll());
         return "employee_form";
     }
 

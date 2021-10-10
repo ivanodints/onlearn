@@ -1,6 +1,8 @@
 package ru.portal.onlearn.controller;
 
+import org.springframework.web.bind.annotation.RequestMapping;
 import ru.portal.onlearn.model.*;
+import ru.portal.onlearn.repo.PictureRepository;
 import ru.portal.onlearn.service.PictureService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -19,10 +20,12 @@ import java.util.Optional;
 public class PictureController {
 
     private final PictureService pictureService;
+    private final PictureRepository pictureRepository;
 
     @Autowired
-    public PictureController(PictureService pictureService) {
+    public PictureController(PictureService pictureService, PictureRepository pictureRepository) {
         this.pictureService = pictureService;
+        this.pictureRepository = pictureRepository;
     }
 
     @GetMapping("/{pictureId}")
@@ -37,7 +40,7 @@ public class PictureController {
         }
     }
 
-//    @DeleteMapping("delete/{pictureId}")
+//    @DeleteMapping("/{pictureId}")
 //    public String deletePicture(@PathVariable("pictureId") Long pictureId) {
 //        Direction direction = pictureService.getDirectionByPictureId(pictureId).get();
 //        Discipline discipline = pictureService.getDisciplineByPictureId(pictureId).get();
@@ -63,7 +66,7 @@ public class PictureController {
 //        }
 //    }
 
-    @DeleteMapping("deleteDirectionPicture/{pictureId}")
+    @GetMapping("/deleteDirectionPicture/{pictureId}")
     public String deleteDirectionPicture(@PathVariable("pictureId") Long pictureId) {
         Direction direction = pictureService.getDirectionByPictureId(pictureId).get();
 
@@ -71,35 +74,39 @@ public class PictureController {
         return "redirect:/admin/direction/" + direction.getId() + "/edit";
     }
 
-    @DeleteMapping("deleteDisciplinePicture/{pictureId}")
+    @GetMapping("/deleteDisciplinePicture/{pictureId}")
     public String deleteDisciplinePicture(@PathVariable("pictureId") Long pictureId) {
         Discipline discipline = pictureService.getDisciplineByPictureId(pictureId).get();
 
         pictureService.removePicture(pictureId);
-        return "redirect:/admin/direction/" + discipline.getId() + "/edit";
+        return "redirect:/admin/discipline/" + discipline.getId() + "/edit";
     }
 
-    @DeleteMapping("deleteFacultyPicture/{pictureId}")
+    @GetMapping("/deleteFacultyPicture/{pictureId}")
     public String deleteFacultyPicture(@PathVariable("pictureId") Long pictureId) {
         Faculty faculty = pictureService.getFacultyByPictureId(pictureId).get();
 
         pictureService.removePicture(pictureId);
-        return "redirect:/admin/direction/" + faculty.getId() + "/edit";
+        return "redirect:/admin/faculty/" + faculty.getId() + "/edit";
     }
 
-    @DeleteMapping("deleteEmployeePicture/{pictureId}")
+    @GetMapping("/deleteEmployeePicture/{pictureId}")
     public String deleteEmployeePicture(@PathVariable("pictureId") Long pictureId) {
         Employee employee = pictureService.getEmployeeByPictureId(pictureId).get();
 
         pictureService.removePicture(pictureId);
-        return "redirect:/admin/direction/" + employee.getId() + "/edit";
+        return "redirect:/admin/employee/" + employee.getId() + "/edit";
     }
 
-    @DeleteMapping("deleteStudentPicture/{pictureId}")
+    @GetMapping("/deleteStudentPicture/{pictureId}")
     public String deleteStudentPicture(@PathVariable("pictureId") Long pictureId) {
+
         Student student = pictureService.getStudentByPictureId(pictureId).get();
 
         pictureService.removePicture(pictureId);
-        return "redirect:/admin/direction/" + student.getId() + "/edit";
+//            pictureRepository.deleteById(pictureId);
+
+        return "redirect:/admin/student/" + student.getId() + "/edit";
+
     }
 }

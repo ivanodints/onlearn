@@ -70,14 +70,11 @@ public class StudentAdminController {
     @Secured({"ADMIN"})
     @GetMapping("/admin/student/{id}/edit")
     public String adminEditStudent(Model model, @PathVariable("id") Long id){
-
-        List<User> userList = userRepository.findAll();
-        User lastUser = userList.get(userList.size()-1);
-
+        
         model.addAttribute("edit",true);
         model.addAttribute("activePage", "Students");
         model.addAttribute("roles", roleRepository.findAll());
-        model.addAttribute("user", lastUser);
+        model.addAttribute("user", userRepository.findAll());
         model.addAttribute("student", studentAdminService.findStudentById(id).orElseThrow(NotFoundException::new));
         return "student_form";
     }

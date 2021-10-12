@@ -4,14 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ru.portal.onlearn.Validation.ContactNumberConstraint;
 import ru.portal.onlearn.model.Department;
 import ru.portal.onlearn.model.Employee;
-import ru.portal.onlearn.model.Role;
 import ru.portal.onlearn.model.User;
 
+import javax.validation.constraints.Email;
 import java.io.Serializable;
 import java.sql.Date;
-import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -31,8 +31,10 @@ public class EmployeeAdminDTO implements Serializable {
 
     private String sex;
 
+    @Email
     private String email;
 
+    @ContactNumberConstraint
     private String phoneNumber;
 
     private User user;

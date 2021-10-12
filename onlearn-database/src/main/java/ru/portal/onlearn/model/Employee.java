@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ru.portal.onlearn.Validation.ContactNameConstraint;
+import ru.portal.onlearn.Validation.ContactNumberConstraint;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -25,12 +27,15 @@ public class Employee implements Serializable {
     @Column(name = "id")
     private Long id;
 
+    @ContactNameConstraint
     @Column(name = "name", nullable = false)
     private String name;
 
+    @ContactNameConstraint
     @Column(name = "surname", nullable = false)
     private String surname;
 
+    @ContactNameConstraint
     @Column(name = "middle_name", nullable = false)
     private String middleName;
 
@@ -40,11 +45,11 @@ public class Employee implements Serializable {
     @Column(name = "sex", nullable = false)
     private String sex;
 
-    @Email
+    @Email (message = "Email должен быть корректным адресом электронной почты")
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Size(min = 11, max = 12)
+    @ContactNumberConstraint
     @Column(name = "phone_number", nullable = false, unique = true)
     private String phoneNumber;
 

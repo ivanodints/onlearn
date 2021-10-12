@@ -24,8 +24,9 @@
                     <input th:type="hidden" th:field="*{id}">
                     <div class="form-group">
                         <label for="name">Название департамента</label>
-                        <input th:field="*{title}" type="text" class="form-control" id="name"
-                               placeholder="Введите название дапартамента" required>
+                        <td><input th:field="*{title}" type="text" class="form-control" id="name"
+                               placeholder="Введите название дапартамента" required></td>
+                        <td th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Ошибка названия департамента </td>
                     </div>
                 </div>
 

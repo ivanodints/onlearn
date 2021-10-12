@@ -26,21 +26,27 @@
                             <label for="surname">Фамилия</label>
                             <input th:field="*{surname}" type="text" class="form-control" id="surname"
                                 placeholder="Введите фамилию сотрудника" required>
+                            <p class="text-danger" th:if="${#fields.hasErrors('surname')}"
+                               th:errors="*{surname}">Ошибка в фамилии</p>
                         </div>
                         <div class="form-group">
                             <label for="name">Имя</label>
                             <input th:field="*{name}" type="text" class="form-control" id="name"
                                    placeholder="Введите имя сотрудника" required>
+                            <p class="text-danger" th:if="${#fields.hasErrors('name')}"
+                               th:errors="*{name}">Ошибка в имени</p>
                         </div>
                         <div class="form-group">
                             <label for="middleName">Отчество</label>
                             <input th:field="*{middleName}" type="text" class="form-control" id="middleName"
                                    placeholder="Введите отчество сотрудника" required>
+                            <p class="text-danger" th:if="${#fields.hasErrors('middleName')}"
+                               th:errors="*{middleName}">Ошибка в отчестве</p>
                         </div>
                         <div class="form-group">
                             <label for="sex">Пол</label>
-                            <input th:field="*{sex}" type="text" class="form-control" id="sex"
-                                   placeholder="Введите пол сотрудника" required>
+                            <td><input th:field="*{sex}" type="text" class="form-control" id="sex"
+                                   placeholder="Введите пол сотрудника" required></td>
                         </div>
                         <div class="form-group">
                             <label for="date">Дата рождения</label>
@@ -51,11 +57,15 @@
                             <label for="e-mail">E-mail</label>
                             <input th:field="*{email}" type="email" class="form-control" id="e-mail"
                                    placeholder="Введите e-mail сотрудника" required>
+                            <p class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
+                                Некорректно введен email</p>
                         </div>
                         <div class="form-group">
                             <label for="phoneNumber">Номер телефона</label>
                             <input th:field="*{phoneNumber}" type="text" class="form-control" id="phoneNumber"
-                                   placeholder="Введите номер телефона сотрудника" required>
+                                   placeholder="+7-909-909-55-66" required>
+                            <p class="text-danger" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}">
+                                некорректный номер</p>
                         </div>
 
                         <div class="form-group">

@@ -4,14 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ru.portal.onlearn.Validation.ContactNameConstraint;
+import ru.portal.onlearn.Validation.ContactNumberConstraint;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.sql.Date;
-import java.time.LocalDate;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -20,19 +19,22 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Student  implements Serializable {
+public class Student implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
+    @ContactNameConstraint
     @Column(name = "name", nullable = false)
     private String name;
 
+    @ContactNameConstraint
     @Column(name = "surname", nullable = false)
     private String surname;
 
+    @ContactNameConstraint
     @Column(name = "middle_name", nullable = false)
     private String middleName;
 
@@ -42,11 +44,11 @@ public class Student  implements Serializable {
     @Column(name = "sex", nullable = false)
     private String sex;
 
-    @Email
+    @Email (message = "Email должен быть корректным адресом электронной почты")
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Size(min = 11, max = 12)
+    @ContactNumberConstraint
     @Column(name = "phone_number", nullable = false, unique = true)
     private String phoneNumber;
 

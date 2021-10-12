@@ -11,6 +11,8 @@ import ru.portal.onlearn.repo.DirectionRepository;
 import ru.portal.onlearn.repo.FacultyRepository;
 import ru.portal.onlearn.service.FacultyAdminService;
 
+import javax.validation.Valid;
+
 @Controller
 @RequestMapping
 public class FacultyAdminController {
@@ -65,7 +67,7 @@ public class FacultyAdminController {
 
     @Secured({"ADMIN"})
     @PostMapping("/admin/facultyPost")
-    public String adminPostFaculty(Model model, RedirectAttributes redirectAttributes, Faculty faculty){
+    public String adminPostFaculty(Model model, RedirectAttributes redirectAttributes, @Valid Faculty faculty){
         model.addAttribute("activePage", "Faculties");
         try {
             facultyRepository.save(faculty);

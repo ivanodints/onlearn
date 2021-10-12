@@ -10,6 +10,8 @@ import ru.portal.onlearn.model.Department;
 import ru.portal.onlearn.repo.DepartmentRepository;
 import ru.portal.onlearn.service.DepartmentAdminService;
 
+import javax.validation.Valid;
+
 @Controller
 @RequestMapping
 public class DepartmentAdminController {
@@ -59,7 +61,7 @@ public class DepartmentAdminController {
 
     @Secured({"ADMIN"})
     @PostMapping("/admin/departmentPost")
-    public String adminPostDepartment(Model model, RedirectAttributes redirectAttributes, Department department){
+    public String adminPostDepartment(Model model, RedirectAttributes redirectAttributes, @Valid Department department){
         model.addAttribute("activePage", "Departments");
         try {
             departmentRepository.save(department);

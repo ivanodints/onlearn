@@ -29,8 +29,5 @@ public class Department implements Serializable {
             cascade = CascadeType.ALL)
     private List<Employee> employees;
 
-//    @ManyToMany(mappedBy = "dept_employee")
-//    @JoinColumn(name = "dept_id")
-//    private List<Employee> depEmployee;
 
 }

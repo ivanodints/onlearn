@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ru.portal.onlearn.error.NotFoundException;
 import ru.portal.onlearn.model.Employee;
-import ru.portal.onlearn.model.User;
 import ru.portal.onlearn.repo.DepartmentRepository;
 import ru.portal.onlearn.repo.EmployeeRepository;
 import ru.portal.onlearn.repo.RoleRepository;
@@ -82,8 +81,15 @@ public class EmployeeAdminController {
 
     @Secured({"ADMIN"})
     @PostMapping("/admin/employeePost")
-    public String adminPostEmployee(Model model, RedirectAttributes redirectAttributes, @Valid Employee employee){
+    public String adminPostEmployee(@Valid Employee employee, BindingResult bindingResult, Model model,
+                                     RedirectAttributes redirectAttributes){
         model.addAttribute("activePage", "Employees");
+
+        if (bindingResult.hasErrors()){
+            model.addAttribute("departments", departmentRepository.findAll());
+            model.addAttribute("user", userRepository.findAll());
+            return "employee_form";
+        }
         try {
             employeeRepository.save(employee);
         } catch (Exception ex) {

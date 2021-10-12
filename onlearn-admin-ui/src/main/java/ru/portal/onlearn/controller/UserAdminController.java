@@ -35,7 +35,7 @@ public class UserAdminController {
 
     @Secured({"ADMIN"})
     @GetMapping("/admin/user")
-    public String adminFacultyPage(Model model){
+    public String adminUserPage(Model model){
         model.addAttribute("activePage", "Users");
         model.addAttribute("users", userAdminService.findAllUser());
         model.addAttribute("roles", roleRepository.findAll());
@@ -57,12 +57,14 @@ public class UserAdminController {
         model.addAttribute("activePage", "Users");
         model.addAttribute("roles", roleRepository.findAll());
         model.addAttribute("user", new User());
+        model.addAttribute("allUsers", userRepository.findAll());
+
         return "user_form_create";
     }
 
     @Secured({"ADMIN"})
     @GetMapping("/admin/user/{id}/edit")
-    public String adminEditFaculty(Model model, @PathVariable("id") Long id){
+    public String adminEditUser(Model model, @PathVariable("id") Long id){
         model.addAttribute("edit",true);
         model.addAttribute("activePage", "Users");
         model.addAttribute("user", userAdminService.findUserById(id).orElseThrow(NotFoundException::new));
@@ -72,11 +74,11 @@ public class UserAdminController {
 
     @Secured({"ADMIN"})
     @PostMapping("/admin/userPost")
-    public String adminPostUser(Model model, RedirectAttributes redirectAttributes, @Valid User user,
-                                BindingResult bindingResult){
+    public String adminPostUser(@Valid User user, BindingResult bindingResult,
+                                Model model, RedirectAttributes redirectAttributes){
         model.addAttribute("activePage", "Users");
 
-        if (bindingResult.hasErrors()){
+        if (bindingResult.hasErrors() ){
             model.addAttribute("roles", roleRepository.findAll());
             return "user_form_create";
         }

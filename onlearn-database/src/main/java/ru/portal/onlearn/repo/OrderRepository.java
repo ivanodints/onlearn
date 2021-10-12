@@ -1,5 +1,5 @@
-//package ru.portal.onlearn.repo;
-//
+package ru.portal.onlearn.repo;
+
 //import org.springframework.data.jpa.repository.JpaRepository;
 //import ru.portal.onlearn.model.Order;
 //

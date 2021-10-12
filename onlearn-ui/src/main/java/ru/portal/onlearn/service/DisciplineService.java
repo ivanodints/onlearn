@@ -6,6 +6,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import ru.portal.onlearn.controller.DTO.DisciplineDTO;
+import ru.portal.onlearn.controller.DTO.FacultyDTO;
 import ru.portal.onlearn.model.Discipline;
 import ru.portal.onlearn.model.Faculty;
 import ru.portal.onlearn.repo.DisciplineRepository;
@@ -23,7 +24,6 @@ public interface DisciplineService {
     List<DisciplineDTO> findAllDiscipline();
 
     Page<DisciplineDTO> findByTitle(String title, Integer page, Integer size);
-
 
     public static DisciplineDTO mapToDTO(Discipline discipline) {
         return new DisciplineDTO(

@@ -1,14 +1,14 @@
 package ru.portal.onlearn.model;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import ru.portal.onlearn.Validation.ContactLoginConstraint;
+import ru.portal.onlearn.Validation.ContactLoginNullOrSizeConstraint;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
 import java.io.Serializable;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -26,7 +26,8 @@ public class User implements Serializable {
     @Column(name = "id")
     private Long id;
 
-//    @Min(7)
+    @ContactLoginConstraint
+    @ContactLoginNullOrSizeConstraint
     @Column(name = "login", nullable = false, unique = true)
     private String login;
 

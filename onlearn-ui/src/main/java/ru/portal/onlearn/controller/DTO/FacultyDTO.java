@@ -32,6 +32,10 @@ public class FacultyDTO implements Serializable {
 
     private Direction direction;
 
+    private  Long pictureId;
+
+    private  List<Long> pictureIds;
+
     public FacultyDTO(Faculty faculty) {
         this.id = faculty.getId();
         this.title = faculty.getTitle();

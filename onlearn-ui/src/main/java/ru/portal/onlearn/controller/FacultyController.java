@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ru.portal.onlearn.repo.FacultyRepository;
 import ru.portal.onlearn.service.DisciplineService;
 import ru.portal.onlearn.service.FacultyService;
+import ru.portal.onlearn.service.PictureService;
 
 import java.util.Optional;
 
@@ -23,12 +24,14 @@ public class FacultyController {
     private final FacultyRepository facultyRepository;
     private final FacultyService facultyService;
     private final DisciplineService disciplineService;
+    private final PictureService pictureService;
 
     public FacultyController(FacultyRepository facultyRepository, FacultyService facultyService,
-                             DisciplineService disciplineService) {
+                             DisciplineService disciplineService, PictureService pictureService) {
         this.facultyRepository = facultyRepository;
         this.facultyService = facultyService;
         this.disciplineService = disciplineService;
+        this.pictureService = pictureService;
     }
 
     @GetMapping("/faculty")
@@ -47,6 +50,7 @@ public class FacultyController {
 
     @GetMapping("/faculty/{id}")
     public String facultyIdPage (@PathVariable Long id, Model model) throws Exception {
+        model.addAttribute("pictures", pictureService.findAllPictures());
         model.addAttribute("facultyAll",facultyService.findAllFaculty());
         model.addAttribute("facultyId",facultyService.findFacultyById(id).orElseThrow(Exception::new));
         return "facultyID";

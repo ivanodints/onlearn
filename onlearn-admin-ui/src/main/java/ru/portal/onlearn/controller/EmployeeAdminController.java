@@ -1,6 +1,10 @@
 package ru.portal.onlearn.controller;
 
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -9,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import ru.portal.onlearn.controller.DTO.EmployeeAdminDTO;
 import ru.portal.onlearn.error.NotFoundException;
 import ru.portal.onlearn.model.Employee;
 import ru.portal.onlearn.model.User;
@@ -19,9 +24,11 @@ import ru.portal.onlearn.repo.UserRepository;
 import ru.portal.onlearn.service.EmployeeAdminService;
 
 import javax.validation.Valid;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
-public class EmployeeAdminController {
+public class EmployeeAdminController{
 
     private final EmployeeAdminService employeeAdminService;
     private final EmployeeRepository employeeRepository;
@@ -43,8 +50,8 @@ public class EmployeeAdminController {
     @GetMapping("/admin/employee")
     public String adminEmployeePage(Model model){
         model.addAttribute("activePage", "Employees");
-        model.addAttribute("employees", employeeAdminService.findAllEmployee());
         model.addAttribute("users", userRepository.findAll());
+        model.addAttribute("employees", employeeAdminService.findAllEmployee());
         return "admin-employee";
     }
 
@@ -59,18 +66,23 @@ public class EmployeeAdminController {
     @Secured({"ADMIN"})
     @GetMapping ("/admin/employee/create")
     public String adminEmployeeCreatePage(Model model){
+
+        List <User> userList = userRepository.findAll();
+        User lastUser = userList.get(userList.size()-1);
+
         model.addAttribute("create", true);
         model.addAttribute("activePage", "Employees");
         model.addAttribute("departments", departmentRepository.findAll());
         model.addAttribute("roles", roleRepository.findAll());
-        model.addAttribute("employee", new Employee());
-        model.addAttribute("user", userRepository.findAll());
+        model.addAttribute("user", lastUser);
+        model.addAttribute("employee", new EmployeeAdminDTO());
         return "employee_form";
     }
 
     @Secured({"ADMIN"})
     @GetMapping("/admin/employee/{id}/edit")
     public String adminEditEmployee(Model model, @PathVariable("id") Long id){
+
         model.addAttribute("edit",true);
         model.addAttribute("activePage", "Employees");
         model.addAttribute("employee", employeeAdminService.findEmployeeById(id).orElseThrow(NotFoundException::new));
@@ -82,16 +94,16 @@ public class EmployeeAdminController {
 
     @Secured({"ADMIN"})
     @PostMapping("/admin/employeePost")
-    public String adminPostEmployee(Model model, RedirectAttributes redirectAttributes, @Valid Employee employee){
+    public String adminPostEmployee(Model model, RedirectAttributes redirectAttributes, @Valid EmployeeAdminDTO employeeAdminDTO){
         model.addAttribute("activePage", "Employees");
         try {
-            employeeRepository.save(employee);
+            employeeAdminService.saveEmployee(employeeAdminDTO);
         } catch (Exception ex) {
             redirectAttributes.addFlashAttribute("error", true);
-            if (employee.getId() == null){
+            if (employeeAdminDTO.getId() == null){
                 return "redirect:/admin/employee/create";
             }
-            return "redirect:/admin/employee/" + employee.getId() + "/edit";
+            return "redirect:/admin/employee/" + employeeAdminDTO.getId() + "/edit";
         }
         return "redirect:/admin/employee";
     }

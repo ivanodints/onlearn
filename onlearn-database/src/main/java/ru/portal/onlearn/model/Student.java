@@ -59,6 +59,9 @@ public class Student  implements Serializable {
     @OneToOne(optional = false, cascade = CascadeType.ALL)
     private User user;
 
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    private List<Picture> pictures;
+
     public Student(Long id, String name, String surname,
                    String middleName, Date dateOfBirth, String sex, String email, String phoneNumber) {
         this.id = id;
@@ -71,4 +74,30 @@ public class Student  implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
+    public Student(Long id, String name, String surname, String middleName, Date dateOfBirth, String sex,
+                   @Email String email, @Size(min = 11, max = 12) String phoneNumber, List<Picture> pictures) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.middleName = middleName;
+        this.dateOfBirth = dateOfBirth;
+        this.sex = sex;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.pictures = pictures;
+    }
+
+    public Student(Long id, String name, String surname, String middleName, Date dateOfBirth, String sex,
+                   @Email String email, @Size(min = 11, max = 12) String phoneNumber, User user, List<Picture> pictures) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.middleName = middleName;
+        this.dateOfBirth = dateOfBirth;
+        this.sex = sex;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.user = user;
+        this.pictures = pictures;
+    }
 }

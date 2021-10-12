@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import ru.portal.onlearn.controller.DTO.DirectionAdminDTO;
+import ru.portal.onlearn.controller.DTO.DirectionDTO;
 import ru.portal.onlearn.error.NotFoundException;
 import ru.portal.onlearn.model.Direction;
 import ru.portal.onlearn.repo.DirectionRepository;
@@ -44,7 +46,7 @@ public class DirectionAdminController {
     public String adminDirectionCreatePage(Model model){
         model.addAttribute("create", true);
         model.addAttribute("activePage", "Directions");
-        model.addAttribute("direction", new Direction());
+        model.addAttribute("direction", new DirectionAdminDTO());
         return "direction_form";
     }
 
@@ -59,16 +61,16 @@ public class DirectionAdminController {
 
     @Secured({"ADMIN"})
     @PostMapping("/admin/directionPost")
-    public String adminPostDirection(Model model, RedirectAttributes redirectAttributes, Direction direction){
+    public String adminPostDirection(Model model, RedirectAttributes redirectAttributes, DirectionAdminDTO directionAdminDTO){
         model.addAttribute("activePage", "Directions");
         try {
-            directionRepository.save(direction);
+            directionAdminService.saveDirection(directionAdminDTO);
         } catch (Exception ex) {
             redirectAttributes.addFlashAttribute("error", true);
-            if (direction.getId() == null){
+            if (directionAdminDTO.getId() == null){
                 return "redirect:/admin/direction/create";
             }
-            return "redirect:/admin/direction/" + direction.getId() + "/edit";
+            return "redirect:/admin/direction/" + directionAdminDTO.getId() + "/edit";
         }
         return "redirect:/admin/direction";
     }

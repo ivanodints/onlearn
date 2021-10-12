@@ -1,18 +1,27 @@
-package ru.portal.onlearn.model;
-
-import javax.persistence.*;
-
-
-// базис под корзину
-
+//package ru.portal.onlearn.model;
+//
+//import lombok.AllArgsConstructor;
+//import lombok.Getter;
+//import lombok.NoArgsConstructor;
+//import lombok.Setter;
+//
+//import javax.persistence.*;
+//import java.io.Serializable;
+//
 //@Entity
-//@Table(name = "order")
-//public class Order {
+//@Table(name = "orders")
+//@NoArgsConstructor
+//@AllArgsConstructor
+//@Getter
+//@Setter
+//public class Order implements Serializable {
 //
 //    @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
 //    @Column(name = "id")
 //    private Long id;
-
-//    @ManyToMany
+//
+//    @Column(name = "aa")
+//    private String zz;
+//
 //}

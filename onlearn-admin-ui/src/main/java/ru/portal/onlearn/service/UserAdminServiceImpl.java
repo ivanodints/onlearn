@@ -5,11 +5,19 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+import ru.portal.onlearn.controller.DTO.DirectionAdminDTO;
 import ru.portal.onlearn.controller.DTO.UserAdminDTO;
+import ru.portal.onlearn.error.NotFoundException;
+import ru.portal.onlearn.model.Direction;
+import ru.portal.onlearn.model.Picture;
 import ru.portal.onlearn.model.User;
 import ru.portal.onlearn.repo.UserRepository;
 import ru.portal.onlearn.repo.specification.UserSpecification;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -57,4 +65,18 @@ public class UserAdminServiceImpl implements UserAdminService{
                 .collect(Collectors.toList());
         return new PageImpl<>(allByIds, PageRequest.of(page -1, size), ids.getTotalElements());
     }
+
+    @Override
+    public void saveUser(UserAdminDTO userAdminDTO) throws IOException {
+        User user;
+        if (userAdminDTO.getId() != null) user = userRepository.findById(userAdminDTO.getId())
+                .orElseThrow(NotFoundException::new);
+        else user = new User();
+        user.setId(userAdminDTO.getId());
+        user.setLogin(userAdminDTO.getLogin());
+        user.setPassword(userAdminDTO.getPassword());
+        user.setRoles(userAdminDTO.getRoles());
+        userRepository.save(user);
+    }
+
 }

@@ -5,6 +5,7 @@ import ru.portal.onlearn.controller.DTO.DirectionDTO;
 import ru.portal.onlearn.controller.DTO.FacultyDTO;
 import ru.portal.onlearn.model.Faculty;
 import ru.portal.onlearn.model.Direction;
+import ru.portal.onlearn.model.Picture;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,7 +27,11 @@ public interface DirectionService {
                 direction.getTitle(),
                 direction.getDescription(),
                 direction.getFaculties().size() > 0 ? direction.getFaculties().get(0).getId() : null,
-                direction.getFaculties().stream().map(Faculty::getId).collect(Collectors.toList()));
+                direction.getFaculties().stream().map(Faculty::getId).collect(Collectors.toList()),
+                direction.getPictures().size() > 0 ? direction.getPictures().get(0).getId() : null,
+                direction.getPictures().stream().map(picture -> picture.getId()).collect(Collectors.toList())
+        );
+
     }
 
 }

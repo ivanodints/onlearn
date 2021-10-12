@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import ru.portal.onlearn.controller.DTO.FacultyAdminDTO;
 import ru.portal.onlearn.error.NotFoundException;
 import ru.portal.onlearn.model.Faculty;
 import ru.portal.onlearn.repo.DirectionRepository;
@@ -51,7 +52,7 @@ public class FacultyAdminController {
         model.addAttribute("create", true);
         model.addAttribute("activePage", "Faculties");
         model.addAttribute("directions", directionRepository.findAll());
-        model.addAttribute("faculty", new Faculty());
+        model.addAttribute("faculty", new FacultyAdminDTO());
         return "faculty_form";
     }
 
@@ -67,16 +68,16 @@ public class FacultyAdminController {
 
     @Secured({"ADMIN"})
     @PostMapping("/admin/facultyPost")
-    public String adminPostFaculty(Model model, RedirectAttributes redirectAttributes, @Valid Faculty faculty){
+    public String adminPostFaculty(Model model, RedirectAttributes redirectAttributes, FacultyAdminDTO facultyAdminDTO){
         model.addAttribute("activePage", "Faculties");
         try {
-            facultyRepository.save(faculty);
+            facultyAdminService.saveFaculty(facultyAdminDTO);
         } catch (Exception ex) {
             redirectAttributes.addFlashAttribute("error", true);
-            if (faculty.getId() == null){
+            if (facultyAdminDTO.getId() == null){
                 return "redirect:/admin/faculty/create";
             }
-            return "redirect:/admin/faculty/" + faculty.getId() + "/edit";
+            return "redirect:/admin/faculty/" + facultyAdminDTO.getId() + "/edit";
         }
         return "redirect:/admin/faculty";
     }

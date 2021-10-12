@@ -27,13 +27,15 @@ public interface FacultyService {
 
 //    Page<FacultyDTO> findByFilter(Long directionId, Integer pageNumber, Integer tableSize);
 
-    public static FacultyDTO mapToDTO(Faculty faculty) {
+    static FacultyDTO mapToDTO(Faculty faculty) {
         return new FacultyDTO(
                 faculty.getId(),
                 faculty.getTitle(),
                 faculty.getPrice(),
                 faculty.getDescription(),
-                faculty.getDirection()
+                faculty.getDirection(),
+                faculty.getPictures().size() > 0 ? faculty.getPictures().get(0).getId() : null,
+                faculty.getPictures().stream().map(picture -> picture.getId()).collect(Collectors.toList())
         );
     }
 

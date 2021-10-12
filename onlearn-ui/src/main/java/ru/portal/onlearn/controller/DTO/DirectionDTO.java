@@ -14,7 +14,6 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class DirectionDTO implements Serializable {
 
     private Long id;
@@ -27,6 +26,10 @@ public class DirectionDTO implements Serializable {
 
     private List<Long> facultyIds;
 
+    private  Long pictureId;
+
+    private  List<Long> pictureIds;
+
     public DirectionDTO(Long id, String title) {
         this.id = id;
         this.title = title;
@@ -36,6 +39,17 @@ public class DirectionDTO implements Serializable {
         this.id = id;
         this.title = title;
         this.description = description;
+    }
+
+    public DirectionDTO(Long id, String title, String description, Long facultyId, List<Long> facultyIds,
+                        Long pictureId, List<Long> pictureIds) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.facultyId = facultyId;
+        this.facultyIds = facultyIds;
+        this.pictureId = pictureId;
+        this.pictureIds = pictureIds;
     }
 
     public DirectionDTO(Direction direction) {

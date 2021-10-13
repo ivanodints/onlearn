@@ -42,5 +42,7 @@ public class Faculty implements Serializable {
     @ManyToMany(mappedBy = "faculty")
     private Set<Student> students;
 
+    @ManyToMany(mappedBy = "faculty")
+    private Set<Order> orders;
 
 }

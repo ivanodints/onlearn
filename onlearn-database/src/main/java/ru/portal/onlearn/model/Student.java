@@ -10,7 +10,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.sql.Date;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
@@ -58,6 +57,10 @@ public class Student  implements Serializable {
 
     @OneToOne(optional = false, cascade = CascadeType.ALL)
     private User user;
+
+    @OneToMany(mappedBy = "student",
+            cascade = CascadeType.ALL)
+    private List<Order> orders;
 
     public Student(Long id, String name, String surname,
                    String middleName, Date dateOfBirth, String sex, String email, String phoneNumber) {

@@ -1,3 +1,70 @@
 .list_faculty{
     columns: 2;
 }
+
+.cart_container{
+    display: flex;
+}
+.cart_onlearn{
+    /*position: relative;*/
+    background: url(../img/header-bg.png) no-repeat top center;
+    background-size: cover;
+    display: flex;
+}
+
+.cart_block{
+    /*border: 1px solid #000;*/
+    flex-grow: 1;
+}
+
+.cart_img{
+    /*width: 30px;*/
+    /*height: 30px;*/
+    /*border: 1px solid darkblue;*/
+    position: relative;
+}
+
+.cart_img1{
+    align-items: center;
+}
+
+.images{
+    position: center;
+}
+
+.cart_table{
+    /*top: 50px;*/
+    /*left: 50px;*/
+    /*border: 1px solid darkblue;*/
+    flex-grow: 2;
+    /*font-size: 30px;*/
+}
+
+table {
+    width: 80%;
+    padding: 10px;
+    /*table-layout: auto;*/
+}
+
+caption{
+    font-size: 50px;
+    font-palette: dark;
+}
+
+th, td{
+    border: 2px solid #000;
+    padding: 10px;
+}
+
+th{
+    height: 70px;
+    font-size: 40px;
+}
+
+td{
+    font-size: 30px;
+}
+
+col{
+    width: 50px;
+}

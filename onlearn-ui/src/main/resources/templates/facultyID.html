@@ -63,6 +63,7 @@
                             <li><a href="elements.html">Зарегистрироваться</a></li>
                         </ul>
                     </li>
+                    <li class="menu-has-children"><a href="/onlearn/cart">Корзина</a>
                 </ul>
             </nav><!-- #nav-menu-container -->
         </div>
@@ -112,18 +113,12 @@
                         получите сертификат государственного образца.
                     </p>
                 </div>
-<!--                <a href="courses.html" class="primary-btn">Список дисциплин</a>-->
-<!--                <ul class="list_discipline">-->
-<!--                    <li th:each="discipline : ${}" >-->
-<!--                        <a th:href="@{/discipline/{id} (id = ${})}"-->
-<!--                           th:text="${discipline}" class="primary-btn">Дисциплины</a></li>-->
-<!--                </ul>-->
-
-<!--                <tr th:each="locationStat : ${locationStats}">-->
-<!--                    <td th:text="${locationStat.state}"></td>-->
-<!--                    <td th:text="${locationStat.country}"></td>-->
-<!--                    <td th:text="${locationStat.latestTotalCases}">0</td>-->
-<!--                </tr>-->
+                <a href="courses.html" class="primary-btn">Список дисциплин</a><br><br>
+                <form th:method="post" th:action="@{/cart}">
+                    <input type="hidden" name="facultyId" th:value="${facultyId.getId()}">
+                    <input type="hidden" name="qty" th:value="${1}">
+                    <button class="btn-outline-success">Добавить в корзину</button>
+                </form>
             </div>
         </div>
     </div>

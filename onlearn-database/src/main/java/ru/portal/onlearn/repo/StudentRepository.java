@@ -12,4 +12,7 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 
     @Query("select st from Student st where (st.surname like :surname or :surname is null)")
     Student findBySurname (@Param("surname") String surname);
+
+    @Query("select st from Student st where (st.id=:student_id or :student_id is null)")
+    Student findById (@Param("student_id") Integer id);
 }

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 import ru.portal.onlearn.model.Direction;
 
 import java.io.Serializable;
@@ -21,19 +22,15 @@ public class DirectionAdminDTO implements Serializable {
 
     private String description;
 
-    private Long facultyId;
+    private List<PictureDTO> pictures;
 
-    private List<Long> facultyIds;
+    private MultipartFile[] newPictures;
 
-    public DirectionAdminDTO(Long id, String title) {
-        this.id = id;
-        this.title = title;
-    }
-
-    public DirectionAdminDTO(Long id, String title, String description) {
+    public DirectionAdminDTO(Long id, String title, String description, List<PictureDTO> pictureDTO) {
         this.id = id;
         this.title = title;
         this.description = description;
+        this.pictures = pictureDTO;
     }
 
     public DirectionAdminDTO(Direction direction) {
@@ -41,5 +38,7 @@ public class DirectionAdminDTO implements Serializable {
         this.title = direction.getTitle();
         this.description = direction.getDescription();
     }
+
+
 
 }

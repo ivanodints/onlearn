@@ -1,11 +1,17 @@
 package ru.portal.onlearn.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import ru.portal.onlearn.controller.DTO.EmployeeAdminDTO;
 import ru.portal.onlearn.controller.DTO.StudentAdminDTO;
-import ru.portal.onlearn.controller.DTO.StudentDTO;
-import ru.portal.onlearn.model.Direction;
+import ru.portal.onlearn.error.NotFoundException;
+import ru.portal.onlearn.model.Picture;
+import ru.portal.onlearn.model.Student;
 import ru.portal.onlearn.repo.StudentRepository;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -14,9 +20,11 @@ import java.util.stream.Collectors;
 public class StudentAdminServiceImpl implements StudentAdminService{
 
     private final StudentRepository studentRepository;
+    private final PictureService pictureService;
 
-    public StudentAdminServiceImpl(StudentRepository studentRepository) {
+    public StudentAdminServiceImpl(StudentRepository studentRepository, PictureService pictureService) {
         this.studentRepository = studentRepository;
+        this.pictureService = pictureService;
     }
 
     @Override
@@ -29,7 +37,7 @@ public class StudentAdminServiceImpl implements StudentAdminService{
 
     @Override
     public Optional<StudentAdminDTO> findStudentById(Long id) {
-        return studentRepository.findById(id).map(student -> new StudentAdminDTO(student));
+        return studentRepository.findById(id).map(student -> StudentAdminService.mapToAdminStudentDTO(student));
     }
 
     @Override
@@ -43,5 +51,38 @@ public class StudentAdminServiceImpl implements StudentAdminService{
     @Override
     public void deleteStudentById(Long id) {
         studentRepository.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public void saveStudent(StudentAdminDTO studentAdminDTO) throws IOException {
+
+        Student student;
+        if (studentAdminDTO.getId() != null) student = studentRepository.findById(studentAdminDTO.getId())
+                .orElseThrow(NotFoundException::new);
+        else student = new Student();
+        student.setId(studentAdminDTO.getId());
+        student.setName(studentAdminDTO.getName());
+        student.setSurname(studentAdminDTO.getSurname());
+        student.setMiddleName(studentAdminDTO.getMiddleName());
+        student.setDateOfBirth(studentAdminDTO.getDateOfBirth());
+        student.setSex(studentAdminDTO.getSex());
+        student.setEmail(studentAdminDTO.getEmail());
+        student.setPhoneNumber(studentAdminDTO.getPhoneNumber());
+        student.setUser(studentAdminDTO.getUser());
+        if (studentAdminDTO.getNewPictures() != null){
+            for (MultipartFile newPicture : studentAdminDTO.getNewPictures()){
+                if (student.getPictures() == null){
+                    student.setPictures(new ArrayList<>());
+                }
+                student.getPictures().add(new Picture(
+                        newPicture.getOriginalFilename(),
+                        newPicture.getContentType(),
+                        pictureService.createPictureData(newPicture.getBytes()),
+                        student
+                ));
+            }
+        }
+        studentRepository.save(student);
     }
 }

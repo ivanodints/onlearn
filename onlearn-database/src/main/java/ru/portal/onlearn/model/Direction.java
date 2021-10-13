@@ -30,20 +30,21 @@ public class Direction implements Serializable {
     @Column(name = "description")
     private  String description;
 
-    @OneToMany(mappedBy = "direction",
-    cascade = CascadeType.ALL)
-    private List<Faculty> faculties;
+    @OneToMany(mappedBy = "direction", cascade = CascadeType.ALL)
+    private List<Picture> pictures;
 
-    //Нужно ли переносить в сервисы?
-    public List<String> getFacultiesTitles(){
-        return faculties.stream().map(p -> p.getTitle()).collect(Collectors.toList());
-    }
+    @OneToMany(mappedBy = "direction", cascade = CascadeType.ALL)
+    private List<Faculty> faculties;
 
 
     public Direction(Long id, String title, String description) {
         this.id = id;
         this.title = title;
         this.description = description;
+    }
+
+    public List<String> getFacultiesTitles(){
+        return faculties.stream().map(p -> p.getTitle()).collect(Collectors.toList());
     }
 
 }

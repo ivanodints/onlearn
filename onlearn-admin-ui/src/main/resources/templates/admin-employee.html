@@ -17,6 +17,7 @@
 
                 <div class="card-body">
                     <form class="form-group" th:action="@{/admin/user/create}">
+<!--                        <form class="form-group" th:action="@{/admin/employee/create}">-->
                         <button id="create_new" type="submit" class="btn btn-primary">Добавить нового сотрудника</button>
                     </form>
 
@@ -34,7 +35,7 @@
                                 <th>Департамент</th>
                                 <th>Логин</th>
                                 <th>Роль</th>
-                                <th>О себе</th>
+<!--                                <th>О себе</th>-->
                                 <th class="actions"></th>
                             </tr>
                         </thead>
@@ -48,10 +49,10 @@
                                 <td th:text="${employee.dateOfBirth}"></td>
                                 <td th:text="${employee.email}"></td>
                                 <td th:text="${employee.phoneNumber}"></td>
-                                <td th:text="${employee.getDepartment().getTitle()}"></td>
+                                <td th:text="${employee.getDepartmentTitle}"></td>
                                 <td th:text="${employee.getUser().login}"></td>
                                 <td th:text="${employee.getUser().getRoleTitle()}"></td>
-                                <td th:text="${employee.bio}"></td>
+<!--                                <td th:text="${employee.bio}"></td>-->
 
                                 <td>
                                     <a th:href="@{/admin/employee/{id}/edit(id=${employee.id})}"

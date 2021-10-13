@@ -62,26 +62,13 @@ public class CartController {
 
     @PostMapping("/saveToOrder")
     @Transactional
-    public String addToOrder(){
+    public String addToOrder(Model model){
+        model.addAttribute("lineItems", cartService.getLineItems());
+        model.addAttribute("totalPrice",cartService.totalPrice());
+        model.addAttribute("allDirection", directionService.findAllDirection());
+        model.addAttribute("facultyAll",facultyService.findAllFaculty());
         cartService.saveToOrder();
-        return "redirect:/cart";
+        return "thankyou";
     }
-
-//    @PostMapping("/saveToOrder")
-//    @Transactional
-//    public String addToOrder(Model model, RedirectAttributes redirectAttributes, ){
-//        model.addAttribute("activePage", "CartController");
-//        try {
-//            cartService.saveToOrder();
-//        } catch (Exception ex) {
-//            redirectAttributes.addFlashAttribute("error", true);
-//            if (discipline.getId() == null){
-//                return "redirect:/admin/discipline/create";
-//            }
-//            return "redirect:/admin/discipline/" + discipline.getId() + "/edit";
-//        }
-//        return "redirect:/admin/discipline";
-//    }
-
 
 }

@@ -1,7 +1,6 @@
 package ru.portal.onlearn.service;
 
 import org.springframework.stereotype.Service;
-import ru.portal.onlearn.controller.DTO.DirectionAdminDTO;
 import ru.portal.onlearn.controller.DTO.FacultyAdminDTO;
 import ru.portal.onlearn.controller.DTO.PictureDTO;
 import ru.portal.onlearn.model.Faculty;

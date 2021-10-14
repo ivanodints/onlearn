@@ -1,18 +1,13 @@
 package ru.portal.onlearn.controller;
 
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ru.portal.onlearn.controller.DTO.UserAdminDTO;
 import ru.portal.onlearn.error.NotFoundException;
-import ru.portal.onlearn.model.Role;
 import ru.portal.onlearn.model.User;
 import ru.portal.onlearn.repo.RoleRepository;
 import ru.portal.onlearn.repo.UserRepository;
@@ -96,7 +91,7 @@ public class UserAdminController {
 
     @Secured({"ADMIN"})
     @PostMapping("/admin/userPost")
-    public String adminPostUser(Model model, RedirectAttributes redirectAttributes, @Valid UserAdminDTO userAdminDTO,
+    public String adminPostUser(Model model, RedirectAttributes redirectAttributes, @Valid @ModelAttribute("user") UserAdminDTO userAdminDTO,
                                 BindingResult bindingResult){
         model.addAttribute("activePage", "Users");
 
@@ -118,7 +113,7 @@ public class UserAdminController {
 
     @Secured({"ADMIN"})
     @PostMapping("/admin/userStudentPost")
-    public String adminPostStudentUser(Model model, RedirectAttributes redirectAttributes, @Valid UserAdminDTO userAdminDTO,
+    public String adminPostStudentUser(Model model, RedirectAttributes redirectAttributes, @Valid @ModelAttribute("user") UserAdminDTO userAdminDTO,
                                 BindingResult bindingResult){
         model.addAttribute("activePage", "Users");
 

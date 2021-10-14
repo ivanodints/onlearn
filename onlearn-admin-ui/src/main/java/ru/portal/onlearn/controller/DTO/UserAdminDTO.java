@@ -4,7 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import ru.portal.onlearn.Validation.ContactLoginConstraint;
+import ru.portal.onlearn.Validation.ContactLoginSizeConstraint;
+import ru.portal.onlearn.Validation.ContactNullConstraint;
 import ru.portal.onlearn.model.Role;
 import ru.portal.onlearn.model.User;
 
@@ -21,6 +23,9 @@ public class UserAdminDTO {
 
     private Long id;
 
+    @ContactNullConstraint
+    @ContactLoginSizeConstraint
+    @ContactLoginConstraint
     private String login;
 
     private String password;

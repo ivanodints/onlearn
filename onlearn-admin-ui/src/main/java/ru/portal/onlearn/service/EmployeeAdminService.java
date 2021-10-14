@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import ru.portal.onlearn.controller.DTO.EmployeeAdminDTO;
 import ru.portal.onlearn.controller.DTO.PictureDTO;
 import ru.portal.onlearn.model.Employee;
-import ru.portal.onlearn.model.User;
 
 import java.io.IOException;
 import java.util.List;

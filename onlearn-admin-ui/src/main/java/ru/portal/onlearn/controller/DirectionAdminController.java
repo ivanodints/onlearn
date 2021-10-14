@@ -6,9 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ru.portal.onlearn.controller.DTO.DirectionAdminDTO;
-import ru.portal.onlearn.controller.DTO.DirectionDTO;
 import ru.portal.onlearn.error.NotFoundException;
-import ru.portal.onlearn.model.Direction;
 import ru.portal.onlearn.repo.DirectionRepository;
 import ru.portal.onlearn.service.DirectionAdminService;
 

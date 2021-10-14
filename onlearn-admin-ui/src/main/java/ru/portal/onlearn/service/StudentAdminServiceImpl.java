@@ -2,7 +2,6 @@ package ru.portal.onlearn.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import ru.portal.onlearn.controller.DTO.EmployeeAdminDTO;
 import ru.portal.onlearn.controller.DTO.StudentAdminDTO;
 import ru.portal.onlearn.error.NotFoundException;
 import ru.portal.onlearn.model.Picture;

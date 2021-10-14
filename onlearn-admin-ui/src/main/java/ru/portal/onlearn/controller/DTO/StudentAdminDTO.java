@@ -5,14 +5,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
+import ru.portal.onlearn.Validation.ContactNameConstraint;
+import ru.portal.onlearn.Validation.ContactNullConstraint;
+import ru.portal.onlearn.Validation.ContactNumberConstraint;
+import ru.portal.onlearn.Validation.ContactSexConstraint;
 import ru.portal.onlearn.model.Faculty;
-import ru.portal.onlearn.model.Role;
 import ru.portal.onlearn.model.Student;
 import ru.portal.onlearn.model.User;
 
+import javax.validation.constraints.Email;
 import java.io.Serializable;
 import java.sql.Date;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
@@ -24,18 +27,27 @@ public class StudentAdminDTO implements Serializable {
 
     private Long id;
 
+    @ContactNullConstraint
+    @ContactNameConstraint
     private String name;
 
+    @ContactNullConstraint
+    @ContactNameConstraint
     private String surname;
 
+    @ContactNullConstraint
+    @ContactNameConstraint
     private String middleName;
 
     private Date dateOfBirth;
 
+    @ContactSexConstraint
     private String sex;
 
+    @Email
     private String email;
 
+    @ContactNumberConstraint
     private String phoneNumber;
 
     private User user;

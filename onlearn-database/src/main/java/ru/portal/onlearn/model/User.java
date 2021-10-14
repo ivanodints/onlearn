@@ -5,8 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import ru.portal.onlearn.Validation.ContactLoginConstraint;
-import ru.portal.onlearn.Validation.ContactLoginNullOrSizeConstraint;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -26,12 +24,9 @@ public class User implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    @ContactLoginConstraint
-    @ContactLoginNullOrSizeConstraint
     @Column(name = "login", nullable = false, unique = true)
     private String login;
 
-//    @Min(8)
     @Column(name = "password", nullable = false)
     private String password;
 

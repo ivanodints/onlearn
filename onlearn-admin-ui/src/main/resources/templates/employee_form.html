@@ -18,14 +18,14 @@
             <h2 class="mb-4" th:if="${edit}">Редактировать данные сотрудника</h2>
             <h2 class="mb-4" th:if="${create}">Добавить нового сотрудника</h2>
 
-            <form th:object="${employee}" method="post" th:action="@{/admin/employeePost}">
+            <form th:object="${employee}" method="post" th:action="@{/admin/employeePost}" enctype="multipart/form-data">
                 <div class="card mb-4">
                     <div class="card-body">
-                        <input th:type="hidden" th:field="*{id}">
+                        <input th:type="hidden" th:field="*{id}" >
                         <div class="form-group">
                             <label for="surname">Фамилия</label>
                             <input th:field="*{surname}" type="text" class="form-control" id="surname"
-                                placeholder="Введите фамилию сотрудника" required>
+                                   placeholder="Введите фамилию сотрудника" required>
                             <p class="text-danger" th:if="${#fields.hasErrors('surname')}"
                                th:errors="*{surname}">Ошибка в фамилии</p>
                         </div>
@@ -46,7 +46,9 @@
                         <div class="form-group">
                             <label for="sex">Пол</label>
                             <td><input th:field="*{sex}" type="text" class="form-control" id="sex"
-                                   placeholder="Введите пол сотрудника" required></td>
+                                   placeholder="Введите пол сотрудника, только буквы литиница или кириллица" required></td>
+                            <p class="text-danger" th:if="${#fields.hasErrors('sex')}"
+                               th:errors="*{sex}">Ошибка в указанном поле</p>
                         </div>
                         <div class="form-group">
                             <label for="date">Дата рождения</label>

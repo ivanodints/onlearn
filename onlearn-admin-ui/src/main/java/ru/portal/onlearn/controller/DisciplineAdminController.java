@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ru.portal.onlearn.controller.DTO.DisciplineAdminDTO;
 import ru.portal.onlearn.error.NotFoundException;
-import ru.portal.onlearn.model.Discipline;
 import ru.portal.onlearn.repo.DisciplineRepository;
 import ru.portal.onlearn.repo.FacultyRepository;
 import ru.portal.onlearn.service.DisciplineAdminService;

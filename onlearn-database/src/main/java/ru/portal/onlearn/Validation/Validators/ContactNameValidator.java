@@ -14,9 +14,6 @@ public class ContactNameValidator implements ConstraintValidator<ContactNameCons
 
     @Override
     public boolean isValid(String contactField, ConstraintValidatorContext constraintValidatorContext) {
-        if (contactField == null){
-            return false;
-        }
         return contactField.matches("[а-яА-Яa-zA-Z-_\\.]*")
                 && (contactField.length() > 3) && (contactField.length() < 26);
     }

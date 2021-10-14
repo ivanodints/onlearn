@@ -1,16 +1,16 @@
 package ru.portal.onlearn.Validation.Validators;
 
 import org.springframework.stereotype.Component;
-import ru.portal.onlearn.Validation.ContactLoginNullOrSizeConstraint;
+import ru.portal.onlearn.Validation.ContactLoginSizeConstraint;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 @Component
-public class ContactLoginNullOrSizeValidator implements ConstraintValidator<ContactLoginNullOrSizeConstraint, String> {
+public class ContactLoginSizeValidator implements ConstraintValidator<ContactLoginSizeConstraint, String> {
 
     @Override
-    public void initialize(ContactLoginNullOrSizeConstraint constraintAnnotation) {
+    public void initialize(ContactLoginSizeConstraint constraintAnnotation) {
 
     }
 

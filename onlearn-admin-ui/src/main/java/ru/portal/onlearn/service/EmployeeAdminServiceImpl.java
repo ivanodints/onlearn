@@ -10,7 +10,6 @@ import ru.portal.onlearn.controller.DTO.EmployeeAdminDTO;
 import ru.portal.onlearn.error.NotFoundException;
 import ru.portal.onlearn.model.Employee;
 import ru.portal.onlearn.model.Picture;
-import ru.portal.onlearn.model.User;
 import ru.portal.onlearn.repo.EmployeeRepository;
 import ru.portal.onlearn.repo.UserRepository;
 import ru.portal.onlearn.repo.specification.EmployeeSpecification;
@@ -104,6 +103,5 @@ public class EmployeeAdminServiceImpl implements EmployeeAdminService {
         }
         employeeRepository.save(employee);
     }
-
 
 }

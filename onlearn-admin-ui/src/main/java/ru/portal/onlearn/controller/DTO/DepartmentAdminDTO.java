@@ -1,6 +1,5 @@
 package ru.portal.onlearn.controller.DTO;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +14,6 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class DepartmentAdminDTO implements Serializable {
 
     private Long id;

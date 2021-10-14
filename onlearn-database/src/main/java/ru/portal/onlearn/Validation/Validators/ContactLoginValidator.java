@@ -20,7 +20,6 @@ public class ContactLoginValidator implements ConstraintValidator<ContactLoginCo
 
     @Override
     public boolean isValid(String login, ConstraintValidatorContext constraintValidatorContext) {
-
         return !userRepository.existsUserByLogin(login);
 
     }

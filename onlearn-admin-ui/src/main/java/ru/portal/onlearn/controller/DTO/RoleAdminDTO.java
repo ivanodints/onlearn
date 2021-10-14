@@ -8,7 +8,6 @@ import ru.portal.onlearn.model.Role;
 import ru.portal.onlearn.model.User;
 
 import javax.validation.constraints.NotEmpty;
-import java.util.List;
 import java.util.Set;
 
 @Getter

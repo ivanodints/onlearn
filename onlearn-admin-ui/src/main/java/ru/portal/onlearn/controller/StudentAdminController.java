@@ -3,13 +3,9 @@ package ru.portal.onlearn.controller;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ru.portal.onlearn.controller.DTO.StudentAdminDTO;
-import ru.portal.onlearn.controller.DTO.StudentDTO;
 import ru.portal.onlearn.error.NotFoundException;
 import ru.portal.onlearn.model.User;
 import ru.portal.onlearn.repo.RoleRepository;
@@ -17,6 +13,7 @@ import ru.portal.onlearn.repo.StudentRepository;
 import ru.portal.onlearn.repo.UserRepository;
 import ru.portal.onlearn.service.StudentAdminService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -81,7 +78,7 @@ public class StudentAdminController {
 
     @Secured({"ADMIN"})
     @PostMapping("/admin/studentPost")
-    public String adminPostStudent(Model model, RedirectAttributes redirectAttributes, StudentAdminDTO studentAdminDTO){
+    public String adminPostStudent(Model model, RedirectAttributes redirectAttributes, @Valid @ModelAttribute("student") StudentAdminDTO studentAdminDTO){
         model.addAttribute("activePage", "Students");
         try {
             studentAdminService.saveStudent(studentAdminDTO);

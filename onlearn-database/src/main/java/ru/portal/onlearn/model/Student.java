@@ -9,8 +9,10 @@ import ru.portal.onlearn.Validation.ContactNumberConstraint;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -26,15 +28,12 @@ public class Student implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    @ContactNameConstraint
     @Column(name = "name", nullable = false)
     private String name;
 
-    @ContactNameConstraint
     @Column(name = "surname", nullable = false)
     private String surname;
 
-    @ContactNameConstraint
     @Column(name = "middle_name", nullable = false)
     private String middleName;
 
@@ -48,7 +47,6 @@ public class Student implements Serializable {
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @ContactNumberConstraint
     @Column(name = "phone_number", nullable = false, unique = true)
     private String phoneNumber;
 

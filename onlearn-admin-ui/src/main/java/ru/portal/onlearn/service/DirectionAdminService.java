@@ -2,10 +2,8 @@ package ru.portal.onlearn.service;
 
 import org.springframework.stereotype.Service;
 import ru.portal.onlearn.controller.DTO.DirectionAdminDTO;
-import ru.portal.onlearn.controller.DTO.DirectionDTO;
 import ru.portal.onlearn.controller.DTO.PictureDTO;
 import ru.portal.onlearn.model.Direction;
-import ru.portal.onlearn.model.Faculty;
 
 import java.io.IOException;
 import java.util.List;

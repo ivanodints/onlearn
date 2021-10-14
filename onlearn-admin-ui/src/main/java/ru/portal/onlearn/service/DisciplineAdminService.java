@@ -2,7 +2,6 @@ package ru.portal.onlearn.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
-import ru.portal.onlearn.controller.DTO.DirectionAdminDTO;
 import ru.portal.onlearn.controller.DTO.DisciplineAdminDTO;
 import ru.portal.onlearn.controller.DTO.PictureDTO;
 import ru.portal.onlearn.model.Discipline;

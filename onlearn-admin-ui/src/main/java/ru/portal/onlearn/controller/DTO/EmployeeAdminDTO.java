@@ -4,18 +4,19 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ru.portal.onlearn.Validation.ContactNameConstraint;
+import ru.portal.onlearn.Validation.ContactNullConstraint;
 import ru.portal.onlearn.Validation.ContactNumberConstraint;
 import org.springframework.web.multipart.MultipartFile;
+import ru.portal.onlearn.Validation.ContactSexConstraint;
 import ru.portal.onlearn.model.Department;
 import ru.portal.onlearn.model.Employee;
-import ru.portal.onlearn.model.Role;
 import ru.portal.onlearn.model.User;
 
 import javax.validation.constraints.Email;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -25,14 +26,21 @@ public class EmployeeAdminDTO implements Serializable {
 
     private Long id;
 
+    @ContactNullConstraint
+    @ContactNameConstraint
     private String name;
 
+    @ContactNullConstraint
+    @ContactNameConstraint
     private String surname;
 
+    @ContactNullConstraint
+    @ContactNameConstraint
     private String middleName;
 
     private Date dateOfBirth;
 
+    @ContactSexConstraint
     private String sex;
 
     @Email

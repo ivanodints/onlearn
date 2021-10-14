@@ -7,12 +7,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ru.portal.onlearn.controller.DTO.FacultyAdminDTO;
 import ru.portal.onlearn.error.NotFoundException;
-import ru.portal.onlearn.model.Faculty;
 import ru.portal.onlearn.repo.DirectionRepository;
 import ru.portal.onlearn.repo.FacultyRepository;
 import ru.portal.onlearn.service.FacultyAdminService;
 
-import javax.validation.Valid;
 
 @Controller
 @RequestMapping

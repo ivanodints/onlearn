@@ -3,12 +3,15 @@ package ru.portal.onlearn.controller;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ru.portal.onlearn.controller.DTO.DirectionAdminDTO;
 import ru.portal.onlearn.error.NotFoundException;
 import ru.portal.onlearn.repo.DirectionRepository;
 import ru.portal.onlearn.service.DirectionAdminService;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping
@@ -59,8 +62,15 @@ public class DirectionAdminController {
 
     @Secured({"ADMIN"})
     @PostMapping("/admin/directionPost")
-    public String adminPostDirection(Model model, RedirectAttributes redirectAttributes, DirectionAdminDTO directionAdminDTO){
+    public String adminPostDirection(Model model, RedirectAttributes redirectAttributes,
+                                     @Valid @ModelAttribute("direction") DirectionAdminDTO directionAdminDTO,
+                                     BindingResult bindingResult){
         model.addAttribute("activePage", "Directions");
+
+        if (bindingResult.hasErrors()){
+//            model.addAttribute("direction", new DirectionAdminDTO());
+            return "direction_form";
+        }
         try {
             directionAdminService.saveDirection(directionAdminDTO);
         } catch (Exception ex) {

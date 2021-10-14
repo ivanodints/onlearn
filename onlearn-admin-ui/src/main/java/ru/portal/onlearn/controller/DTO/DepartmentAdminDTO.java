@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ru.portal.onlearn.Validation.ContactNullConstraint;
 import ru.portal.onlearn.model.Department;
 import ru.portal.onlearn.model.Employee;
 
@@ -18,6 +19,7 @@ public class DepartmentAdminDTO implements Serializable {
 
     private Long id;
 
+    @ContactNullConstraint
     private String title;
 
     private List<Employee> employees;

@@ -14,7 +14,7 @@ public class ContactSexValidator implements ConstraintValidator<ContactSexConstr
 
     @Override
     public boolean isValid(String sex, ConstraintValidatorContext constraintValidatorContext) {
-        return sex.matches("[а-яА-Яa-zA-Z-_\\.]*")
+        return sex.matches("[^\\s][а-яА-Яa-zA-Z-_\\.]*")
                 && (sex.length() > 2) && (sex.length() < 8);
     }
 }

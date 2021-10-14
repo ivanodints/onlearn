@@ -46,7 +46,7 @@
                         <div class="form-group">
                             <label for="sex">Пол</label>
                             <input th:field="*{sex}" type="text" class="form-control" id="sex"
-                                placeholder="Введите пол студента" required>
+                                placeholder="Введите пол студента от 3 до 7 символов" required>
                             <p class="text-danger" th:if="${#fields.hasErrors('sex')}"
                                th:errors="*{sex}">Ошибка в указанном поле</p>
                         </div>
@@ -65,7 +65,7 @@
                         <div class="form-group">
                             <label for="phoneNumber">Номер телефона</label>
                             <input th:field="*{phoneNumber}" type="text" class="form-control" id="phoneNumber"
-                                placeholder="Введите номер телефона студента" required>
+                                placeholder="+79099099999" required>
                             <p class="text-danger" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}">
                                 некорректный номер</p>
                         </div>

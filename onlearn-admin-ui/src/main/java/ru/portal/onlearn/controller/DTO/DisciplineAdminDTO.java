@@ -11,6 +11,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
+import ru.portal.onlearn.Validation.ContactNullConstraint;
 import ru.portal.onlearn.model.Discipline;
 import ru.portal.onlearn.model.Employee;
 import ru.portal.onlearn.model.Faculty;
@@ -23,10 +24,12 @@ public class DisciplineAdminDTO implements Serializable {
 
     private Long id;
 
+    @ContactNullConstraint
     private String title;
 
     private LocalTime discTime;
 
+    @ContactNullConstraint
     private String description;
 
     private Set<Faculty> faculty;

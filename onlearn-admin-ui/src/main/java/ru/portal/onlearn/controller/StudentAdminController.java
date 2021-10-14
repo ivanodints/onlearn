@@ -3,6 +3,7 @@ package ru.portal.onlearn.controller;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ru.portal.onlearn.controller.DTO.StudentAdminDTO;
@@ -78,8 +79,19 @@ public class StudentAdminController {
 
     @Secured({"ADMIN"})
     @PostMapping("/admin/studentPost")
-    public String adminPostStudent(Model model, RedirectAttributes redirectAttributes, @Valid @ModelAttribute("student") StudentAdminDTO studentAdminDTO){
+    public String adminPostStudent(Model model, RedirectAttributes redirectAttributes,
+                                   @Valid @ModelAttribute("student") StudentAdminDTO studentAdminDTO,
+                                   BindingResult bindingResult){
         model.addAttribute("activePage", "Students");
+        List<User> userList = userRepository.findAll();
+        User lastUser = userList.get(userList.size()-1);
+
+        if (bindingResult.hasErrors()){
+            model.addAttribute("activePage", "Students");
+            model.addAttribute("roles", roleRepository.findAll());
+            model.addAttribute("user", lastUser);
+            return "student_form";
+        }
         try {
             studentAdminService.saveStudent(studentAdminDTO);
         } catch (Exception ex) {

@@ -4,9 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import ru.portal.onlearn.Validation.ContactLoginConstraint;
+import ru.portal.onlearn.Validation.ContactIsEmptyLoginConstraint;
 import ru.portal.onlearn.Validation.ContactLoginSizeConstraint;
 import ru.portal.onlearn.Validation.ContactNullConstraint;
+import ru.portal.onlearn.Validation.ContactPasswordConstraint;
 import ru.portal.onlearn.model.Role;
 import ru.portal.onlearn.model.User;
 
@@ -25,9 +26,10 @@ public class UserAdminDTO {
 
     @ContactNullConstraint
     @ContactLoginSizeConstraint
-    @ContactLoginConstraint
+    @ContactIsEmptyLoginConstraint
     private String login;
 
+    @ContactPasswordConstraint
     private String password;
 
     private Set<Role> roles;

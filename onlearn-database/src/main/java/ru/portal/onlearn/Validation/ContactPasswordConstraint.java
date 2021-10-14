@@ -12,7 +12,8 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ContactPasswordConstraint {
 
-    String message() default "Некорректный пароль";
+    String message() default "Некорректный пароль, минимальная длина пароля 7 символов. " +
+            "Допустимые символы Латиница, 0-9 ~`@!#$%^&*={}_<>/?,()+";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

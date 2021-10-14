@@ -22,7 +22,6 @@ public class RoleAdminDTO {
 
     private Set<User> users;
 
-
     public RoleAdminDTO(@NotEmpty String title, Set<User> users) {
         this.title = title;
         this.users = users;

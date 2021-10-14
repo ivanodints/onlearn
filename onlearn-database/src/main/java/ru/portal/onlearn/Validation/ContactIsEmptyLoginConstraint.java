@@ -10,7 +10,7 @@ import java.lang.annotation.*;
 @Constraint(validatedBy = ContactLoginValidator.class)
 @Target({ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ContactLoginConstraint {
+public @interface ContactIsEmptyLoginConstraint {
 
     String message() default "Данный логин уже существует";
     Class<?>[] groups() default {};

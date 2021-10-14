@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
+import ru.portal.onlearn.Validation.ContactNullConstraint;
 import ru.portal.onlearn.model.Direction;
 import ru.portal.onlearn.model.Discipline;
 import ru.portal.onlearn.model.Faculty;
@@ -23,10 +24,12 @@ public class FacultyAdminDTO implements Serializable {
 
     private Long id;
 
+    @ContactNullConstraint
     private String title;
 
     private BigDecimal price;
 
+    @ContactNullConstraint
     private String description;
 
     private Direction direction;

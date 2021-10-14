@@ -12,7 +12,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ContactNumberConstraint {
 
-    String message() default "Некорректный номер телефона";
+    String message() default "Некорректный номер телефона или данный номер уже есть";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

@@ -12,7 +12,8 @@ public class ContactPasswordValidator implements ConstraintValidator<ContactPass
     }
 
     @Override
-    public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
-        return false;
+    public boolean isValid(String password, ConstraintValidatorContext constraintValidatorContext) {
+        return password.matches("[^\\s][а-яА-Яa-zA-Z-0-9~`@!#$%^&*={}_<>/?,()-+\\.]*")
+                && (password.length() > 6);
     }
 }

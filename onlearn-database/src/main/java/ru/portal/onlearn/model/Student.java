@@ -59,6 +59,10 @@ public class Student implements Serializable {
     @OneToOne(optional = false, cascade = CascadeType.ALL)
     private User user;
 
+    @OneToMany(mappedBy = "student",
+            cascade = CascadeType.ALL)
+    private List<Order> orders;
+
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     private List<Picture> pictures;
 

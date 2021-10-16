@@ -41,7 +41,7 @@ public class DisciplineAdminController {
         return "admin-discipline";
     }
 
-    @Secured({"ADMIN"})
+    @Secured({"SUPER-ADMIN"})
     @DeleteMapping("/admin/discipline/{id}/delete")
     public String adminDeleteDiscipline(Model model, @PathVariable("id") Long id){
         model.addAttribute("activePage", "Disciplines");

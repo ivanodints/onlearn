@@ -34,7 +34,7 @@ public class DirectionAdminController {
         return "admin-direction";
     }
 
-    @Secured({"ADMIN"})
+    @Secured({"SUPER-ADMIN"})
     @DeleteMapping("/admin/direction/{id}/delete")
     public String adminDeleteDirection(Model model, @PathVariable("id") Long id){
         model.addAttribute("activePage", "Directions");

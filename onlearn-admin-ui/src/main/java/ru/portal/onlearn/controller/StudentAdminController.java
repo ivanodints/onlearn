@@ -42,7 +42,7 @@ public class StudentAdminController {
         return "admin-student";
     }
 
-    @Secured({"ADMIN"})
+    @Secured({"SUPER-ADMIN"})
     @DeleteMapping("/admin/student/{id}/delete")
     public String adminDeleteStudent(Model model, @PathVariable("id") Long id){
         model.addAttribute("activePage", "Students");

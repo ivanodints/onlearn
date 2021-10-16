@@ -46,7 +46,7 @@ public class EmployeeAdminController{
         return "admin-employee";
     }
 
-    @Secured({"ADMIN"})
+    @Secured({"SUPER-ADMIN"})
     @DeleteMapping("/admin/employee/{id}/delete")
     public String adminDeleteEmployee(Model model, @PathVariable("id") Long id){
         model.addAttribute("activePage", "Employees");

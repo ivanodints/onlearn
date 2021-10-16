@@ -33,7 +33,7 @@ public class DepartmentAdminController {
         return "admin-department";
     }
 
-    @Secured({"ADMIN"})
+    @Secured({"SUPER-ADMIN"})
     @DeleteMapping("/admin/department/{id}/delete")
     public String adminDeleteDepartment(Model model, @PathVariable("id") Long id){
         model.addAttribute("activePage", "Departments");

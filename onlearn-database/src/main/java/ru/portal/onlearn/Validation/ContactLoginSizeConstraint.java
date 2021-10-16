@@ -12,7 +12,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ContactLoginSizeConstraint {
 
-    String message() default "Логин должен содержать только Латиницу с длиной от 4 до 25";
+    String message() default "Логин должен содержать только Латиницу и цифры 0-9, с длиной от 4 до 25";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

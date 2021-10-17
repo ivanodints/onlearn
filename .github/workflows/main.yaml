@@ -22,12 +22,12 @@ jobs:
           cd ./onlearn-ui
           MAVEN_ARTEFACT_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
           echo 'Version of onlearn-ui artefact is '$MAVEN_ARTEFACT_VERSION
-          echo ::set-output name=onlearn::${MAVEN_ARTEFACT_VERSION}
+          echo ::set-output name=onlearn_ui_artefact_version::${MAVEN_ARTEFACT_VERSION}
 
           cd ../onlearn-admin-ui
           MAVEN_ARTEFACT_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
           echo 'Version of onlearn-admin-ui artefact is '$MAVEN_ARTEFACT_VERSION
-          echo ::set-output name=onlearn::${MAVEN_ARTEFACT_VERSION}
+          echo ::set-output name=onlearn_admin_ui_artefact_version::${MAVEN_ARTEFACT_VERSION}
 
       - name: Show builded files
         run: |
@@ -51,7 +51,7 @@ jobs:
           context: onlearn-ui
           tags: ghcr.io/${{ github.actor }}/onlearn-ui:latest
           build-args: |
-             JAR_FILE=onlearn-ui.jar
+            JAR_FILE=onlearn-ui-${{ steps.mvn_build.outputs.onlearn_ui_artefact_version }}.jar
 
       - name: Build onlearn-admin-ui with Docker
         uses: docker/build-push-action@v2
@@ -60,4 +60,4 @@ jobs:
           context: onlearn-admin-ui
           tags: ghcr.io/${{ github.actor }}/onlearn-admin-ui:latest
           build-args: |
-            JAR_FILE=onlearn-admin-ui.jar
+            JAR_FILE=onlearn-admin-ui-${{ steps.mvn_build.outputs.onlearn_admin_ui_artefact_version }}.jar

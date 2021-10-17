@@ -8,9 +8,13 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <modelVersion>4.0.0</modelVersion>
-
+<!--    <groupId>ru.portal.onlearn</groupId>-->
     <artifactId>onlearn-database</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>onlearn-database</name>
+    <description>database</description>
+
+    <modelVersion>4.0.0</modelVersion>
 
     <dependencies>
         <dependency>

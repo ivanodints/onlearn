@@ -12,7 +12,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>onlearn-picture-service</artifactId>
-    
+    <version>0.0.1-SNAPSHOT</version>
+    <name>onlearn-picture-service</name>
+
     <build>
         <plugins>
             <plugin>

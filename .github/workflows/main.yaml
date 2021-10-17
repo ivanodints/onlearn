@@ -51,8 +51,7 @@ jobs:
           context: onlearn-ui
           tags: ghcr.io/${{ github.actor }}/onlearn-ui:latest
           build-args: |
-#            JAR_FILE=onlearn-ui-${{ steps.mvn_build.outputs.onlearn_ui_artefact_version }}.jar
-                        JAR_FILE=onlearn-ui.jar
+             JAR_FILE=onlearn-ui.jar
 
       - name: Build onlearn-admin-ui with Docker
         uses: docker/build-push-action@v2
@@ -61,5 +60,4 @@ jobs:
           context: onlearn-admin-ui
           tags: ghcr.io/${{ github.actor }}/onlearn-admin-ui:latest
           build-args: |
-#            JAR_FILE=onlearn-admin-ui-${{ steps.mvn_build.outputs.onlearn_admin_ui_artefact_version }}.jar
             JAR_FILE=onlearn-admin-ui.jar

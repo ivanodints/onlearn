@@ -13,6 +13,4 @@ public interface DisciplineRepository extends JpaRepository<Discipline, Long> {
     @Query("select d from Discipline d where (d.title like :title or :title is null)")
     Discipline findByTitle (@Param("title") String title);
 
-//    @Query("select f from Faculty f where SIZE ( f.disciplines) > 1")
-//    List<Faculty> findByDisciplineId (@Param("faculty_id") Long id);
 }

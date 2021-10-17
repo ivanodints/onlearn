@@ -49,15 +49,10 @@
             <artifactId>hibernate-java8</artifactId>
             <version>5.1.10.Final</version>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>ru.portal.onlearn</groupId>
-            <artifactId>onlearn-ui</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
 
         <dependency>

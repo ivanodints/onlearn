@@ -12,7 +12,6 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>onlearn-picture-service</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
     <name>onlearn-picture-service</name>
 
     <build>
@@ -43,7 +42,7 @@
         <dependency>
             <groupId>ru.portal.onlearn</groupId>
             <artifactId>onlearn-database</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

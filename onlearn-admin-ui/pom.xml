@@ -93,7 +93,7 @@
         <dependency>
             <groupId>ru.portal.onlearn</groupId>
             <artifactId>onlearn-database</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>ru.portal.onlearn</groupId>
@@ -112,13 +112,13 @@
         <dependency>
             <groupId>ru.portal.onlearn</groupId>
             <artifactId>onlearn-picture-service</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>ru.portal.onlearn</groupId>
             <artifactId>onlearn-database</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
 

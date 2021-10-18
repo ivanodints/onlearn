@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.11, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: education_db_test_v2
+-- Host: 127.0.0.1    Database: onlearn_db
 -- ------------------------------------------------------
 -- Server version	8.0.11
 
@@ -16,30 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `user_roles`
+-- Table structure for table `faculty_order`
 --
 
-DROP TABLE IF EXISTS `user_roles`;
+DROP TABLE IF EXISTS `faculty_order`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `user_roles` (
-  `user_id` bigint(20) NOT NULL,
-  `role_id` bigint(20) NOT NULL,
-  PRIMARY KEY (`user_id`,`role_id`),
-  KEY `FKf16ot1h0cml43ggxu4olwgkue` (`role_id`),
-  CONSTRAINT `FK55itppkw3i07do3h7qoclqd4k` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
-  CONSTRAINT `FKf16ot1h0cml43ggxu4olwgkue` FOREIGN KEY (`role_id`) REFERENCES `web_role` (`id`)
+CREATE TABLE `faculty_order` (
+  `orders_id` bigint(20) NOT NULL,
+  `faculty_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`orders_id`,`faculty_id`),
+  KEY `FKalw48p3r8b7eb2u0yribbh6og` (`faculty_id`),
+  CONSTRAINT `FKalw48p3r8b7eb2u0yribbh6og` FOREIGN KEY (`faculty_id`) REFERENCES `faculty` (`id`),
+  CONSTRAINT `FKcdo3hj4d307corqyy63r5mqma` FOREIGN KEY (`orders_id`) REFERENCES `orders` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `user_roles`
+-- Dumping data for table `faculty_order`
 --
 
-LOCK TABLES `user_roles` WRITE;
-/*!40000 ALTER TABLE `user_roles` DISABLE KEYS */;
-INSERT INTO `user_roles` VALUES (1,1),(2,1),(3,1),(25,1),(30,3),(28,4),(29,4);
-/*!40000 ALTER TABLE `user_roles` ENABLE KEYS */;
+LOCK TABLES `faculty_order` WRITE;
+/*!40000 ALTER TABLE `faculty_order` DISABLE KEYS */;
+INSERT INTO `faculty_order` VALUES (1,5);
+/*!40000 ALTER TABLE `faculty_order` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.11, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: education_db_test_v2
+-- Host: 127.0.0.1    Database: onlearn_db
 -- ------------------------------------------------------
 -- Server version	8.0.11
 
@@ -16,29 +16,28 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `employee_disc`
+-- Table structure for table `web_role`
 --
 
-DROP TABLE IF EXISTS `employee_disc`;
+DROP TABLE IF EXISTS `web_role`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `employee_disc` (
-  `disc_id` bigint(20) NOT NULL,
-  `employee_id` bigint(20) NOT NULL,
-  PRIMARY KEY (`disc_id`,`employee_id`),
-  KEY `FKtdrvnc3vtbdrs1frrrbxef6jd` (`employee_id`),
-  CONSTRAINT `FKqbggghwte9d0jbxjt451vcs1f` FOREIGN KEY (`disc_id`) REFERENCES `discipline` (`id`),
-  CONSTRAINT `FKtdrvnc3vtbdrs1frrrbxef6jd` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `web_role` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UK_byd02r5voc2ix94umgl7nrtf9` (`title`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `employee_disc`
+-- Dumping data for table `web_role`
 --
 
-LOCK TABLES `employee_disc` WRITE;
-/*!40000 ALTER TABLE `employee_disc` DISABLE KEYS */;
-/*!40000 ALTER TABLE `employee_disc` ENABLE KEYS */;
+LOCK TABLES `web_role` WRITE;
+/*!40000 ALTER TABLE `web_role` DISABLE KEYS */;
+INSERT INTO `web_role` VALUES (1,'ROLE_ADMIN'),(2,'ROLE_GUEST'),(4,'ROLE_STUDENT'),(3,'ROLE_SUPER-ADMIN');
+/*!40000 ALTER TABLE `web_role` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-10-17 19:41:21
+-- Dump completed on 2021-10-17 19:41:23

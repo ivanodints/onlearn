@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.11, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: education_db_test_v2
+-- Host: 127.0.0.1    Database: onlearn_db
 -- ------------------------------------------------------
 -- Server version	8.0.11
 

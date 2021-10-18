@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.11, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: education_db_test_v2
+-- Host: 127.0.0.1    Database: onlearn_db
 -- ------------------------------------------------------
 -- Server version	8.0.11
 
@@ -16,38 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `student`
+-- Table structure for table `orders`
 --
 
-DROP TABLE IF EXISTS `student`;
+DROP TABLE IF EXISTS `orders`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `student` (
+CREATE TABLE `orders` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `date_of_birth` date NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `middle_name` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `phone_number` varchar(12) NOT NULL,
-  `sex` varchar(255) NOT NULL,
-  `surname` varchar(255) NOT NULL,
-  `user_id` bigint(20) NOT NULL,
+  `student_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `UK_bkix9btnoi1n917ll7bplkvg5` (`user_id`),
-  UNIQUE KEY `UK_fe0i52si7ybu0wjedj6motiim` (`email`),
-  UNIQUE KEY `UK_i3xrfnuv2icsd1vhvn6c108ec` (`phone_number`),
-  CONSTRAINT `FKk5m148xqefonqw7bgnpm0snwj` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `FKa1w39imx35e4w12gc9tnrqk1c` (`student_id`),
+  CONSTRAINT `FKa1w39imx35e4w12gc9tnrqk1c` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `student`
+-- Dumping data for table `orders`
 --
 
-LOCK TABLES `student` WRITE;
-/*!40000 ALTER TABLE `student` DISABLE KEYS */;
-INSERT INTO `student` VALUES (3,'1985-05-09','oleg123@gma.com','Петрович','Олег','+79166578913','мужской','Ягодка',23),(5,'1999-12-10','testUI@testUI.ru','testUI','testUI','+71234567891','testUI','testUI',28),(7,'1999-12-12','testUItwo@testUItwo.ru','testUItwo','testUItwo','+71234567812','men','testUItwo',29);
-/*!40000 ALTER TABLE `student` ENABLE KEYS */;
+LOCK TABLES `orders` WRITE;
+/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders` VALUES (1,NULL);
+/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -59,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-10-17 19:41:22
+-- Dump completed on 2021-10-17 19:41:23

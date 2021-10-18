@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class IndexAdminController {
 
     @Secured({"ADMIN"})
-    @GetMapping("/admin")
+    @GetMapping("/onlearn/admin")
     public String indexAdminPage(Model model){
 
         model.addAttribute("allDirection", "None");

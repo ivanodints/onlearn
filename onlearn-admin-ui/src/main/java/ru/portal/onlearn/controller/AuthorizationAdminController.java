@@ -12,7 +12,7 @@ import ru.portal.onlearn.error.NotFoundException;
 @RequestMapping
 public class AuthorizationAdminController {
 
-    @GetMapping("admin/login")
+    @GetMapping("/onlearn/admin/login")
     public String signForm() {
         return "authorization";
     }

@@ -17,7 +17,7 @@
     <div class="content p-4">
         <h2 class="mb-4" th:if="${create}">Добавить нового сотрудника</h2>
 
-        <form th:object="${user}" method="post" th:action="@{/admin/userPost}" enctype="multipart/form-data">
+        <form th:object="${user}" method="post" th:action="@{/onlearn/admin/userPost}" enctype="multipart/form-data">
         <div class="card mb-4">
             <div class="card-body">
                 <input th:type="hidden" th:field="*{id}" >

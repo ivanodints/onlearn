@@ -19,6 +19,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
+@RequestMapping
 public class EmployeeAdminController{
 
     private final EmployeeAdminService employeeAdminService;
@@ -38,7 +39,7 @@ public class EmployeeAdminController{
     }
 
     @Secured({"ADMIN"})
-    @GetMapping("/admin/employee")
+    @GetMapping("/onlearn/admin/employee")
     public String adminEmployeePage(Model model){
         model.addAttribute("activePage", "Employees");
         model.addAttribute("users", userRepository.findAll());
@@ -47,15 +48,15 @@ public class EmployeeAdminController{
     }
 
     @Secured({"SUPER-ADMIN"})
-    @DeleteMapping("/admin/employee/{id}/delete")
+    @DeleteMapping("/onlearn/admin/employee/{id}/delete")
     public String adminDeleteEmployee(Model model, @PathVariable("id") Long id){
         model.addAttribute("activePage", "Employees");
         employeeAdminService.deleteEmployeeById(id);
-        return "redirect:/admin/employee";
+        return "redirect:/onlearn/admin/employee";
     }
 
     @Secured({"ADMIN"})
-    @GetMapping ("/admin/employee/create")
+    @GetMapping ("/onlearn/admin/employee/create")
     public String adminEmployeeCreatePage(Model model){
 
         List <User> userList = userRepository.findAll();
@@ -71,7 +72,7 @@ public class EmployeeAdminController{
     }
 
     @Secured({"ADMIN"})
-    @GetMapping("/admin/employee/{id}/edit")
+    @GetMapping("/onlearn/admin/employee/{id}/edit")
     public String adminEditEmployee(Model model, @PathVariable("id") Long id){
 
         model.addAttribute("edit",true);
@@ -84,7 +85,7 @@ public class EmployeeAdminController{
     }
 
     @Secured({"ADMIN"})
-    @PostMapping("/admin/employeePost")
+    @PostMapping("/onlearn/admin/employeePost")
     public String adminPostEmployee(@Valid @ModelAttribute("employee") EmployeeAdminDTO employeeAdminDTO, BindingResult bindingResult, Model model,
                                     RedirectAttributes redirectAttributes){
         model.addAttribute("activePage", "Employees");
@@ -99,11 +100,11 @@ public class EmployeeAdminController{
         } catch (Exception ex) {
             redirectAttributes.addFlashAttribute("error", true);
             if (employeeAdminDTO.getId() == null){
-                return "redirect:/admin/employee/create";
+                return "redirect:/onlearn/admin/employee/create";
             }
-            return "redirect:/admin/employee/" + employeeAdminDTO.getId() + "/edit";
+            return "redirect:/onlearn/admin/employee/" + employeeAdminDTO.getId() + "/edit";
         }
-        return "redirect:/admin/employee";
+        return "redirect:/onlearn/admin/employee";
     }
 
 }

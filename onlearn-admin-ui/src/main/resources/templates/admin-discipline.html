@@ -16,7 +16,7 @@
             <div class="card mb-4">
 
                 <div class="card-body">
-                    <form class="form-group" th:action="@{/admin/discipline/create}">
+                    <form class="form-group" th:action="@{/onlearn/admin/discipline/create}">
                         <button id="create_new" type="submit" class="btn btn-primary">Добавить учебную дисциплину</button>
                     </form>
 
@@ -37,11 +37,11 @@
                                 <td th:text="${discipline.getDescription()}"></td>
                                 <td th:text="${discipline.getFacultyTitle()}"></td>
                                 <td>
-                                    <a th:href="@{/admin/discipline/{id}/edit(id=${discipline.getId()})}"
+                                    <a th:href="@{/onlearn/admin/discipline/{id}/edit(id=${discipline.getId()})}"
                                         class="btn btn-icon btn-pill btn-primary" data-toggle="tooltip" title="Edit">
                                         <i class="fa fa-fw fa-edit"></i>
                                     </a>
-                                    <form sec:authorize="hasAnyRole('ROLE_SUPER-ADMIN')" th:action="@{/admin/discipline/{id}/delete(id=${discipline.getId()})}" th:method="delete"
+                                    <form sec:authorize="hasAnyRole('ROLE_SUPER-ADMIN')" th:action="@{/onlearn/admin/discipline/{id}/delete(id=${discipline.getId()})}" th:method="delete"
                                         class="d-inline">
                                         <button id="delete_btn" class="btn btn-icon btn-pill btn-danger"
                                             data-toggle="tooltip" title="Delete">

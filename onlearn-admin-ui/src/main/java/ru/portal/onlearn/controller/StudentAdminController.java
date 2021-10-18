@@ -18,6 +18,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
+@RequestMapping
 public class StudentAdminController {
 
     private final StudentRepository studentRepository;
@@ -34,7 +35,7 @@ public class StudentAdminController {
     }
 
     @Secured({"ADMIN"})
-    @GetMapping("/admin/student")
+    @GetMapping("/onlearn/admin/student")
     public String adminStudentPage(Model model){
         model.addAttribute("activePage", "Students");
         model.addAttribute("users", userRepository.findAll());
@@ -43,15 +44,15 @@ public class StudentAdminController {
     }
 
     @Secured({"SUPER-ADMIN"})
-    @DeleteMapping("/admin/student/{id}/delete")
+    @DeleteMapping("/onlearn/admin/student/{id}/delete")
     public String adminDeleteStudent(Model model, @PathVariable("id") Long id){
         model.addAttribute("activePage", "Students");
         studentAdminService.deleteStudentById(id);
-        return "redirect:/admin/student";
+        return "redirect:/onlearn/admin/student";
     }
 
     @Secured({"ADMIN"})
-    @GetMapping ("/admin/student/create")
+    @GetMapping ("/onlearn/admin/student/create")
     public String adminStudentCreatePage(Model model){
 
         List<User> userList = userRepository.findAll();
@@ -66,7 +67,7 @@ public class StudentAdminController {
     }
 
     @Secured({"ADMIN"})
-    @GetMapping("/admin/student/{id}/edit")
+    @GetMapping("/onlearn/admin/student/{id}/edit")
     public String adminEditStudent(Model model, @PathVariable("id") Long id){
         
         model.addAttribute("edit",true);
@@ -78,7 +79,7 @@ public class StudentAdminController {
     }
 
     @Secured({"ADMIN"})
-    @PostMapping("/admin/studentPost")
+    @PostMapping("/onlearn/admin/studentPost")
     public String adminPostStudent(Model model, RedirectAttributes redirectAttributes,
                                    @Valid @ModelAttribute("student") StudentAdminDTO studentAdminDTO,
                                    BindingResult bindingResult){
@@ -97,10 +98,10 @@ public class StudentAdminController {
         } catch (Exception ex) {
             redirectAttributes.addFlashAttribute("error", true);
             if (studentAdminDTO.getId() == null){
-                return "redirect:/admin/student/create";
+                return "redirect:/onlearn/admin/student/create";
             }
-            return "redirect:/admin/student/" + studentAdminDTO.getId() + "/edit";
+            return "redirect:/onlearn/admin/student/" + studentAdminDTO.getId() + "/edit";
         }
-        return "redirect:/admin/student";
+        return "redirect:/onlearn/admin/student";
     }
 }

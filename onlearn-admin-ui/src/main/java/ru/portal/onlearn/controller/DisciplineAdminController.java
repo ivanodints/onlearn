@@ -17,6 +17,7 @@ import ru.portal.onlearn.service.FacultyAdminService;
 import javax.validation.Valid;
 
 @Controller
+@RequestMapping
 public class DisciplineAdminController {
 
     private final DisciplineAdminService disciplineAdminService;
@@ -33,7 +34,7 @@ public class DisciplineAdminController {
     }
 
     @Secured({"ADMIN"})
-    @GetMapping("/admin/discipline")
+    @GetMapping("/onlearn/admin/discipline")
     public String adminDisciplinesPage(Model model){
         model.addAttribute("activePage", "Disciplines");
         model.addAttribute("disciplines", disciplineAdminService.findAllDiscipline());
@@ -42,7 +43,7 @@ public class DisciplineAdminController {
     }
 
     @Secured({"SUPER-ADMIN"})
-    @DeleteMapping("/admin/discipline/{id}/delete")
+    @DeleteMapping("/onlearn/admin/discipline/{id}/delete")
     public String adminDeleteDiscipline(Model model, @PathVariable("id") Long id){
         model.addAttribute("activePage", "Disciplines");
         disciplineAdminService.deleteDisciplineById(id);
@@ -50,7 +51,7 @@ public class DisciplineAdminController {
     }
 
     @Secured({"ADMIN"})
-    @GetMapping ("/admin/discipline/create")
+    @GetMapping ("/onlearn/admin/discipline/create")
     public String adminDisciplineCreatePage(Model model){
         model.addAttribute("create", true);
         model.addAttribute("activePage", "Disciplines");
@@ -60,7 +61,7 @@ public class DisciplineAdminController {
     }
 
     @Secured({"ADMIN"})
-    @GetMapping("/admin/discipline/{id}/edit")
+    @GetMapping("/onlearn/admin/discipline/{id}/edit")
     public String adminEditDiscipline(Model model, @PathVariable("id") Long id){
         model.addAttribute("edit",true);
         model.addAttribute("activePage", "Disciplines");
@@ -70,7 +71,7 @@ public class DisciplineAdminController {
     }
 
     @Secured({"ADMIN"})
-    @PostMapping("/admin/disciplinePost")
+    @PostMapping("/onlearn/admin/disciplinePost")
     public String adminPostDiscipline(Model model, RedirectAttributes redirectAttributes,
                                       @Valid @ModelAttribute("discipline") DisciplineAdminDTO disciplineAdminDTO,
                                       BindingResult bindingResult){
@@ -85,11 +86,11 @@ public class DisciplineAdminController {
         } catch (Exception ex) {
             redirectAttributes.addFlashAttribute("error", true);
             if (disciplineAdminDTO.getId() == null){
-                return "redirect:/admin/discipline/create";
+                return "redirect:/onlearn/admin/discipline/create";
             }
-            return "redirect:/admin/discipline/" + disciplineAdminDTO.getId() + "/edit";
+            return "redirect:/onlearn/admin/discipline/" + disciplineAdminDTO.getId() + "/edit";
         }
-        return "redirect:/admin/discipline";
+        return "redirect:/onlearn/admin/discipline";
     }
 
 }

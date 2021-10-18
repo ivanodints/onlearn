@@ -18,7 +18,7 @@
             <h2 class="mb-4" th:if="${edit}">Редактировать учебное направление</h2>
             <h2 class="mb-4" th:if="${create}">Создать учебное направление</h2>
 
-            <form th:object="${direction}" method="post" th:action="@{/admin/directionPost}"
+            <form th:object="${direction}" method="post" th:action="@{/onlearn/admin/directionPost}"
                 enctype="multipart/form-data">
                 <div class="card mb-4">
                     <div class="card-body">

@@ -27,7 +27,7 @@ public class DirectionAdminController {
     }
 
     @Secured({"ADMIN"})
-    @GetMapping("/admin/direction")
+    @GetMapping("/onlearn/admin/direction")
     public String adminDirectionsPage(Model model){
         model.addAttribute("activePage", "Directions");
         model.addAttribute("directions", directionAdminService.findAllDirection());
@@ -35,15 +35,16 @@ public class DirectionAdminController {
     }
 
     @Secured({"SUPER-ADMIN"})
-    @DeleteMapping("/admin/direction/{id}/delete")
+    @DeleteMapping("/onlearn/admin/direction/{id}/delete")
     public String adminDeleteDirection(Model model, @PathVariable("id") Long id){
         model.addAttribute("activePage", "Directions");
         directionAdminService.deleteDirectionById(id);
-        return "redirect:/admin/direction";
+        return "redirect:/onlearn/admin/direction";
     }
 
+
     @Secured({"ADMIN"})
-    @GetMapping ("/admin/direction/create")
+    @GetMapping ("/onlearn/admin/direction/create")
     public String adminDirectionCreatePage(Model model){
         model.addAttribute("create", true);
         model.addAttribute("activePage", "Directions");
@@ -52,7 +53,7 @@ public class DirectionAdminController {
     }
 
     @Secured({"ADMIN"})
-    @GetMapping("/admin/direction/{id}/edit")
+    @GetMapping("/onlearn/admin/direction/{id}/edit")
     public String adminEditDirection(Model model, @PathVariable("id") Long id){
         model.addAttribute("edit",true);
         model.addAttribute("activePage", "Directions");
@@ -61,7 +62,7 @@ public class DirectionAdminController {
     }
 
     @Secured({"ADMIN"})
-    @PostMapping("/admin/directionPost")
+    @PostMapping("/onlearn/admin/directionPost")
     public String adminPostDirection(Model model, RedirectAttributes redirectAttributes,
                                      @Valid @ModelAttribute("direction") DirectionAdminDTO directionAdminDTO,
                                      BindingResult bindingResult){
@@ -76,10 +77,10 @@ public class DirectionAdminController {
         } catch (Exception ex) {
             redirectAttributes.addFlashAttribute("error", true);
             if (directionAdminDTO.getId() == null){
-                return "redirect:/admin/direction/create";
+                return "redirect:/onlearn/admin/direction/create";
             }
-            return "redirect:/admin/direction/" + directionAdminDTO.getId() + "/edit";
+            return "redirect:/onlearn/admin/direction/" + directionAdminDTO.getId() + "/edit";
         }
-        return "redirect:/admin/direction";
+        return "redirect:/onlearn/admin/direction";
     }
 }

@@ -18,7 +18,7 @@
         <h2 class="mb-4" th:if="${edit}">Редактировать дапартамент</h2>
         <h2 class="mb-4" th:if="${create}">Создать дапартамент</h2>
 
-        <form th:object="${department}" method="post" th:action="@{/admin/departmentPost}">
+        <form th:object="${department}" method="post" th:action="@{/onlearn/admin/departmentPost}">
             <div class="card mb-4">
                 <div class="card-body">
                     <input th:type="hidden" th:field="*{id}">

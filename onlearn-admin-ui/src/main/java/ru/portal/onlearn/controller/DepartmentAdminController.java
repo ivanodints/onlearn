@@ -26,7 +26,7 @@ public class DepartmentAdminController {
     }
 
     @Secured({"ADMIN"})
-    @GetMapping("/admin/department")
+    @GetMapping("/onlearn/admin/department")
     public String adminDepartmentsPage(Model model){
         model.addAttribute("activePage", "Departments");
         model.addAttribute("departments", departmentAdminService.findAllDepartment());
@@ -34,15 +34,15 @@ public class DepartmentAdminController {
     }
 
     @Secured({"SUPER-ADMIN"})
-    @DeleteMapping("/admin/department/{id}/delete")
+    @DeleteMapping("/onlearn/admin/department/{id}/delete")
     public String adminDeleteDepartment(Model model, @PathVariable("id") Long id){
         model.addAttribute("activePage", "Departments");
         departmentAdminService.deleteDepartmentById(id);
-        return "redirect:/admin/department";
+        return "redirect:/onlearn/admin/department";
     }
 
     @Secured({"ADMIN"})
-    @GetMapping ("/admin/department/create")
+    @GetMapping ("/onlearn/admin/department/create")
     public String adminDepartmentCreatePage(Model model){
         model.addAttribute("create", true);
         model.addAttribute("activePage", "Departments");
@@ -51,7 +51,7 @@ public class DepartmentAdminController {
     }
 
     @Secured({"ADMIN"})
-    @GetMapping("/admin/department/{id}/edit")
+    @GetMapping("/onlearn/admin/department/{id}/edit")
     public String adminEditDepartment(Model model, @PathVariable("id") Long id){
         model.addAttribute("edit",true);
         model.addAttribute("activePage", "Departments");
@@ -60,7 +60,7 @@ public class DepartmentAdminController {
     }
 
     @Secured({"ADMIN"})
-    @PostMapping("/admin/departmentPost")
+    @PostMapping("/onlearn/admin/departmentPost")
     public String adminPostDepartment(Model model, RedirectAttributes redirectAttributes, @Valid Department department){
         model.addAttribute("activePage", "Departments");
         try {
@@ -68,10 +68,10 @@ public class DepartmentAdminController {
         } catch (Exception ex) {
             redirectAttributes.addFlashAttribute("error", true);
             if (department.getId() == null){
-                return "redirect:/admin/department/create";
+                return "redirect:/onlearn/admin/department/create";
             }
-            return "redirect:/admin/department/" + department.getId() + "/edit";
+            return "redirect:/onlearn/admin/department/" + department.getId() + "/edit";
         }
-        return "redirect:/admin/department";
+        return "redirect:/onlearn/admin/department";
     }
 }

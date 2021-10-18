@@ -18,7 +18,7 @@
             <h2 class="mb-4" th:if="${edit}">Редактировать учебную дисциплину</h2>
             <h2 class="mb-4" th:if="${create}">Создать учебную дисциплину</h2>
 
-            <form th:object="${discipline}" method="post" th:action="@{/admin/disciplinePost}"
+            <form th:object="${discipline}" method="post" th:action="@{/onlearn/admin/disciplinePost}"
                   enctype="multipart/form-data">
                 <div class="card mb-4">
                     <div class="card-body">

@@ -71,7 +71,7 @@ public class PictureController {
         Direction direction = pictureService.getDirectionByPictureId(pictureId).get();
 
         pictureService.removePicture(pictureId);
-        return "redirect:/admin/direction/" + direction.getId() + "/edit";
+        return "redirect:/onlearn/admin/direction/" + direction.getId() + "/edit";
     }
 
     @GetMapping("/deleteDisciplinePicture/{pictureId}")
@@ -79,7 +79,7 @@ public class PictureController {
         Discipline discipline = pictureService.getDisciplineByPictureId(pictureId).get();
 
         pictureService.removePicture(pictureId);
-        return "redirect:/admin/discipline/" + discipline.getId() + "/edit";
+        return "redirect:/onlearn/admin/discipline/" + discipline.getId() + "/edit";
     }
 
     @GetMapping("/deleteFacultyPicture/{pictureId}")
@@ -87,7 +87,7 @@ public class PictureController {
         Faculty faculty = pictureService.getFacultyByPictureId(pictureId).get();
 
         pictureService.removePicture(pictureId);
-        return "redirect:/admin/faculty/" + faculty.getId() + "/edit";
+        return "redirect:/onlearn/admin/faculty/" + faculty.getId() + "/edit";
     }
 
     @GetMapping("/deleteEmployeePicture/{pictureId}")
@@ -95,7 +95,7 @@ public class PictureController {
         Employee employee = pictureService.getEmployeeByPictureId(pictureId).get();
 
         pictureService.removePicture(pictureId);
-        return "redirect:/admin/employee/" + employee.getId() + "/edit";
+        return "redirect:/onlearn/admin/employee/" + employee.getId() + "/edit";
     }
 
     @GetMapping("/deleteStudentPicture/{pictureId}")
@@ -106,7 +106,7 @@ public class PictureController {
         pictureService.removePicture(pictureId);
 //            pictureRepository.deleteById(pictureId);
 
-        return "redirect:/admin/student/" + student.getId() + "/edit";
+        return "redirect:/onlearn/admin/student/" + student.getId() + "/edit";
 
     }
 }

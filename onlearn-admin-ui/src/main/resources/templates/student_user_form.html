@@ -18,7 +18,7 @@
         <h2 class="mb-4" th:if="${edit}">Редактировать данные студента</h2>
 <!--        <h2 class="mb-4" th:if="${create}">Добавить нового сотрудника</h2>-->
 
-        <form th:object="${user}" method="post" th:action="@{/admin/userPost}">
+        <form th:object="${user}" method="post" th:action="@{/onlearn/admin/userPost}">
             <div class="card mb-4">
                 <div class="card-body">
                     <input th:type="hidden" th:field="*{id}">

@@ -16,7 +16,7 @@
         <div class="card mb-4">
 
             <div class="card-body">
-                <form class="form-group" th:action="@{/admin/department/create}">
+                <form class="form-group" th:action="@{/onlearn/admin/department/create}">
                     <button id="create_new" type="submit" class="btn btn-primary">Добавить департамент</button>
                 </form>
 
@@ -31,11 +31,11 @@
                         <td th:text="${department.getId()}"></td>
                         <td th:text="${department.getTitle()}"></td>
                         <td>
-                            <a th:href="@{/admin/department/{id}/edit(id=${department.getId()})}"
+                            <a th:href="@{/onlearn/admin/department/{id}/edit(id=${department.getId()})}"
                                class="btn btn-icon btn-pill btn-primary" data-toggle="tooltip" title="Edit">
                                 <i class="fa fa-fw fa-edit"></i>
                             </a>
-                            <form sec:authorize="hasAnyRole('ROLE_SUPER-ADMIN')" th:action="@{/admin/direction/{id}/delete(id=${department.getId()})}" th:method="delete"
+                            <form sec:authorize="hasAnyRole('ROLE_SUPER-ADMIN')" th:action="@{/onlearn/admin/department/{id}/delete(id=${department.getId()})}" th:method="delete"
                                   class="d-inline">
                                 <button id="delete_btn" class="btn btn-icon btn-pill btn-danger"
                                         data-toggle="tooltip" title="Delete">

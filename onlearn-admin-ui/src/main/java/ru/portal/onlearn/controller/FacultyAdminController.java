@@ -29,7 +29,7 @@ public class FacultyAdminController {
     }
 
     @Secured({"ADMIN"})
-    @GetMapping("/admin/faculty")
+    @GetMapping("/onlearn/admin/faculty")
     public String adminFacultyPage(Model model){
         model.addAttribute("activePage", "Faculties");
         model.addAttribute("faculties", facultyAdminService.findAllFaculties());
@@ -37,15 +37,15 @@ public class FacultyAdminController {
     }
 
     @Secured({"SUPER-ADMIN"})
-    @DeleteMapping("/admin/faculty/{id}/delete")
+    @DeleteMapping("/onlearn/admin/faculty/{id}/delete")
     public String adminDeleteFaculty(Model model, @PathVariable("id") Long id){
         model.addAttribute("activePage", "Faculties");
         facultyAdminService.deleteFacultyById(id);
-        return "redirect:/admin/faculty";
+        return "redirect:/onlearn/admin/faculty";
     }
 
     @Secured({"ADMIN"})
-    @GetMapping ("/admin/faculty/create")
+    @GetMapping ("/onlearn/admin/faculty/create")
     public String adminFacultyCreatePage(Model model){
         model.addAttribute("create", true);
         model.addAttribute("activePage", "Faculties");
@@ -55,7 +55,7 @@ public class FacultyAdminController {
     }
 
     @Secured({"ADMIN"})
-    @GetMapping("/admin/faculty/{id}/edit")
+    @GetMapping("/onlearn/admin/faculty/{id}/edit")
     public String adminEditFaculty(Model model, @PathVariable("id") Long id){
         model.addAttribute("edit",true);
         model.addAttribute("activePage", "Faculties");
@@ -65,7 +65,7 @@ public class FacultyAdminController {
     }
 
     @Secured({"ADMIN"})
-    @PostMapping("/admin/facultyPost")
+    @PostMapping("/onlearn/admin/facultyPost")
     public String adminPostFaculty(Model model, RedirectAttributes redirectAttributes, FacultyAdminDTO facultyAdminDTO){
         model.addAttribute("activePage", "Faculties");
         try {
@@ -73,10 +73,10 @@ public class FacultyAdminController {
         } catch (Exception ex) {
             redirectAttributes.addFlashAttribute("error", true);
             if (facultyAdminDTO.getId() == null){
-                return "redirect:/admin/faculty/create";
+                return "redirect:/onlearn/admin/faculty/create";
             }
-            return "redirect:/admin/faculty/" + facultyAdminDTO.getId() + "/edit";
+            return "redirect:/onlearn/admin/faculty/" + facultyAdminDTO.getId() + "/edit";
         }
-        return "redirect:/admin/faculty";
+        return "redirect:/onlearn/admin/faculty";
     }
 }

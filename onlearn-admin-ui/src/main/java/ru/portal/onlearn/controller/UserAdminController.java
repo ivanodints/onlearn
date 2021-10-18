@@ -16,6 +16,7 @@ import ru.portal.onlearn.service.UserAdminService;
 import javax.validation.Valid;
 
 @Controller
+@RequestMapping
 public class UserAdminController {
 
     private final UserRepository userRepository;
@@ -30,7 +31,7 @@ public class UserAdminController {
     }
 
     @Secured({"ADMIN"})
-    @GetMapping("/admin/user")
+    @GetMapping("/onlearn/admin/user")
     public String adminUserPage(Model model){
         model.addAttribute("activePage", "Users");
         model.addAttribute("users", userAdminService.findAllUser());
@@ -39,7 +40,7 @@ public class UserAdminController {
     }
 
     @Secured({"SUPER-ADMIN"})
-    @DeleteMapping("/admin/user/{id}/delete")
+    @DeleteMapping("/onlearn/admin/user/{id}/delete")
     public String adminDeleteUser(Model model, @PathVariable("id") Long id){
         model.addAttribute("activePage", "Users");
         userAdminService.deleteUserById(id);
@@ -48,7 +49,7 @@ public class UserAdminController {
 
 
     @Secured({"ADMIN"})
-    @GetMapping ("/admin/user/create")
+    @GetMapping ("/onlearn/admin/user/create")
     public String adminUserCreatePage(Model model){
         model.addAttribute("create", true);
         model.addAttribute("activePage", "Users");
@@ -60,7 +61,7 @@ public class UserAdminController {
     }
 
     @Secured({"ADMIN"})
-    @GetMapping ("/admin/userStudent/create")
+    @GetMapping ("/onlearn/admin/userStudent/create")
     public String adminStudentUserCreatePage(Model model){
         model.addAttribute("create", true);
         model.addAttribute("activePage", "Users");
@@ -70,7 +71,7 @@ public class UserAdminController {
     }
 
     @Secured({"ADMIN"})
-    @GetMapping("/admin/user/{id}/edit")
+    @GetMapping("/onlearn/admin/user/{id}/edit")
     public String adminEditUser(Model model, @PathVariable("id") Long id){
         model.addAttribute("edit",true);
         model.addAttribute("activePage", "Users");
@@ -80,7 +81,7 @@ public class UserAdminController {
     }
 
     @Secured({"ADMIN"})
-    @GetMapping("/admin/userStudent/{id}/edit")
+    @GetMapping("/onlearn/admin/userStudent/{id}/edit")
     public String adminEditUserStudent(Model model, @PathVariable("id") Long id){
         model.addAttribute("edit",true);
         model.addAttribute("activePage", "Users");
@@ -90,7 +91,7 @@ public class UserAdminController {
     }
 
     @Secured({"ADMIN"})
-    @PostMapping("/admin/userPost")
+    @PostMapping("/onlearn/admin/userPost")
     public String adminPostUser(Model model, RedirectAttributes redirectAttributes, @Valid @ModelAttribute("user") UserAdminDTO userAdminDTO,
                                 BindingResult bindingResult){
         model.addAttribute("activePage", "Users");
@@ -104,15 +105,15 @@ public class UserAdminController {
         } catch (Exception ex) {
             redirectAttributes.addFlashAttribute("error", true);
             if (userAdminDTO.getId() == null){
-                return "redirect:/admin/user/create";
+                return "redirect:/onlearn/admin/user/create";
             }
-            return "redirect:/admin/user/" + userAdminDTO.getId() + "/edit";
+            return "redirect:/onlearn/admin/user/" + userAdminDTO.getId() + "/edit";
         }
-        return "redirect:/admin/employee/create";
+        return "redirect:/onlearn/admin/employee/create";
     }
 
     @Secured({"ADMIN"})
-    @PostMapping("/admin/userStudentPost")
+    @PostMapping("/onlearn/admin/userStudentPost")
     public String adminPostStudentUser(Model model, RedirectAttributes redirectAttributes, @Valid @ModelAttribute("user") UserAdminDTO userAdminDTO,
                                 BindingResult bindingResult){
         model.addAttribute("activePage", "Users");
@@ -126,11 +127,11 @@ public class UserAdminController {
         } catch (Exception ex) {
             redirectAttributes.addFlashAttribute("error", true);
             if (userAdminDTO.getId() == null){
-                return "redirect:/admin/userStudent/create";
+                return "redirect:/onlearn/admin/userStudent/create";
             }
-            return "redirect:/admin/userStudent/" + userAdminDTO.getId() + "/edit";
+            return "redirect:/onlearn/admin/userStudent/" + userAdminDTO.getId() + "/edit";
         }
-        return "redirect:/admin/student/create";
+        return "redirect:/onlearn/admin/student/create";
     }
 
 }

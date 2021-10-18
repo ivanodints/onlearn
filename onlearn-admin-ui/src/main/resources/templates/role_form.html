@@ -18,7 +18,7 @@
             <h2 class="mb-4" th:if="${edit}">Edit role</h2>
             <h2 class="mb-4" th:if="${create}">Create role</h2>
 
-            <form th:object="${role}" method="post" th:action="@{/admin/role}">
+            <form th:object="${role}" method="post" th:action="@{/onlearn/admin/role}">
                 <div class="card mb-4">
                     <div class="card-body">
                         <input th:type="hidden" th:field="*{id}">

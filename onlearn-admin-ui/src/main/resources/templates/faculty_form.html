@@ -18,7 +18,7 @@
             <h2 class="mb-4" th:if="${edit}">Редактировать факультет</h2>
             <h2 class="mb-4" th:if="${create}">Создать новый факультет</h2>
 
-            <form th:object="${faculty}" method="post" th:action="@{/admin/facultyPost}" enctype="multipart/form-data">
+            <form th:object="${faculty}" method="post" th:action="@{/onlearn/admin/facultyPost}" enctype="multipart/form-data">
                 <div class="card mb-4">
                     <div class="card-body">
                         <input th:type="hidden" th:field="*{id}">

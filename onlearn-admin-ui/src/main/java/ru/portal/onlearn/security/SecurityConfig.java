@@ -45,19 +45,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/js/**").permitAll()
                 .antMatchers("/webfonts/*").permitAll()
                 .antMatchers("/webjars/**").permitAll()
-                .antMatchers("/admin/**").authenticated()
+                .antMatchers("/onlearn/admin/**").authenticated()
                 .antMatchers("/resources/**").permitAll()
                 .antMatchers("/**").permitAll()
-                .antMatchers("/admin").authenticated()
+                .antMatchers("/onlearn/admin/").authenticated()
 
                 .and()
                 .formLogin()
-                .loginPage("/admin/login")
+                .loginPage("/onlearn/admin/login")
                 .loginProcessingUrl("/authenticateTheUser")
                 .permitAll()
                 .and()
                 .logout()
-                .logoutSuccessUrl("/admin/login")
+                .logoutSuccessUrl("/onlearn/admin/")
                 .permitAll();
     }
 

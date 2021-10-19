@@ -15,6 +15,8 @@ public interface StudentService {
 
     Optional<StudentDTO> findStudentById(Long id);
 
+    Optional<StudentDTO> findByUserLogin(String login);
+
     void saveStudent (StudentDTO studentDTO) throws IOException;
 
     static StudentDTO mapToStudentDTO(Student student) {
@@ -29,4 +31,6 @@ public interface StudentService {
                 student.getPhoneNumber(),
                 student.getPictures().stream().map(picture -> new PictureDTO(picture)).collect(Collectors.toList()));
     }
+
+
 }

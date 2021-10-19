@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zxx" class="no-js" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
 	<!-- Mobile Specific Meta -->
@@ -49,8 +49,8 @@
 				</div>
 				<nav id="nav-menu-container">
 					<ul class="nav-menu">
-						<li class="menu"><a href="/onlearn">Главная</a></li>
-						<li class="menu" ><a href="about">О нас</a></li>
+						<li class="menu-active"><a href="/onlearn">Главная</a></li>
+						<li><a href="about.html">О нас</a></li>
 						<li class="menu-has-children"><a href="/onlearn/direction">Направления</a>
 							<ul>
 								<li th:each="direction : ${allDirection}" >
@@ -66,12 +66,21 @@
 							</ul>
 						</li>
 						<li><a href="/contacts">Контакты</a></li>
-						<li><a href="/login">Войти</a>
+						<li sec:authorize="hasRole('STUDENT')">
+								<a  th:href="@{/student/{login} (login = ${userOnline})}">Профиль студента</a>
+						</li>
+						<li>
+						<li>
+							<form class="form-inline my-2 my-lg-0" form-method="post" th:action="@{/logout}">
+								<button sec:authorize="isAuthenticated()" class="btn btn-outline-danger my-2 my-sm-0 btn-sm" type="submit">Выйти</button>
+								<button sec:authorize="isAnonymous()" th:href="@{~/login}" class="btn btn-outline-info my-2 my-sm-0 btn-sm" type="submit">Войти</button>
+							</form>
+						</li>
 							<ul>
-								<li><a th:href="@{/registration}">Зарегистрироваться</a></li>
+								<li ><a th:href="@{/registration}">Зарегистрироваться</a></li>
 							</ul>
 						</li>
-						<li class="menu-has-children"><a href="/onlearn/cart">Корзина</a>
+						<li sec:authorize="hasRole('STUDENT')" class="menu-has-children"><a href="/onlearn/cart">Корзина</a>
 					</ul>
 				</nav><!-- #nav-menu-container -->
 			</div>
@@ -145,7 +154,7 @@
 							действительно нравится. Не откладывайте на завтра.
 						</p>
 					</div>
-					<a href="direction" class="primary-btn">Исследуй</a>
+					<a href="courses.html" class="primary-btn">Исследуй</a>
 				</div>
 			</div>
 		</div>

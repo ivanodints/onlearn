@@ -159,7 +159,8 @@
                                 <td><h3 th:text="${totalPrice}"></h3> </td>
                                 <td>
                                     <form th:method="post" th:action="@{/cart/saveToOrder}">
-                                    <button class="btn-outline-danger">Купить</button>
+                                        <button th:if="${lineItems.isEmpty()}" class="btn-flat" disabled>Купить</button>
+                                        <button th:if="${!lineItems.isEmpty()}" class="btn-outline-danger">Купить</button>
                                     </form>
                                 </td>
                             </div>

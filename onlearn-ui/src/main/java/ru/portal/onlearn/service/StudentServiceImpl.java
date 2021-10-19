@@ -7,29 +7,41 @@ import ru.portal.onlearn.controller.DTO.StudentDTO;
 import ru.portal.onlearn.error.NotFoundException;
 import ru.portal.onlearn.model.Picture;
 import ru.portal.onlearn.model.Student;
+import ru.portal.onlearn.model.User;
 import ru.portal.onlearn.repo.StudentRepository;
+import ru.portal.onlearn.repo.UserRepository;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class StudentServiceImpl implements StudentService {
 
     private final StudentRepository studentRepository;
     private final PictureService pictureService;
+    private final UserRepository userRepository;
 
-    public StudentServiceImpl(StudentRepository studentRepository, PictureService pictureService) {
+    public StudentServiceImpl(StudentRepository studentRepository, PictureService pictureService, UserRepository userRepository) {
         this.studentRepository = studentRepository;
         this.pictureService = pictureService;
+        this.userRepository = userRepository;
     }
 
     @Override
     public Optional<StudentDTO> findStudentById(Long id) {
         return studentRepository.findById(id).map(student -> StudentService.mapToStudentDTO(student));
     }
+
+    @Override
+    public Optional<StudentDTO> findByUserLogin(String login) {
+        Student student = studentRepository.findByUserLogin(login);
+        StudentDTO studentDTO = new StudentDTO(student);
+        return Optional.of(studentDTO);
+//        return null;
+    }
+
+
 
     @Override
     @Transactional
@@ -63,4 +75,5 @@ public class StudentServiceImpl implements StudentService {
         }
         studentRepository.save(student);
     }
+
 }

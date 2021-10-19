@@ -27,6 +27,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Optional<UserDTO> findUserByLogin(String login) {
+        return userRepository.findUserByLogin(login).map(user -> UserService.mapToUserDTO(user));
+
+    }
+
+//    @Override
+//    public Long findUserByName(String name) {
+//        return userRepository.findUserByName(name);
+//
+//    }
+
+    @Override
     public void saveUser(UserDTO userDTO) throws IOException {
         User user;
         if (userDTO.getId() != null) user = userRepository.findById(userDTO.getId())

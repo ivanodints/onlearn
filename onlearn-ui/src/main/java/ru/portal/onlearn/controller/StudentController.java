@@ -46,14 +46,14 @@ public class StudentController {
     }
 
     //    @Secured({"STUDENT"})
-    @GetMapping("/registration/student/{id}/edit")
-    public String adminEditStudent(Model model, @PathVariable("id") Long id){
-
-        model.addAttribute("edit",true);
-        model.addAttribute("activePage", "Students");
-        model.addAttribute("student", studentService.findStudentById(id).orElseThrow(NotFoundException::new));
-        return "student_form_create";
-    }
+//    @GetMapping("/registration/student/{login}/edit")
+//    public String adminEditStudent(Model model, @PathVariable("login") String login){
+//
+//        model.addAttribute("edit",true);
+//        model.addAttribute("activePage", "Students");
+////        model.addAttribute("student", studentRepository.findByUserLogin(login));
+//        return "student_form_create";
+//    }
 
     @PostMapping("/registration/studentPost")
     public String adminPostStudent(Model model, RedirectAttributes redirectAttributes,

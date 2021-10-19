@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+  <!-- Mobile Specific Meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Favicon-->
+  <link rel="shortcut icon" href="../static/img/fav.png">
+  <!-- Author Meta -->
+  <meta name="author" content="codepixer">
+  <!-- Meta Description -->
+  <meta name="description" content="">
+  <!-- Meta Keyword -->
+  <meta name="keywords" content="">
+  <!-- meta character set -->
+  <meta charset="UTF-8">
+  <base href="/">
+  <!-- Site Title -->
+  <title>Students</title>
+
+  <!--Google Font
+  ============================================= -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:300,500,600" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500i" rel="stylesheet">
+
+  <!--CSS
+  ============================================= -->
+  <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/themify-icons/0.1.2/css/themify-icons.css}">
+  <link rel="stylesheet" th:href="@{/css/linearicons.css}">
+  <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+  <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+  <link rel="stylesheet" th:href="@{/css/magnific-popup.css}">
+  <link rel="stylesheet" th:href="@{/css/nice-select.css}">
+  <link rel="stylesheet" th:href="@{/css/animate.min.css}">
+  <link rel="stylesheet" th:href="@{/css/owl.carousel.css}">
+  <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+
+<body>
+
+<!-- Start Header Area -->
+<header id="header">
+  <div class="container">
+    <div class="row align-items-center justify-content-between d-flex">
+      <div id="logo">
+        <a href="/onlearn"><img th:src="@{/img/logo.png}" alt="" title="" /></a>
+      </div>
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="menu-active"><a href="/onlearn">Главная</a>
+          </li>
+          <li><a href="about.html">О нас</a>
+          </li>
+          <li class="menu-has-children"><a href="/onlearn/direction">Направления</a>
+            <ul>
+              <li th:each="direction : ${allDirection}" >
+                <a th:href="@{/{id}/direction (id = ${direction.getId()})}"
+                   th:text="${direction.getTitle()}">Программирование</a></li>
+            </ul>
+          </li>
+          <li class="menu-has-children"><a href="/onlearn/faculty">Факультеты</a>
+            <ul>
+              <li th:each="faculty : ${findAll}">
+                <a th:href="@{/faculty/{id} (id = ${faculty.getId()})}"
+                   th:text="${faculty.getTitle()}">факультеты</a></li>
+            </ul>
+          </li>
+          <li class="menu-has-children"><a href="/onlearn/discipline">Дисциплины</a>
+            <ul>
+              <li th:each="discipline : ${allDiscipline}">
+                <a th:href="@{/discipline/{id} (id = ${discipline.getId()})}"
+                   th:text="${discipline.getTitle()}">Дисциплина</a>
+              </li>
+            </ul>
+          </li>
+          <li><a th:href="@{/student/{login}/edit (login = ${student})}">Профиль студента</a></li>
+          <li><a href="/onlearn">Контакты</a></li>
+          <li><a href="/onlearn/student/login">Войти</a>
+            <ul>
+              <li><a href="/onlearn/student/create">Зарегистрироваться</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav><!-- #nav-menu-container -->
+    </div>
+  </div>
+</header>
+<!-- End Header Area -->
+
+
+<!-- Start Banner Area -->
+<section class="banner-area relative">
+  <div class="container">
+    <div class="row d-flex align-items-center justify-content-center">
+      <div class="about-content col-lg-12">
+        <h1 class="text-white">
+          Данные пользователя
+        </h1>
+        <!--                <p>В этом разделе предствлены все Дисциплины которые есть на нашей образовательной площадке</p>-->
+        <!--                <div class="input-wrap">-->
+        <!--                    <form action="" class="form-box d-flex justify-content-between">-->
+        <!--                        <input type="text" placeholder="Поиск" class="form-control" name="username">-->
+        <!--                        <button type="submit" class="btn search-btn">Поиск</button>-->
+        <!--                    </form>-->
+        <!--                </div>-->
+      </div>
+    </div>
+  </div>
+  <!--    <div class="rocket-img">-->
+  <!--        <img th:src="@{/img/rocket.png}" alt="">-->
+  <!--    </div>-->
+</section>
+<!-- End Banner Area -->
+
+
+<!-- Start About Area -->
+<section class="about-area section-gap">
+  <!--    <div class="d-flex">-->
+  <!--        <div th:replace="fragments/sidebar :: sidebar"></div>-->
+
+  <div class="content p-4">
+    <!--            <div class="container">-->
+    <!--                                Welcome <span  th:replace="${name}"> </span>-->
+    <!--            </div>-->
+
+    <div class="content p-4">
+      <!--                <h2 class="mb-4" th:if="${create}">Новый студент</h2>-->
+
+      <!--                CУЙ СЮДА-->
+
+      <div class="content p-4">
+        <h2 class="mb-4" th:if="${edit}">Редактировать данные студента</h2>
+<!--        <h2 class="mb-4" th:if="${create}">Добавить нового студента</h2>-->
+
+        <form th:object="${student}" method="post" th:action="@{/student/studentPost}" enctype="multipart/form-data">
+          <div class="card mb-4">
+            <div class="card-body">
+              <input th:type="hidden" th:field="${student.id}">
+              <div class="form-group">
+                <label for="surname">Фамилия</label>
+                <input th:field="*{surname}" type="text" class="form-control" id="surname"
+                       placeholder="Введите фамилию студента" required>
+                <p class="text-danger" th:if="${#fields.hasErrors('surname')}"
+                   th:errors="*{surname}">Ошибка в фамилии</p>
+              </div>
+              <div class="form-group">
+                <label for="name">Имя</label>
+                <input th:field="*{name}" type="text" class="form-control" id="name"
+                       placeholder="Введите имя студента" required>
+                <p class="text-danger" th:if="${#fields.hasErrors('name')}"
+                   th:errors="*{name}">Ошибка в имени</p>
+              </div>
+              <div class="form-group">
+                <label for="middleName">Отчество</label>
+                <input th:field="*{middleName}" type="text" class="form-control" id="middleName"
+                       placeholder="Введите отчество студента" required>
+                <p class="text-danger" th:if="${#fields.hasErrors('middleName')}"
+                   th:errors="*{middleName}">Ошибка в отчестве</p>
+              </div>
+              <div class="form-group">
+                <label for="sex">Пол</label>
+                <input th:field="*{sex}" type="text" class="form-control" id="sex"
+                       placeholder="Введите пол студента от 3 до 7 символов" required>
+                <p class="text-danger" th:if="${#fields.hasErrors('sex')}"
+                   th:errors="*{sex}">Ошибка в указанном поле</p>
+              </div>
+              <div class="form-group">
+                <label for="date">Дата рождения</label>
+                <input th:field="*{dateOfBirth}" type="date" class="form-control" id="date"
+                       placeholder="Введите дату рождения студента" required>
+              </div>
+              <div class="form-group">
+                <label for="e-mail">E-mail</label>
+                <input th:field="*{email}" type="email" class="form-control" id="e-mail"
+                       placeholder="Введите e-mail студента" required>
+                <p class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
+                  Некорректно введен email</p>
+              </div>
+              <div class="form-group">
+                <label for="phoneNumber">Номер телефона</label>
+                <input th:field="*{phoneNumber}" type="text" class="form-control" id="phoneNumber"
+                       placeholder="+79099099999" required>
+                <p class="text-danger" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}">
+                  некорректный номер</p>
+              </div>
+
+              <div class="form-group">
+                <label for="user">Логин</label>
+                <select multiple class="form-control" id="user" th:field="*{user}" required>
+                  <option th:each="user : ${user}" th:text="${user.getLogin()}" th:value="${user.id}">
+                  </option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="newPictures">Логотип</label>
+                <input th:field="*{newPictures}" type="file" class="form-control" id="newPictures"
+                       placeholder="Загрузите изображение" multiple>
+              </div>
+
+            </div>
+
+            <div class="card-footer bg-white">
+              <button id="submint_obj" type="submit" class="btn btn-primary">Применить</button>
+            </div>
+          </div>
+        </form>
+
+        <div class="container-fluid mb-4">
+          <div class="card-columns" style="column-count: 5">
+            <div class="card" th:each="pict : ${student.pictures}">
+              <form class="card-header"
+                    th:action="@{/picture/deleteStudentPicture/{pictureId}(pictureId=${pict.id})}">
+                Picture<button class="float-right"><i class="fa fa-times"></i></button>
+              </form>
+              <img class="card-img-bottom" th:src="@{/picture/{pictureId}(pictureId=${pict.id})}"
+                   width="40%" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+      <!--    тута конец-->
+
+
+    </div>
+</section>
+<!-- End About Area -->
+
+
+
+
+<<!-- Start Faculty Area -->
+<footer th:replace="fragments/teachers.html :: teachers"></footer>
+<!-- End Faculty Area -->
+
+<!--    &lt;!&ndash; Start Testimonials Area &ndash;&gt;-->
+<!--    <footer th:replace="fragments/review.html :: review"></footer>-->
+<!--    &lt;!&ndash; End Testimonials Area &ndash;&gt;-->
+
+<!-- Start Footer Area -->
+<footer th:replace="fragments/footer.html :: footer"></footer>
+<!-- End Footer Area -->
+
+<!-- ####################### Start Scroll to Top Area ####################### -->
+<div id="back-top">
+  <a title="Go to Top" href="#"></a>
+</div>
+<!-- ####################### End Scroll to Top Area ####################### -->
+
+<!-- ####################### Start Scripts ####################### -->
+<script th:replace="fragments/scripts.html :: scripts" ></script>
+<!-- ####################### End Scripts ####################### -->
+</body>
+
+</html>

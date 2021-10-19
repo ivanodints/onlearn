@@ -35,7 +35,7 @@ public class DirectionController {
 
         model.addAttribute("allDirection", directionService.findAllDirection());
 
-        return "direction";
+        return "directionUI";
     }
 
     @GetMapping("/{id}/direction")
@@ -46,7 +46,7 @@ public class DirectionController {
         model.addAttribute("directionId", directionService.findDirectionById(id).orElseThrow(Exception::new));
         model.addAttribute("facultyList",facultyService.findByDirectionId(id));
 
-        return "directionID";
+        return "directionIDUI";
     }
 
 

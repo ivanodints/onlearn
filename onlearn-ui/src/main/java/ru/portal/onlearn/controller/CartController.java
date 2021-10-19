@@ -17,6 +17,8 @@ import ru.portal.onlearn.service.DirectionService;
 import ru.portal.onlearn.service.FacultyService;
 import ru.portal.onlearn.service.model.LineItem;
 
+import java.security.Principal;
+
 @Controller
 @RequestMapping("/cart")
 public class CartController {
@@ -29,7 +31,8 @@ public class CartController {
     public final OrderRepository orderRepository;
 
     @Autowired
-    public CartController(CartService cartService, DirectionService directionService, FacultyService facultyService, OrderRepository orderRepository) {
+    public CartController(CartService cartService, DirectionService directionService, FacultyService facultyService,
+                          OrderRepository orderRepository) {
         this.cartService = cartService;
         this.directionService = directionService;
         this.facultyService = facultyService;
@@ -62,12 +65,12 @@ public class CartController {
 
     @PostMapping("/saveToOrder")
     @Transactional
-    public String addToOrder(Model model){
+    public String addToOrder(Model model, Principal principal){
         model.addAttribute("lineItems", cartService.getLineItems());
         model.addAttribute("totalPrice",cartService.totalPrice());
         model.addAttribute("allDirection", directionService.findAllDirection());
         model.addAttribute("facultyAll",facultyService.findAllFaculty());
-        cartService.saveToOrder();
+        cartService.saveToOrder(principal.getName());
         return "thankyou";
     }
 

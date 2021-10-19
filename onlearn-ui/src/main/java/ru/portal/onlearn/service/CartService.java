@@ -2,6 +2,7 @@ package ru.portal.onlearn.service;
 
 import ru.portal.onlearn.controller.DTO.FacultyDTO;
 import ru.portal.onlearn.controller.DTO.OrderDTO;
+import ru.portal.onlearn.controller.DTO.StudentDTO;
 import ru.portal.onlearn.model.Faculty;
 import ru.portal.onlearn.service.model.LineItem;
 
@@ -22,5 +23,5 @@ public interface CartService {
     Set<Faculty> getFacultyList();
 
 //    void saveToOrder(OrderDTO orderDTO);
-    void saveToOrder();
+    void saveToOrder(String login);
 }

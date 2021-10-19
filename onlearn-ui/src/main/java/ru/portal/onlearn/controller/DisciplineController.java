@@ -47,7 +47,7 @@ public class DisciplineController {
         model.addAttribute("findAll", facultyService.findAllFaculty());
         model.addAttribute("allDiscipline", disciplineService.findAllDiscipline());
 
-        return "discipline";
+        return "disciplineUI";
 
     }
 
@@ -60,6 +60,6 @@ public class DisciplineController {
         model.addAttribute("disciplineAll",disciplineService.findAllDiscipline());
         model.addAttribute("disciplineId", disciplineService.findDisciplineById(id).orElseThrow(NotFoundException::new));
 
-        return "disciplineId";
+        return "disciplineIdUI";
     }
 }

@@ -45,7 +45,7 @@ public class FacultyController {
 
         model.addAttribute("allFaculties", facultyService.findAllFaculty());
 
-        return "faculty";
+        return "facultyUI";
     }
 
     @GetMapping("/faculty/{id}")
@@ -53,7 +53,7 @@ public class FacultyController {
         model.addAttribute("pictures", pictureService.findAllPictures());
         model.addAttribute("facultyAll",facultyService.findAllFaculty());
         model.addAttribute("facultyId",facultyService.findFacultyById(id).orElseThrow(Exception::new));
-        return "facultyID";
+        return "facultyIDUI";
     }
 
 }

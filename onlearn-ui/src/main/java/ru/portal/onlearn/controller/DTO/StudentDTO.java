@@ -56,7 +56,7 @@ public class StudentDTO implements Serializable {
 
     private List<PictureDTO> pictures;
 
-    private MultipartFile[] newPictures;
+    private MultipartFile[] newUIPictures;
 
 
     public StudentDTO(Long id, String name, String surname, String middleName, Date dateOfBirth, String sex,

@@ -61,21 +61,14 @@
                         </li>
                         <li class="menu-has-children"><a href="/onlearn/faculty">Факультеты</a>
                             <ul>
-                                <li th:each="faculty : ${findAll}">
+                                <li th:each="faculty : ${facultyAll}">
                                     <a th:href="@{/faculty/{id} (id = ${faculty.getId()})}"
                                         th:text="${faculty.getTitle()}">факультеты</a>
                                 </li>
                             </ul>
                         </li>
-                        <li class="menu-has-children"><a href="/onlearn/discipline">Дисциплины</a>
-                            <ul>
-                                <li th:each="discipline : ${allDiscipline}">
-                                    <a th:href="@{/discipline/{id} (id = ${discipline.getId()})}"
-                                        th:text="${discipline.getTitle()}">Дисциплина</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <!--                    <li><a th:href="@{/student/{login} (login = ${student})}">Профиль студента</a></li>-->
+
+
                         <li class="menu-has-children"><a href="/onlearn">Контакты</a></li>
                         <li class="menu-has-children">
                             <form class="form-inline my-2 my-lg-0" form-method="post" th:action="@{/logout}">
@@ -134,8 +127,8 @@
                 <!--                CУЙ СЮДА-->
 
                 <div class="content p-4">
-                    <h2 class="mb-4" th:if="${edit}">Редактировать данные студента</h2>
-                    <!--        <h2 class="mb-4" th:if="${create}">Добавить нового студента</h2>-->
+                    <h2 class="mb-4" th:if="${edit}">Данные студента</h2>
+
 
                     <form th:object="${student}" method="post" th:action="@{/student/studentPost}"
                         enctype="multipart/form-data">
@@ -191,35 +184,19 @@
                                         некорректный номер</p>
                                 </div>
                                 <div class="form-group">
-                                    <a th:href="@{/student/{login}/edit(login=${login})}">
-                                        Редактировать
-
-                                    </a>
+                                    <a th:href="@{/student/{login}/edit(login=${login})}">Редактировать</a>
                                 </div>
-
-                                <div class="form-group">
-                                    <label for="newPictures">Логотип</label>
-                                    <input th:field="*{newPictures}" type="file" class="form-control" id="newPictures"
-                                        placeholder="Загрузите изображение" multiple>
-                                </div>
-
 
                             </div>
 
                         </div>
                     </form>
-                                            <div class="card-footer bg-white">
-                                                <button id="submint_obj" type="submit" class="btn btn-primary">Применить</button>
-                                            </div>
+
                     <div class="container-fluid mb-4">
                         <div class="card-columns" style="column-count: 5">
-                            <div class="card" th:each="pict : ${student.pictures}">
-                                <form class="card-header"
-                                    th:action="@{/picture/deleteStudentPicture/{pictureId}(pictureId=${pict.id})}">
-                                    Picture<button class="float-right"><i class="fa fa-times"></i></button>
-                                </form>
+                            <div class="card" th:each="pict : ${studentPict.pictures}">
                                 <img class="card-img-bottom" th:src="@{/picture/{pictureId}(pictureId=${pict.id})}"
-                                    width="40%" />
+                                     width="40%" />
                             </div>
                         </div>
                     </div>

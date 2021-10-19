@@ -15,7 +15,7 @@
 	<!-- meta character set -->
 	<meta charset="UTF-8">
 	<!-- Site Title -->
-	<title>About</title>
+	<title>OnLearn</title>
 
 	<!--
 			Google Font
@@ -26,7 +26,7 @@
 	<!--
 			CSS
 			============================================= -->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/themify-icons/0.1.2/css/themify-icons.css">
+	<link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/themify-icons/0.1.2/css/themify-icons.css}">
 	<link rel="stylesheet" th:href="@{/css/linearicons.css}">
 	<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
 	<link rel="stylesheet" th:href="@{/css/bootstrap.css}">
@@ -35,6 +35,7 @@
 	<link rel="stylesheet" th:href="@{/css/animate.min.css}">
 	<link rel="stylesheet" th:href="@{/css/owl.carousel.css}">
 	<link rel="stylesheet" th:href="@{/css/main.css}">
+	<link rel="stylesheet" th:href="@{/css/list_direction.css}">
 </head>
 
 <body>
@@ -44,29 +45,33 @@
 		<div class="container">
 			<div class="row align-items-center justify-content-between d-flex">
 				<div id="logo">
-					<a href="index.html"><img src="img/logo.png" alt="" title="" /></a>
+					<a href="/onlearn"><img src="img/logo.png" alt="" title="" /></a>
 				</div>
 				<nav id="nav-menu-container">
 					<ul class="nav-menu">
-						<li class="menu-active"><a href="index.html">Главная</a></li>
-						<li><a href="about.html">О нас</a></li>
-						<li class="menu-has-children"><a href="">Факультеты</a>
+						<li class="menu-active"><a href="/onlearn">Главная</a></li>
+						<li><a href="about">О нас</a></li>
+						<li class="menu-has-children"><a href="/onlearn/direction">Направления</a>
 							<ul>
-								<li><a href="elements.html">Программирование</a></li>
-								<li><a href="elements.html">Маркетинг</a></li>
-								<li><a href="elements.html">Аналитика</a></li>
-								<li><a href="elements.html">Бизнес</a></li>
-								<li><a href="elements.html">Дизайн</a></li>
-								<li><a href="elements.html">Геймдев</a></li>
-								<li><a href="elements.html">Управление</a></li>
+								<li th:each="direction : ${allDirection}" >
+									<a th:href="@{/{id}/direction (id = ${direction.getId()})}"
+									   th:text="${direction.getTitle()}">Программирование</a></li>
 							</ul>
 						</li>
-						<li><a href="contact.html">Контакты</a></li>
-						<li><a href="contact.html">Войти</a>
+						<li class="menu-has-children"><a href="/onlearn/faculty">Факультеты</a>
 							<ul>
-								<li><a href="elements.html">Зарегистрироваться</a></li>
+								<li th:each="faculty : ${facultyAll}" >
+									<a th:href="@{/faculty/{id} (id = ${faculty.getId()})}"
+									   th:text="${faculty.getTitle()}">Программирование</a></li>
 							</ul>
 						</li>
+						<li><a href="/contacts">Контакты</a></li>
+						<li><a href="/login">Войти</a>
+							<ul>
+								<li><a th:href="@{/registration}">Зарегистрироваться</a></li>
+							</ul>
+						</li>
+						<li class="menu-has-children"><a href="/onlearn/cart">Корзина</a>
 					</ul>
 				</nav><!-- #nav-menu-container -->
 			</div>
@@ -85,9 +90,9 @@
 					</h1>
 					<div class="link-nav">
 						<span class="box">
-							<a href="index.html">Главная </a>
+							<a href="index">Главная </a>
 							<i class="lnr lnr-arrow-right"></i>
-							<a href="about.html">О нас</a>
+							<a href="about">О нас</a>
 						</span>
 					</div>
 				</div>
@@ -327,28 +332,9 @@
 	</div>
 	<!-- ####################### End Scroll to Top Area ####################### -->
 
-	<script src="js/vendor/jquery-2.2.4.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-		crossorigin="anonymous"></script>
-	<script src="js/vendor/bootstrap.min.js"></script>
-	<script type="text/javascript"
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
-	<script src="js/easing.min.js"></script>
-	<script src="js/hoverIntent.js"></script>
-	<script src="js/superfish.min.js"></script>
-	<script src="js/jquery.ajaxchimp.min.js"></script>
-	<script src="js/jquery.magnific-popup.min.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<script src="js/owl-carousel-thumb.min.js"></script>
-	<script src="js/jquery.sticky.js"></script>
-	<script src="js/jquery.nice-select.min.js"></script>
-	<script src="js/parallax.min.js"></script>
-	<script src="js/waypoints.min.js"></script>
-	<script src="js/wow.min.js"></script>
-	<script src="js/jquery.counterup.min.js"></script>
-	<script src="js/mail-script.js"></script>
-	<script src="js/main.js"></script>
+	<!-- ####################### Start Scripts ####################### -->
+	<script th:replace="fragments/scripts.html :: scripts" ></script>
+	<!-- ####################### End Scripts ####################### -->
 </body>
 
 </html>

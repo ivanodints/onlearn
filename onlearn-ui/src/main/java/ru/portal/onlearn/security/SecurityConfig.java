@@ -43,10 +43,9 @@ public class  SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/js/**").permitAll()
                 .antMatchers("/webfonts/*").permitAll()
                 .antMatchers("/webjars/**").permitAll()
-                .antMatchers("/onlearn/student/**").permitAll()
+                .antMatchers("/student/**").hasRole("STUDENT")
                 .antMatchers("/admin/**").authenticated()
-//                .antMatchers("/student/**").hasRole("ADMIN")
-//                .antMatchers("/student/**").authenticated()
+
                 .antMatchers("/resources/**").permitAll()
                 .antMatchers("/**").permitAll()
 

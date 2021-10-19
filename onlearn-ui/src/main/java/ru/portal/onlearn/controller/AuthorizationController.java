@@ -19,7 +19,9 @@ import ru.portal.onlearn.service.StudentService;
 import ru.portal.onlearn.service.model.UserService;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping
@@ -42,57 +44,6 @@ public class AuthorizationController {
     @GetMapping("/login")
     public String signForm() {
         return "authorization";
-    }
-
-    @Secured({"STUDENT"})
-    @GetMapping("/student/{login}/edit")
-    public String adminEditStudent(Model model, @PathVariable("login") String login){
-
-        model.addAttribute("edit",true);
-        model.addAttribute("activePage", "Students");
-        model.addAttribute("student", studentRepository.findByUserLogin(login));
-        return "student_form";
-    }
-@GetMapping("/student/{login}")
-public String user(Model model,@PathVariable("login") String login) {
-//    UserDetails user = (UserDetails) authentication.getPrincipal();
-//    UserDetails userDetails = (UserDetails) org.springframework.security.core.context.SecurityContextHolder
-//            .getContext().getAuthentication().getPrincipal();
-//    String userName = userDetails.getUsername();
-//    id =userDetails.;
-//     id = userRepository.findUserByLogin(userName).map(user -> userService.findUserByLogin(userName));
-//    System.out.println("id: "+id);
-    //.findUserByLogin(userName).get().getId();
-
-    model.addAttribute("edit",true);
-        model.addAttribute("activePage", "Students");
-        model.addAttribute("student", studentRepository.findByUserLogin(login));
-//    System.out.println((UserDetails)authentication.getPrincipal());
-    return "student";
-}
-
-    @PostMapping("/student/studentPost")
-    public String adminPostStudent(Model model, RedirectAttributes redirectAttributes,
-                                   @Valid @ModelAttribute("student") StudentDTO studentDTO,
-                                   BindingResult bindingResult){
-        model.addAttribute("activePage", "Students");
-        List<User> userList = userRepository.findAll();
-
-        if (bindingResult.hasErrors()){
-            model.addAttribute("activePage", "Students");
-            model.addAttribute("user", userRepository.findAll());
-            return "student_form";
-        }
-        try {
-            studentService.saveStudent(studentDTO);
-        } catch (Exception ex) {
-            redirectAttributes.addFlashAttribute("error", true);
-//            if (studentDTO.getId() == null){
-//                return "redirect:/registration/newStudent";
-//            }
-            return "redirect:/student/student/" + studentDTO.getId() + "/edit";
-        }
-        return "redirect:/";
     }
 
     @ExceptionHandler

@@ -41,24 +41,15 @@ public class IndexController {
                             @RequestParam(value = "tableSize", required = false, defaultValue = "6") Integer tableSize,
                             @RequestParam(value = "sort", required = false) Optional<String> sort,
                             Model model,Principal principal){
-        String name= principal.getName();
-//        UserDetails userDetails = (UserDetails) org.springframework.security.core.context.SecurityContextHolder
-//            .getContext().getAuthentication().getPrincipal();
-//    String userName = userDetails.getUsername();
-//        String empty = null;
-//        System.out.println("name ="+userName);
+        String empty = null;
         model.addAttribute("allDirection", directionService.findAllDirection());
         model.addAttribute("facultyAll",facultyService.findAllFaculty());
-//        model.addAttribute("student",studentService.findStudentById(1L));
-//        return "index_auth";
-      if (!principal.getName().equals("")) {
+      if (principal !=null) {
         model.addAttribute("userOnline",principal.getName());
-          return "index_auth";
     } else
-    { return "index";}
-
+    { model.addAttribute("userOnline",empty);}
+        return "index";
     }
-
 }
 
 

@@ -5,8 +5,10 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 import ru.portal.onlearn.controller.DTO.FacultyDTO;
 import ru.portal.onlearn.controller.DTO.OrderDTO;
+import ru.portal.onlearn.controller.DTO.StudentDTO;
 import ru.portal.onlearn.model.Faculty;
 import ru.portal.onlearn.model.Order;
+import ru.portal.onlearn.model.Student;
 import ru.portal.onlearn.repo.FacultyRepository;
 import ru.portal.onlearn.repo.OrderRepository;
 import ru.portal.onlearn.repo.StudentRepository;
@@ -32,10 +34,6 @@ public class CartServiceImpl implements CartService, Serializable {
         this.lineItems = new HashMap<>();
     }
 
-//    @JsonCreator
-//    public CartServiceImpl(@JsonProperty("lineItems")List<LineItem> lineItems){
-//        this.lineItems = lineItems.stream().collect(Collectors.toMap(li -> li, LineItem::getQty));
-//    }
 
     @Override
     public void addFaculty(FacultyDTO facultyDTO) {
@@ -101,9 +99,9 @@ public class CartServiceImpl implements CartService, Serializable {
     }
 
     @Override
-    public void saveToOrder() {
+    public void saveToOrder(String login) {
         Order order = new Order();
-        order.setStudent(studentRepository.findBySurname("Семенов"));
+        order.setStudent(studentRepository.findByUserLogin(login));
         order.setFaculty(getFacultyList());
         orderRepository.save(order);
         lineItems.clear();

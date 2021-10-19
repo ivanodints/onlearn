@@ -38,37 +38,36 @@ public class StudentServiceImpl implements StudentService {
         Student student = studentRepository.findByUserLogin(login);
         StudentDTO studentDTO = new StudentDTO(student);
         return Optional.of(studentDTO);
-//        return null;
     }
 
 
 
     @Override
     @Transactional
-    public void saveStudent(StudentDTO studentAdminDTO) throws IOException {
+    public void saveStudent(StudentDTO studentDTO) throws IOException {
 
         Student student;
-        if (studentAdminDTO.getId() != null) student = studentRepository.findById(studentAdminDTO.getId())
+        if (studentDTO.getId() != null) student = studentRepository.findById(studentDTO.getId())
                 .orElseThrow(NotFoundException::new);
         else student = new Student();
-        student.setId(studentAdminDTO.getId());
-        student.setName(studentAdminDTO.getName());
-        student.setSurname(studentAdminDTO.getSurname());
-        student.setMiddleName(studentAdminDTO.getMiddleName());
-        student.setDateOfBirth(studentAdminDTO.getDateOfBirth());
-        student.setSex(studentAdminDTO.getSex());
-        student.setEmail(studentAdminDTO.getEmail());
-        student.setPhoneNumber(studentAdminDTO.getPhoneNumber());
-        student.setUser(studentAdminDTO.getUser());
-        if (studentAdminDTO.getNewPictures() != null){
-            for (MultipartFile newPicture : studentAdminDTO.getNewPictures()){
+        student.setId(studentDTO.getId());
+        student.setName(studentDTO.getName());
+        student.setSurname(studentDTO.getSurname());
+        student.setMiddleName(studentDTO.getMiddleName());
+        student.setDateOfBirth(studentDTO.getDateOfBirth());
+        student.setSex(studentDTO.getSex());
+        student.setEmail(studentDTO.getEmail());
+        student.setPhoneNumber(studentDTO.getPhoneNumber());
+        student.setUser(studentDTO.getUser());
+        if (studentDTO.getNewUIPictures() != null){
+            for (MultipartFile newUIPicture : studentDTO.getNewUIPictures()){
                 if (student.getPictures() == null){
                     student.setPictures(new ArrayList<>());
                 }
                 student.getPictures().add(new Picture(
-                        newPicture.getOriginalFilename(),
-                        newPicture.getContentType(),
-                        pictureService.createPictureData(newPicture.getBytes()),
+                        newUIPicture.getOriginalFilename(),
+                        newUIPicture.getContentType(),
+                        pictureService.createPictureData(newUIPicture.getBytes()),
                         student
                 ));
             }

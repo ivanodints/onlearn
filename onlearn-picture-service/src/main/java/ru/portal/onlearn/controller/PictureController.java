@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.Optional;
 
 @Controller
@@ -39,32 +40,6 @@ public class PictureController {
             resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
         }
     }
-
-//    @DeleteMapping("/{pictureId}")
-//    public String deletePicture(@PathVariable("pictureId") Long pictureId) {
-//        Direction direction = pictureService.getDirectionByPictureId(pictureId).get();
-//        Discipline discipline = pictureService.getDisciplineByPictureId(pictureId).get();
-//        Faculty faculty = pictureService.getFacultyByPictureId(pictureId).get();
-//        Employee employee = pictureService.getEmployeeByPictureId(pictureId).get();
-//        Student student = pictureService.getStudentByPictureId(pictureId).get();
-//
-//        if (direction != null){
-//            pictureService.removePicture(pictureId);
-//            return "redirect:/admin/direction/" + direction.getId() + "/edit";
-//        } else if (discipline != null){
-//            pictureService.removePicture(pictureId);
-//            return "redirect:/admin/discipline/" + discipline.getId() + "/edit";
-//        } else if (faculty != null){
-//            pictureService.removePicture(pictureId);
-//            return "redirect:/admin/faculty/" + faculty.getId() + "/edit";
-//        } else if (employee != null){
-//            pictureService.removePicture(pictureId);
-//            return "redirect:/admin/employee/" + employee.getId() + "/edit";
-//        } else {
-//            pictureService.removePicture(pictureId);
-//            return "redirect:/admin/student/" + student.getId() + "/edit";
-//        }
-//    }
 
     @GetMapping("/deleteDirectionPicture/{pictureId}")
     public String deleteDirectionPicture(@PathVariable("pictureId") Long pictureId) {
@@ -104,9 +79,21 @@ public class PictureController {
         Student student = pictureService.getStudentByPictureId(pictureId).get();
 
         pictureService.removePicture(pictureId);
-//            pictureRepository.deleteById(pictureId);
+
 
         return "redirect:/admin/student/" + student.getId() + "/edit";
+
+    }
+
+    @GetMapping("/ui/deleteStudentPicture/{pictureId}")
+    public String deleteStudentPictureUI(@PathVariable("pictureId") Long pictureId, Principal principal) {
+
+        Student student = pictureService.getStudentByPictureId(pictureId).get();
+
+        pictureService.removePicture(pictureId);
+
+
+        return "redirect:/student/" + principal.getName() + "/edit";
 
     }
 }

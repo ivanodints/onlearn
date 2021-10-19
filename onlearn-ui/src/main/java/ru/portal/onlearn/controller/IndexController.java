@@ -1,7 +1,6 @@
 package ru.portal.onlearn.controller;
 
 
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,7 +47,7 @@ public class IndexController {
         model.addAttribute("userOnline",principal.getName());
     } else
     { model.addAttribute("userOnline",empty);}
-        return "index";
+        return "indexUI";
     }
 }
 

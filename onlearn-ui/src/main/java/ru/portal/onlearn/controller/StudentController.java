@@ -17,6 +17,7 @@ import ru.portal.onlearn.service.StudentService;
 import ru.portal.onlearn.service.model.UserService;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -47,52 +48,71 @@ public class StudentController {
         List<User> userList = userRepository.findAll();
         User lastUser = userList.get(userList.size()-1);
 
+
         model.addAttribute("create", true);
         model.addAttribute("activePage", "Students");
         model.addAttribute("user", lastUser);
         model.addAttribute("student", new StudentDTO());
-        return "student_form_create";
+        model.addAttribute("facultyAll",facultyService.findAllFaculty());
+        model.addAttribute("allDirection", directionService.findAllDirection());
+        return "student_form_create_ui";
     }
 
     @Secured({"STUDENT"})
     @GetMapping("/student/{login}/edit")
-    public String adminEditStudent(Model model, @PathVariable("login") String login){
+    public String adminEditStudent(Model model, Principal principal, @PathVariable("login") String login){
+
+        User ourUser = new User();
+
+        List<User> userList = userRepository.findAll();
+
+        for(int i = 0; i<userList.size(); i++){
+            if (userList.get(i).getLogin().equals(principal.getName())){
+                ourUser = userList.get(i);
+            }
+        }
 
         model.addAttribute("edit",true);
         model.addAttribute("activePage", "Students");
-        model.addAttribute("student", studentRepository.findByUserLogin(login));
+        model.addAttribute("studentPict", studentRepository.findByUserLogin(login));
+        model.addAttribute("student", studentService.findByUserLogin(login));
         model.addAttribute("allDirection", directionService.findAllDirection());
         model.addAttribute("facultyAll",facultyService.findAllFaculty());
-        return "student_form";
-//        return "index";
+        model.addAttribute("principal",principal.getName());
+        model.addAttribute("user", ourUser);
+        return "student_form_edit_ui";
+
     }
 
     @GetMapping("/student/{login}")
     public String user(Model model,@PathVariable("login") String login) {
         model.addAttribute("edit",true);
         model.addAttribute("activePage", "Students");
-        model.addAttribute("student", studentRepository.findByUserLogin(login));
+        model.addAttribute("student", studentService.findByUserLogin(login));
         model.addAttribute("login",login);
-        return "student";
+        model.addAttribute("allDirection", directionService.findAllDirection());
+        model.addAttribute("facultyAll",facultyService.findAllFaculty());
+        model.addAttribute("studentPict", studentRepository.findByUserLogin(login));
+        return "studentUI";
     }
 
     @PostMapping("/student/studentPost")
     public String adminPostStudent(Model model, RedirectAttributes redirectAttributes,
                                    @Valid @ModelAttribute("student") StudentDTO studentDTO,
-                                   BindingResult bindingResult){
+                                   BindingResult bindingResult, Principal principal){
         model.addAttribute("activePage", "Students");
         List<User> userList = userRepository.findAll();
 
         if (bindingResult.hasErrors()){
             model.addAttribute("activePage", "Students");
             model.addAttribute("user", userRepository.findAll());
-            return "student_form";
+            return "student_form_ui";
         }
         try {
             studentService.saveStudent(studentDTO);
         } catch (Exception ex) {
             redirectAttributes.addFlashAttribute("error", true);
-            return "redirect:/student/student/" + studentDTO.getId() + "/edit";
+            return "redirect:/student/" + principal.getName() + "/edit";
         }
         return "redirect:/";
     }
@@ -107,7 +127,7 @@ public class StudentController {
         if (bindingResult.hasErrors()){
             model.addAttribute("activePage", "Students");
             model.addAttribute("user", userRepository.findAll());
-            return "student_form_create";
+            return "student_form_create_ui";
         }
         try {
             studentService.saveStudent(studentDTO);
@@ -116,7 +136,7 @@ public class StudentController {
             if (studentDTO.getId() == null){
                 return "redirect:/registration/newStudent";
             }
-            return "redirect:/registration/student/" + studentDTO.getId() + "/edit";
+            return "redirect:/registration/studentUI/" + studentDTO.getId() + "/edit";
         }
         return "redirect:/";
     }

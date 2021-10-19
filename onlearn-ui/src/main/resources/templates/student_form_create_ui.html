@@ -60,19 +60,12 @@
                     </li>
                     <li class="menu-has-children"><a href="/onlearn/faculty">Факультеты</a>
                         <ul>
-                            <li th:each="faculty : ${findAll}">
+                            <li th:each="faculty : ${facultyAll}">
                                 <a th:href="@{/faculty/{id} (id = ${faculty.getId()})}"
                                    th:text="${faculty.getTitle()}">факультеты</a></li>
                         </ul>
                     </li>
-                    <li class="menu-has-children"><a href="/onlearn/discipline">Дисциплины</a>
-                        <ul>
-                            <li th:each="discipline : ${allDiscipline}">
-                                <a th:href="@{/discipline/{id} (id = ${discipline.getId()})}"
-                                   th:text="${discipline.getTitle()}">Дисциплина</a>
-                            </li>
-                        </ul>
-                    </li>
+
 <!--                    <li><a href="/onlearn/student/">Профиль студента</a></li>-->
                     <li><a th:href="@{/student/{login}/edit (login = ${student})}">Профиль студента</a></li>
                     <li><a href="/onlearn">Контакты</a></li>
@@ -195,10 +188,9 @@
 
                                 <div class="form-group">
                                     <label for="newPictures">Логотип</label>
-                                    <input th:field="*{newPictures}" type="file" class="form-control" id="newPictures"
+                                    <input th:field="*{newUIPictures}" type="file" class="form-control" id="newPictures"
                                            placeholder="Загрузите изображение" multiple>
                                 </div>
-
                             </div>
 
                             <div class="card-footer bg-white">

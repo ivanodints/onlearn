@@ -61,20 +61,12 @@
             </li>
             <li class="menu-has-children"><a href="/onlearn/faculty">Факультеты</a>
               <ul>
-                <li th:each="faculty : ${findAll}">
+                <li th:each="faculty : ${facultyAll}">
                   <a th:href="@{/faculty/{id} (id = ${faculty.getId()})}" th:text="${faculty.getTitle()}">факультеты</a>
                 </li>
               </ul>
             </li>
-<!--            <li class="menu-has-children"><a href="/onlearn/discipline">Дисциплины</a>-->
-<!--              <ul>-->
-<!--                <li th:each="discipline : ${allDiscipline}">-->
-<!--                  <a th:href="@{/discipline/{id} (id = ${discipline.getId()})}"-->
-<!--                    th:text="${discipline.getTitle()}">Дисциплина</a>-->
-<!--                </li>-->
-<!--              </ul>-->
-<!--            </li>-->
-            <li><a th:href="@{/student/{login}/edit (login = ${student})}">Профиль студента</a></li>
+
             <li><a href="/onlearn">Контакты</a></li>
             <li><a href="/onlearn/student/login">Войти</a>
               <ul>

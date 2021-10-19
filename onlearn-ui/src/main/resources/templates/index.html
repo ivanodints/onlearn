@@ -76,10 +76,10 @@
 							</form>
 						</li>
 							<ul>
-								<li><a th:href="@{/registration}">Зарегистрироваться</a></li>
+								<li ><a th:href="@{/registration}">Зарегистрироваться</a></li>
 							</ul>
 						</li>
-						<li class="menu-has-children"><a href="/onlearn/cart">Корзина</a>
+						<li sec:authorize="hasRole('STUDENT')" class="menu-has-children"><a href="/onlearn/cart">Корзина</a>
 					</ul>
 				</nav><!-- #nav-menu-container -->
 			</div>

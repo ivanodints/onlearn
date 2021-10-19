@@ -73,7 +73,8 @@
                             </li>
                         </ul>
                     </li>
-                    <li><a href="/onlearn/student">Профиль студента</a></li>
+<!--                    <li><a href="/onlearn/student/">Профиль студента</a></li>-->
+                    <li><a th:href="@{/student/{login}/edit (login = ${student})}">Профиль студента</a></li>
                     <li><a href="/onlearn">Контакты</a></li>
                     <li><a href="/onlearn/student/login">Войти</a>
                         <ul>

@@ -44,7 +44,7 @@ public class  SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/webfonts/*").permitAll()
                 .antMatchers("/webjars/**").permitAll()
                 .antMatchers("/student/**").hasRole("STUDENT")
-                .antMatchers("/admin/**").authenticated()
+
 
                 .antMatchers("/resources/**").permitAll()
                 .antMatchers("/**").permitAll()

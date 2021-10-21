@@ -2,9 +2,13 @@ server {
     listen 80;
     server_name localhost;
 
-    location = /onlearn/admin {
+    location ^~ /onlearn/admin {
         proxy_pass http://onlearn-admin-ui:8080/onlearn/admin;
     }
+
+        location = /onlearn/admin/login {
+            proxy_pass http://onlearn-admin-ui:8080/onlearn/admin;
+        }
 
     location /onlearn {
         proxy_pass http://onlearn-ui:8080/onlearn;

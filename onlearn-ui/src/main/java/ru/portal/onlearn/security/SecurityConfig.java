@@ -52,7 +52,7 @@ public class  SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/onlearn/login")
-                .loginProcessingUrl("/authenticateTheUser")
+                .loginProcessingUrl("/authenticateTheStudentUser")
                 .permitAll()
                 .and()
                 .logout()

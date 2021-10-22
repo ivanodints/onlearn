@@ -31,6 +31,7 @@
 	<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
 	<link rel="stylesheet" th:href="@{/css/bootstrap.css}">
 	<link rel="stylesheet" th:href="@{/css/magnific-popup.css}">
+	<link rel="stylesheet" th:href="@{/css/magnific-popup.css}">
 	<link rel="stylesheet" th:href="@{/css/nice-select.css}">
 	<link rel="stylesheet" th:href="@{/css/animate.min.css}">
 	<link rel="stylesheet" th:href="@{/css/owl.carousel.css}">
@@ -72,7 +73,7 @@
 						<li>
 							<form class="form-inline my-2 my-lg-0" form-method="post" th:action="@{admin/logout}">
 								<a sec:authorize="isAuthenticated()" >Выйти</a>
-								<a sec:authorize="isAnonymous()" th:href="@{~/onlearn/admin/login}" >Войти</a>
+								<a sec:authorize="isAnonymous()" th:href="@{~/onlearn/login}" >Войти</a>
 							</form>
 
 						<ul>

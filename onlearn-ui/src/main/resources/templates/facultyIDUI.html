@@ -123,13 +123,13 @@
                 </div>
                     <a th:href="@{/faculty/{id}/listDisciplineFacultyUI (id = ${facultyId.getId()})}"
                        class="primary-btn">Список дисциплин</a>
-
-<!--                <a href="/onlearn/listDisciplineFacultyUI" class="primary-btn">Список дисциплин</a><br><br>-->
-                <div class="col-lg-5 col-md-6 about-right">
+                <p></p>
+                <div>
                     <form th:method="post" th:action="@{/cart}">
                         <input type="hidden" name="facultyId" th:value="${facultyId.getId()}">
                         <input type="hidden" name="qty" th:value="${1}">
-                        <button sec:authorize="isAuthenticated()" class="btn-outline-success">Добавить в корзину</button>
+
+                        <button sec:authorize="isAuthenticated()" class="primary-btn">Добавить в корзину</button>
                     </form>
                 </div>
             </div>

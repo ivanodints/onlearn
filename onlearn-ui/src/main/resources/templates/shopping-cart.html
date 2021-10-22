@@ -140,7 +140,7 @@
                             <td>
                                 <form th:method="delete" th:action="@{/cart}">
                                     <input type="hidden" name="facultyId" th:value="${lineItem.getFacultyDTO().getId()}">
-                                    <button class="remove__btn">Удалить</button>
+                                    <button class="btn btn-outline-danger primary-btn" >Удалить</button>
                                 </form>
                             </td>
                         </tr>
@@ -151,8 +151,8 @@
                                 <td><h3 th:text="${totalPrice}"></h3> </td>
                                 <td>
                                     <form th:method="post" th:action="@{/cart/saveToOrder}">
-                                        <button th:if="${lineItems.isEmpty()}" class="btn-flat" disabled>Купить</button>
-                                        <button th:if="${!lineItems.isEmpty()}" class="btn-outline-danger">Купить</button>
+                                        <button th:if="${lineItems.isEmpty()}" class="btn btn-outline-danger primary-btn" disabled>Купить</button>
+                                        <button th:if="${!lineItems.isEmpty()}" class="btn btn-outline-danger primary-btn">Купить</button>
                                     </form>
                                 </td>
                             </div>

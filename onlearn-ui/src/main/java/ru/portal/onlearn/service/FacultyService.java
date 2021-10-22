@@ -7,10 +7,7 @@ import ru.portal.onlearn.model.Discipline;
 import ru.portal.onlearn.model.Faculty;
 import ru.portal.onlearn.model.Student;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 

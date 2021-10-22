@@ -54,11 +54,4 @@ public class DisciplineDTO implements Serializable {
         this.employees = discipline.getEmployees();
     }
 
-    public String getFacultyTitle(){
-        if (faculty != null){
-            return faculty.stream().
-                    map(facultyTitle -> facultyTitle.getTitle()).collect(Collectors.joining(", "));
-        }
-        return null;
-    }
 }

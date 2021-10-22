@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="zxx" class="no-js" xmlns:th="http://www.thymeleaf.org">
+<html lang="zxx" class="no-js" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
     <!-- Mobile Specific Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Favicon-->
-    <link rel="shortcut icon" href="../static/img/fav.png">
+    <link rel="shortcut icon" href="img/fav.png">
     <!-- Author Meta -->
     <meta name="author" content="codepixer">
     <!-- Meta Description -->
@@ -15,17 +15,13 @@
     <!-- meta character set -->
     <meta charset="UTF-8">
     <!-- Site Title -->
-    <title>Discipline</title>
+    <title>DisciplineID</title>
 
-    <!--
-            Google Font
-            ============================================= -->
+    <!--Google Font============================================= -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,500,600" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500i" rel="stylesheet">
 
-    <!--
-            CSS
-            ============================================= -->
+    <!-- CSS============================================= -->
     <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/themify-icons/0.1.2/css/themify-icons.css}">
     <link rel="stylesheet" th:href="@{/css/linearicons.css}">
     <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
@@ -49,7 +45,7 @@
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
                         <li class="menu-active"><a href="/onlearn">Главная</a></li>
-                        <li><a href="about.html">О нас</a></li>
+                        <li><a href="/onlearn/about">О нас</a></li>
                         <li class="menu-has-children"><a href="/onlearn/direction">Направления</a>
                             <ul>
                                 <li th:each="direction : ${allDirection}" >
@@ -71,13 +67,24 @@
                                        th:text="${discipline.getTitle()}">Дисциплина</a>
                                 </li>
                             </ul>
-                        <li><a href="/contacts">Контакты</a></li>
-                        <li><a href="/login">Войти</a>
+                        <li><a href="/onleran/contact">Контакты</a></li>
+                        <li sec:authorize="hasRole('STUDENT')">
+                            <a  th:href="@{/student/{login} (login = ${userOnline})}">Профиль студента</a>
+                        </li>
+
+                        <li>
+                            <form class="form-inline my-2 my-lg-0" form-method="post" th:action="@{/logout}">
+                                <button sec:authorize="isAuthenticated()"
+                                        class="btn btn-outline-danger my-2 my-sm-0 btn-sm" type="submit">Выйти</button>
+                                <a sec:authorize="isAnonymous()" th:href="@{~/onlearn/login}" >Войти</a>
+                            </form>
+
                             <ul>
-                                <li><a href="elements.html">Зарегистрироваться</a></li>
+                                <li ><a th:href="@{/registration}">Зарегистрироваться</a></li>
                             </ul>
                         </li>
-                        <li class="menu-has-children"><a href="/onlearn/cart">Корзина</a>
+
+                        <li sec:authorize="hasRole('STUDENT')" class="menu-has-children"><a href="/onlearn/cart">Корзина</a>
                     </ul>
                 </nav><!-- #nav-menu-container -->
             </div>

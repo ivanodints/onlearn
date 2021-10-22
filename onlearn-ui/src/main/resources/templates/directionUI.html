@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zxx" class="no-js" xmlns:th="http://www.thymeleaf.org">
+<html lang="zxx" class="no-js" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
 	<!-- Mobile Specific Meta -->
@@ -15,7 +15,7 @@
 	<!-- meta character set -->
 	<meta charset="UTF-8">
 	<!-- Site Title -->
-	<title>About</title>
+	<title>Direction</title>
 
 	<!--
 			Google Font
@@ -26,7 +26,7 @@
 	<!--
 			CSS
 			============================================= -->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/themify-icons/0.1.2/css/themify-icons.css">
+	<link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/themify-icons/0.1.2/css/themify-icons.css}">
 	<link rel="stylesheet" th:href="@{/css/linearicons.css}">
 	<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
 	<link rel="stylesheet" th:href="@{/css/bootstrap.css}">
@@ -35,6 +35,7 @@
 	<link rel="stylesheet" th:href="@{/css/animate.min.css}">
 	<link rel="stylesheet" th:href="@{/css/owl.carousel.css}">
 	<link rel="stylesheet" th:href="@{/css/main.css}">
+	<link rel="stylesheet" th:href="@{/css/list_direction.css}">
 </head>
 
 <body>
@@ -49,14 +50,25 @@
 				<nav id="nav-menu-container">
 					<ul class="nav-menu">
 						<li class="menu-active"><a href="/onlearn">Главная</a></li>
-						<li><a href="about.html">О нас</a></li>
-						<li><a href="contact.html">Контакты</a></li>
-						<li><a href="contact.html">Войти</a>
+						<li><a href="about">О нас</a></li>
+						<li><a href="contact">Контакты</a></li>
+						<li sec:authorize="hasRole('STUDENT')">
+							<a  th:href="@{/student/{login} (login = ${userOnline})}">Профиль студента</a>
+						</li>
+
+						<li>
+							<form class="form-inline my-2 my-lg-0" form-method="post" th:action="@{/logout}">
+								<button sec:authorize="isAuthenticated()"
+										class="btn btn-outline-danger my-2 my-sm-0 btn-sm" type="submit">Выйти</button>
+								<a sec:authorize="isAnonymous()" th:href="@{~/onlearn/login}" >Войти</a>
+							</form>
+
 							<ul>
-								<li><a href="elements.html">Зарегистрироваться</a></li>
+								<li ><a th:href="@{/registration}">Зарегистрироваться</a></li>
 							</ul>
 						</li>
-						<li class="menu-has-children"><a href="/onlearn/cart">Корзина</a>
+
+						<li sec:authorize="hasRole('STUDENT')" class="menu-has-children"><a href="/onlearn/cart">Корзина</a>
 					</ul>
 				</nav><!-- #nav-menu-container -->
 			</div>

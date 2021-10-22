@@ -36,7 +36,7 @@ public class Faculty implements Serializable {
     @ManyToOne(optional = false)
     private Direction direction;
 
-    @ManyToMany(mappedBy = "faculty")
+    @ManyToMany(mappedBy = "faculty", fetch = FetchType.LAZY)
     private Set<Discipline> disciplines;
 
     @ManyToMany(mappedBy = "faculty")

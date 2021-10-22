@@ -83,17 +83,14 @@ public class FacultyController {
         model.addAttribute("findAll", facultyService.findAllFaculty());
         model.addAttribute("allDiscipline", disciplineService.findAllDiscipline());
         model.addAttribute("facultyId",facultyService.findFacultyById(id).orElseThrow(Exception::new));
-
         model.addAttribute("listDiscipline", disciplineService.findDisciplineByFaculty(id));
 
         if (principal !=null) {
             model.addAttribute("userOnline",principal.getName());
-        } else
-        { model.addAttribute("userOnline",empty);}
+        } else {
+            model.addAttribute("userOnline",empty);
+        }
 
-        System.out.println("####**********************************************8");
-        System.out.println(disciplineService.findDisciplineByFaculty(id));
-        System.out.println("###################################");
         return "listDisciplineFacultyUI";
     }
 

@@ -101,7 +101,7 @@
         <div class="row align-items-center justify-content-center">
 <!--            <div class="cart_img">-->
             <div class="col-lg-5 col-md-6 about-left">
-                <img th:src="@{/img/shopping-cart-small.jpg}" alt="">
+                <img th:src="@{/img/33.png}" alt="">
             </div>
             <div class="offset-lg-1 col-lg-6 offset-md-0 col-md-12 about-right">
 <!--            <div class="cart_table">-->
@@ -140,19 +140,19 @@
                             <td>
                                 <form th:method="delete" th:action="@{/cart}">
                                     <input type="hidden" name="facultyId" th:value="${lineItem.getFacultyDTO().getId()}">
-                                    <button class="remove__btn">Удалить</button>
+                                    <button class="btn btn-outline-danger primary-btn" >Удалить</button>
                                 </form>
                             </td>
                         </tr>
                         <tr>
                             <div class="total__price1">
                                 <td><h3>Общая стоимость</h3> </td>
-<!--                                <td></td>-->
+                                <!--                                <td></td>-->
                                 <td><h3 th:text="${totalPrice}"></h3> </td>
                                 <td>
                                     <form th:method="post" th:action="@{/cart/saveToOrder}">
-                                        <button th:if="${lineItems.isEmpty()}" class="btn-flat" disabled>Купить</button>
-                                        <button th:if="${!lineItems.isEmpty()}" class="btn-outline-danger">Купить</button>
+                                        <button th:if="${lineItems.isEmpty()}" class="btn btn-outline-danger primary-btn" disabled>Купить</button>
+                                        <button th:if="${!lineItems.isEmpty()}" class="btn btn-outline-danger primary-btn">Купить</button>
                                     </form>
                                 </td>
                             </div>

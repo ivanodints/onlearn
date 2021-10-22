@@ -90,7 +90,7 @@ public class FacultyController {
         } else {
             model.addAttribute("userOnline",empty);
         }
-
+        
         return "listDisciplineFacultyUI";
     }
 

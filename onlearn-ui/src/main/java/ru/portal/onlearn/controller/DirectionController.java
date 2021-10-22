@@ -8,6 +8,7 @@ import ru.portal.onlearn.service.DirectionService;
 import ru.portal.onlearn.service.FacultyServiceImpl;
 import ru.portal.onlearn.service.PictureService;
 
+import java.security.Principal;
 import java.util.Optional;
 
 @Controller
@@ -31,21 +32,31 @@ public class DirectionController {
                                 @RequestParam(value = "pageNumber", required = false, defaultValue = "1") Integer pageNumber,
                                 @RequestParam(value = "tableSize", required = false, defaultValue = "6") Integer tableSize,
                                 @RequestParam(value = "sort", required = false) Optional<String> sort,
-                                Model model){
+                                Model model, Principal principal){
 
+        String empty = null;
         model.addAttribute("allDirection", directionService.findAllDirection());
 
+        if (principal !=null) {
+            model.addAttribute("userOnline",principal.getName());
+        } else
+        { model.addAttribute("userOnline",empty);}
         return "directionUI";
     }
 
     @GetMapping("/{id}/direction")
-    public String directionIdPage(@PathVariable Long id, Model model) throws Exception {
+    public String directionIdPage(@PathVariable Long id, Model model, Principal principal) throws Exception {
 
+        String empty = null;
         model.addAttribute("pictures", pictureService.findAllPictures());
         model.addAttribute("directionAll", directionService.findAllDirection());
         model.addAttribute("directionId", directionService.findDirectionById(id).orElseThrow(Exception::new));
         model.addAttribute("facultyList",facultyService.findByDirectionId(id));
 
+        if (principal !=null) {
+            model.addAttribute("userOnline",principal.getName());
+        } else
+        { model.addAttribute("userOnline",empty);}
         return "directionIDUI";
     }
 

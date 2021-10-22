@@ -6,12 +6,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import ru.portal.onlearn.controller.DTO.DisciplineDTO;
-import ru.portal.onlearn.controller.DTO.FacultyDTO;
 import ru.portal.onlearn.model.Discipline;
+import ru.portal.onlearn.model.Faculty;
 import ru.portal.onlearn.repo.DisciplineRepository;
 import ru.portal.onlearn.repo.FacultyRepository;
 import ru.portal.onlearn.repo.specification.DisciplineSpecification;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -57,6 +58,14 @@ public class DisciplineServiceImpl implements DisciplineService {
                 .map(DisciplineService::mapToDTO)
                 .collect(Collectors.toList());
         return new PageImpl<>(allByIds, PageRequest.of(page -1, size), ids.getTotalElements());
+    }
+
+    @Override
+    public List<DisciplineDTO> findDisciplineByFaculty(Long id) {
+        List<Discipline> discipline =  disciplineRepository.findDisciplineByFacultyID(id);
+//        List<DisciplineDTO> disciplineDTO = new ArrayList<>();
+        return discipline.stream().map(discipline1 -> new DisciplineDTO(discipline1)).collect(Collectors.toList());
+//        return null;
     }
 
 }

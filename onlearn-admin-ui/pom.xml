@@ -92,12 +92,6 @@
 
         <dependency>
             <groupId>ru.portal.onlearn</groupId>
-            <artifactId>onlearn-database</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>ru.portal.onlearn</groupId>
             <artifactId>onlearn-ui</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>

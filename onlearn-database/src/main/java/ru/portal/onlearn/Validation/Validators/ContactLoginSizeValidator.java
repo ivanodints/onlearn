@@ -16,7 +16,7 @@ public class ContactLoginSizeValidator implements ConstraintValidator<ContactLog
 
     @Override
     public boolean isValid(String login, ConstraintValidatorContext constraintValidatorContext) {
-        return login != null && login.matches("[^\\s][a-zA-Z-_\\.]*")
+        return login != null && login.matches("[^\\s][a-zA-Z-_0-9\\.]*")
                 && (login.length() > 3) && (login.length() < 26);
     }
 }

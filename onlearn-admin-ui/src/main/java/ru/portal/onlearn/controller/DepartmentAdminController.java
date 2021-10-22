@@ -3,6 +3,7 @@ package ru.portal.onlearn.controller;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ru.portal.onlearn.error.NotFoundException;
@@ -61,7 +62,13 @@ public class DepartmentAdminController {
 
     @Secured({"ADMIN"})
     @PostMapping("/admin/departmentPost")
-    public String adminPostDepartment(Model model, RedirectAttributes redirectAttributes, @Valid Department department){
+    public String adminPostDepartment(Model model, RedirectAttributes redirectAttributes, @Valid Department department,
+                                      BindingResult bindingResult){
+
+        if(bindingResult.hasErrors()){
+            model.addAttribute("department", new Department());
+            return "department_form";
+        }
         model.addAttribute("activePage", "Departments");
         try {
             departmentRepository.save(department);

@@ -40,11 +40,18 @@ public class CartController {
     }
 
     @GetMapping
-    public String mainPage(Model model){
+    public String mainPage(Model model, Principal principal){
+
+        String empty = null;
         model.addAttribute("lineItems", cartService.getLineItems());
         model.addAttribute("totalPrice",cartService.totalPrice());
         model.addAttribute("allDirection", directionService.findAllDirection());
         model.addAttribute("facultyAll",facultyService.findAllFaculty());
+        if (principal !=null) {
+            model.addAttribute("userOnline",principal.getName());
+        } else
+        { model.addAttribute("userOnline",empty);}
+
         return "shopping-cart";
     }
 
@@ -66,11 +73,17 @@ public class CartController {
     @PostMapping("/saveToOrder")
     @Transactional
     public String addToOrder(Model model, Principal principal){
+
+        String empty = null;
         model.addAttribute("lineItems", cartService.getLineItems());
         model.addAttribute("totalPrice",cartService.totalPrice());
         model.addAttribute("allDirection", directionService.findAllDirection());
         model.addAttribute("facultyAll",facultyService.findAllFaculty());
         cartService.saveToOrder(principal.getName());
+        if (principal !=null) {
+            model.addAttribute("userOnline",principal.getName());
+        } else
+        { model.addAttribute("userOnline",empty);}
         return "thankyou";
     }
 

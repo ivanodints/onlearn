@@ -12,6 +12,7 @@ import ru.portal.onlearn.service.DirectionService;
 import ru.portal.onlearn.service.DisciplineService;
 import ru.portal.onlearn.service.FacultyService;
 
+import java.security.Principal;
 import java.util.Optional;
 
 @Controller
@@ -40,12 +41,16 @@ public class DisciplineController {
             @RequestParam(value = "pageNumber", required = false, defaultValue = "1") Integer pageNumber,
             @RequestParam(value = "tableSize", required = false, defaultValue = "6") Integer tableSize,
             @RequestParam(value = "sort", required = false) Optional<String> sort,
-            Model model){
+            Model model, Principal principal){
 
-
+        String empty = null;
         model.addAttribute("allDirection", directionService.findAllDirection());
         model.addAttribute("findAll", facultyService.findAllFaculty());
         model.addAttribute("allDiscipline", disciplineService.findAllDiscipline());
+        if (principal !=null) {
+            model.addAttribute("userOnline",principal.getName());
+        } else
+        { model.addAttribute("userOnline",empty);}
 
         return "disciplineUI";
 
@@ -53,13 +58,21 @@ public class DisciplineController {
 
 
     @GetMapping("/discipline/{id}")
-    public String disciplinePage(@PathVariable("id") Long id, Model model) {
+    public String disciplinePage(@PathVariable("id") Long id, Model model, Principal principal) {
 
+        String empty = null;
         model.addAttribute("allDirection", directionService.findAllDirection());
         model.addAttribute("findAll", facultyService.findAllFaculty());
         model.addAttribute("disciplineAll",disciplineService.findAllDiscipline());
         model.addAttribute("disciplineId", disciplineService.findDisciplineById(id).orElseThrow(NotFoundException::new));
 
+        if (principal !=null) {
+            model.addAttribute("userOnline",principal.getName());
+        } else
+        { model.addAttribute("userOnline",empty);}
+
         return "disciplineIdUI";
     }
+
+
 }

@@ -17,6 +17,6 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     Student findById (@Param("student_id") Integer id);
 
 
-    @Query("select st from Student st inner join User u on st.user.id=u.id  where (u.login=:student_user_login or :student_user_login is null)")
+    @Query("select st from Student st inner join User u on st.user.id = u.id  where (u.login=:student_user_login or :student_user_login is null)")
     Student findByUserLogin (@Param("student_user_login") String login);
 }

@@ -11,7 +11,9 @@ import ru.portal.onlearn.model.Faculty;
 
 import java.io.Serializable;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Setter
 @Getter

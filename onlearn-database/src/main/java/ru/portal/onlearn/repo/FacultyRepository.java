@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import ru.portal.onlearn.model.Direction;
 import ru.portal.onlearn.model.Faculty;
+import ru.portal.onlearn.model.Student;
 
 import java.math.BigInteger;
 import java.util.List;

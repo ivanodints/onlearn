@@ -22,6 +22,5 @@ public interface CartService {
 
     Set<Faculty> getFacultyList();
 
-//    void saveToOrder(OrderDTO orderDTO);
     void saveToOrder(String login);
 }

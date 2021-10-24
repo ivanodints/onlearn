@@ -40,13 +40,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
         http
                 .authorizeRequests()
-//                .anyRequest().hasAnyRole("ADMIN", "SUPER-ADMIN", "GUEST", "STUDENT")
+
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/js/**").permitAll()
                 .antMatchers("/webfonts/*").permitAll()
                 .antMatchers("/webjars/**").permitAll()
                 .antMatchers("/admin/**").authenticated()
-//                .antMatchers("/student/**").authenticated()
                 .antMatchers("/resources/**").permitAll()
                 .antMatchers("/**").permitAll()
                 .antMatchers("/admin").authenticated()

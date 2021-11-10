@@ -10,7 +10,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class DepartmentAdminServiceImpl implements DepartmentAdminService{
+public class DepartmentAdminServiceImpl implements DepartmentAdminService {
 
     private final DepartmentRepository departmentRepository;
 
@@ -34,6 +34,7 @@ public class DepartmentAdminServiceImpl implements DepartmentAdminService{
 
     @Override
     public Department findByTitle(String title) {
+
         return departmentRepository.findByTitle(title);
     }
 

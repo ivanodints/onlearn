@@ -29,5 +29,8 @@ public class Department implements Serializable {
             cascade = CascadeType.ALL)
     private List<Employee> employees;
 
-
+    public Department(Long id, String title) {
+        this.id = id;
+        this.title = title;
+    }
 }

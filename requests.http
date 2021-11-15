@@ -1,0 +1,28 @@
+
+###
+
+GET http://localhost:8016/onlearn/api/v1/direction/all
+
+###
+
+GET http://localhost:8016/onlearn/api/v1/direction/5
+
+###
+
+GET http://localhost:8016/onlearn/api/v1/direction/3
+
+###
+
+GET http://localhost:8016/onlearn/api/v1/faculty/all
+
+###
+
+GET http://localhost:8016/onlearn/api/v1/faculty/6
+
+###
+
+GET http://localhost:8016/onlearn/api/v1/discipline/all
+
+###
+
+GET http://localhost:8016/onlearn/api/v1/discipline/9

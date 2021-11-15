@@ -1,5 +1,6 @@
 package ru.portal.onlearn.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,18 +34,21 @@ public class Discipline implements Serializable {
     @Column(name = "description")
     private  String description;
 
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "fac_disc",
     joinColumns = @JoinColumn(name = "disc_id"),
     inverseJoinColumns = @JoinColumn(name = "fac_id"))
     private Set<Faculty> faculty;
 
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "employee_disc",
             joinColumns = @JoinColumn(name = "disc_id"),
             inverseJoinColumns = @JoinColumn(name = "employee_id"))
     private Set<Employee> employees;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "discipline", cascade = CascadeType.ALL)
     private List<Picture> pictures;
 

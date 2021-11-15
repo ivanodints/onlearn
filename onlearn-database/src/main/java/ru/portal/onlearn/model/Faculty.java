@@ -1,5 +1,6 @@
 package ru.portal.onlearn.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -39,12 +40,15 @@ public class Faculty implements Serializable {
     @ManyToMany(mappedBy = "faculty", fetch = FetchType.LAZY)
     private Set<Discipline> disciplines;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "faculty")
     private Set<Student> students;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "faculty")
     private Set<Order> orders;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "faculty", cascade = CascadeType.ALL)
     private List<Picture> pictures;
 

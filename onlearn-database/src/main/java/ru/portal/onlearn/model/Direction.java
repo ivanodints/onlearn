@@ -1,5 +1,6 @@
 package ru.portal.onlearn.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,9 +31,11 @@ public class Direction implements Serializable {
     @Column(name = "description")
     private  String description;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "direction", cascade = CascadeType.ALL)
     private List<Picture> pictures;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "direction", cascade = CascadeType.ALL)
     private List<Faculty> faculties;
 
